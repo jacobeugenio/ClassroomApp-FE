@@ -7,12 +7,12 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
 
 const LandingPage = () => {
-    const location = useLocation()
-    return location.pathname === '/login' || location.pathname === '/layout' ? null : (
+    // const location = useLocation()
+    return  (
         <>
             <Navbar bg="light" expand="md" className='py-0'>
                 <Container>
-                    <Navbar.Brand href="#home">Classroom App</Navbar.Brand>
+                    <Navbar.Brand href="#home">Kodevamp's - WD57P</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">

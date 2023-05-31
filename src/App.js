@@ -6,8 +6,14 @@ import Home from './components/teacher/Home';
 import Students from './components/teacher/Students'
 import NotFound from './NotFound';
 import Grades from './components/teacher/Grades';
+import './App.css';
+import { useState } from 'react';
+import API_Service from './api-service/API_Service';
 
 function App() {
+// const url = 'http://localhost:5000/teachers/get-students';
+// fetch(url).then(res => res.json).then(data=> console.log(data));
+
   return (
     <>
       <Routes>
