@@ -5,18 +5,9 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import API_Service from '../api-service/API_Service'
+
 
 const Header = () => {
-
-  useState(() => {
-
-    API_Service.get('/teachers/get-students')
-    .then(res => {
-     console.log(res.data)
-    })
-    .catch(error => console.log(error.msg))
-  },[])
   
   return (
     <Navbar bg="light" expand="md">

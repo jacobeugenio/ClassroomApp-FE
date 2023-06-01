@@ -9,6 +9,7 @@ import Grades from './components/teacher/Grades';
 import './App.css';
 import { useState } from 'react';
 import API_Service from './api-service/API_Service';
+import AddStudent from './components/teacher/student-component/AddStudent';
 
 function App() {
 // const url = 'http://localhost:5000/teachers/get-students';
@@ -23,6 +24,7 @@ function App() {
         <Route path='/teacher' element={<Home />} />
         <Route path='/teacher/students' element={<Students />} />
         <Route path='/teacher/grades' element={<Grades />} />
+        {/* <Route path='/teacher/add-student' element={<AddStudent />} /> */}
         <Route path='*' element={<NotFound />} />
 
       </Routes>

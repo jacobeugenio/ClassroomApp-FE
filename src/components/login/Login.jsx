@@ -9,7 +9,7 @@ const Login = () => {
 
     return (
         <Container className='my-5'>
-            <Form className=''>
+            <Form className='login-form'>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Username</Form.Label>
                     <Form.Control type="email" placeholder="Enter username" />
