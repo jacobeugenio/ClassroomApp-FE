@@ -1,12 +1,19 @@
-
-.container > .login-form {
-    min-width: 350px;
-    max-width: 450px;
-    margin: 0 auto;
-    border: 1px solid goldenrod;
-    padding: 25px;
+.input-container:focus {
+	outline: none;
 }
-button[type="submit"]{
-    display: block;
-    width: 100%;
+
+.input-container {
+	padding: 10px;
+}
+
+.container > form {
+	min-width: 350px;
+	max-width: 450px;
+	margin: 0 auto;
+	border: 1px solid goldenrod;
+	padding: 25px;
+}
+button[type="submit"] {
+	display: block;
+	width: 100%;
 }

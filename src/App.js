@@ -1,11 +1,12 @@
-import { Route, Routes } from 'react-router-dom';
-import LandingPage from './components/landing-page/LandingPage'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './components/login/Login';
-import Home from './components/teacher/Home';
-import Students from './components/teacher/Students'
-import NotFound from './NotFound';
-import Grades from './components/teacher/Grades';
+import { Route, Routes } from "react-router-dom";
+import LandingPage from "./components/landing-page/LandingPage";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Login from "./components/login/Login";
+import Home from "./components/teacher/Home";
+import Students from "./components/teacher/Students";
+import NotFound from "./NotFound";
+import Grades from "./components/teacher/Grades";
+import Register from "./components/Register/Register";
 import './App.css';
 import { useState } from 'react';
 import API_Service from './api-service/API_Service';
