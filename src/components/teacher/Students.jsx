@@ -9,34 +9,45 @@ import API_Service from "../../api-service/API_Service";
 import Container from "react-bootstrap/Container";
 
 const Students = () => {
-  const [data, setData] = useState([]);
+	const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const getUser = async () => {
-      try {
-        const response = await API_Service.get("/teachers/get-students");
-        setData(response.data.students);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+	const handleRefresh = () => {
+		API_Service.get("students/get-students").then((response) =>
+			setData(response.data)
+		);
+	};
 
-    getUser();
-  }, []);
+	useEffect(() => {
+		handleRefresh();
+	}, []);
 
-  return (
-    <>
-      <Header />
-      <Container className="my-4">
-        <h3>Students List</h3>
-        <hr />
-        <StudentRegmodal />
-      </Container>
-      <Container>
-        <StudentDetails data={data} />
-      </Container>
-    </>
-  );
+	useEffect(() => {
+		const getUser = async () => {
+			try {
+				const response = await API_Service.get("/teachers/get-students");
+				setData(response.data.students);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+
+		getUser();
+	}, []);
+
+	return (
+		<>
+			<Header />
+			<Container className='my-4'>
+				<h3>Students List</h3>
+				<hr />
+				<StudentRegmodal />
+			</Container>
+			<Container>
+				<button onClick={handleRefresh}>Refresh</button>
+				<StudentDetails data={data} />
+			</Container>
+		</>
+	);
 };
 
 export default Students;
