@@ -1,14 +1,12 @@
-import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
-
+import React from "react";
+import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () => {
-  
   return (
     <Navbar bg="light" expand="md">
       <Container>
@@ -18,12 +16,12 @@ const Header = () => {
           <Nav className="ms-auto">
             <NavLink to="/teacher">Home</NavLink>
             <NavLink to="/teacher/profile">Profile</NavLink>
-     
+
             <NavLink to="/teacher/students">Students</NavLink>
-            <NavLink to="/teacher/assignments">Assignments</NavLink>
+            <NavLink to="/teacher/activities">Activities</NavLink>
             {/* <NavLink to="/teacher/grades">Grades</NavLink> */}
-            <NavLink to="/teacher/logout"> 
-              <Button variant="warning" size='sm'>
+            <NavLink to="/teacher/logout">
+              <Button variant="warning" size="sm">
                 LOGOUT
               </Button>
             </NavLink>
@@ -31,7 +29,7 @@ const Header = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

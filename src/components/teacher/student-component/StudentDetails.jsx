@@ -3,6 +3,7 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 
 const StudentDetails = ({ data }) => {
+  console.log(data);
   const studentData = data.map((student, index) => {
     return (
       <tr key={index}>
