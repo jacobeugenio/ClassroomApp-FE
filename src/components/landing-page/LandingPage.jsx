@@ -5,6 +5,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const LandingPage = () => {
 	const location = useLocation();
@@ -49,8 +51,14 @@ const LandingPage = () => {
 
 			<div className='content'>
 				<Container>
-					<h3>This is the landing Page</h3>
-					<Link to='/teacher'>Go to teacher</Link>
+					<Row>
+						<Col lg={6}>
+							<Link to='/teacher'>Go to teacher</Link>
+						</Col>
+						<Col lg={6}>
+							<Link to='/students'>Go to Students</Link>
+						</Col>
+					</Row>
 				</Container>
 			</div>
 		</>
