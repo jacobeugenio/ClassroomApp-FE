@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../layout/Header";
-import Teach_Profile from "./teacher-component/Teach_Profile";
+// import Teach_Profile from "./teacher-component/Teach_Profile";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -40,18 +40,6 @@ const Home = () => {
             {" "}
             {/* <Teach_Profile data={teacher} /> */}
             {/* {teacher.length > 0 && <Teach_Profile data={teacher} />} */}
-            <div className="text-center">
-              <Card.Img
-                variant="top"
-                style={{ width: 120, height: 120 }}
-                src={T_Image}
-              />
-              <h4 className="mt-3">Hello Teacher {teacher.fname}</h4>
-              <Button variant="outline-success" size="sm">
-                {/* <Link to={<Teach_Profile />} /> */}
-                <Link to="/teacher/profile">View Profile</Link>
-              </Button>
-            </div>
           </Col>
           <Col sm={8}>
             {" "}
