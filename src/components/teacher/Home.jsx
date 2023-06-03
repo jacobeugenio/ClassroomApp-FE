@@ -9,6 +9,7 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import API_Service from "../../api-service/API_Service";
 import T_Image from "../../img/ava2.png";
+import { Link } from "react-router-dom";
 const Home = () => {
   const [teacher, setTeacher] = useState([]);
 
@@ -46,6 +47,10 @@ const Home = () => {
                 src={T_Image}
               />
               <h4 className="mt-3">Hello Teacher {teacher.fname}</h4>
+              <Button variant="outline-success" size="sm">
+                {/* <Link to={<Teach_Profile />} /> */}
+                <Link to="/teacher/profile">View Profile</Link>
+              </Button>
             </div>
           </Col>
           <Col sm={8}>
