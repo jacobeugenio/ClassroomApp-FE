@@ -8,7 +8,7 @@ import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import API_Service from "../../api-service/API_Service";
-
+import T_Image from "../../img/ava2.png";
 const Home = () => {
   const [teacher, setTeacher] = useState([]);
 
@@ -39,6 +39,14 @@ const Home = () => {
             {" "}
             {/* <Teach_Profile data={teacher} /> */}
             {/* {teacher.length > 0 && <Teach_Profile data={teacher} />} */}
+            <div className="text-center">
+              <Card.Img
+                variant="top"
+                style={{ width: 120, height: 120 }}
+                src={T_Image}
+              />
+              <h4 className="mt-3">Hello Teacher {teacher.fname}</h4>
+            </div>
           </Col>
           <Col sm={8}>
             {" "}
