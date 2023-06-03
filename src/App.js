@@ -8,10 +8,8 @@ import NotFound from "./NotFound";
 import Grades from "./components/teacher/Grades";
 import Register from "./components/Register/Register";
 import "./App.css";
-import Teach_Profile from "./components/teacher/teacher-component/Teach_Profile";
+import TeachProfile from "./components/teacher/teacher-component/Teach_Profile";
 import Activities from "./components/teacher/Activities";
-
-import API_Service from "./api-service/API_Service";
 
 function App() {
 	// const url = 'http://localhost:5000/teachers/get-students';
@@ -26,7 +24,7 @@ function App() {
 				<Route path='/teacher' element={<Home />} />
 				<Route path='/teacher/students' element={<Students />} />
 				<Route path='/teacher/grades' element={<Grades />} />
-				<Route path='/teacher/profile' element={<Teach_Profile />} />
+				<Route path='/teacher/profile' element={<TeachProfile />} />
 				<Route path='/teacher/activities' element={<Activities />} />
 				<Route path='/register' element={<Register />} />
 				<Route path='*' element={<NotFound />} />

@@ -9,39 +9,58 @@ function Register() {
 	const [formData, setFormData] = useState({
 		fname: "",
 		lname: "",
-		age: "",
-		email: "",
 		username: "",
+		contact: "",
+		email: "",
+		age: "",
 		gender: "",
-		contact: `09-`,
+		address: "",
 		password: "",
+		password2: "",
 	});
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
 		// console.log(value);
+		console.log(name);
 		setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
 	};
 
 	const onSubmitForm = (event) => {
 		event.preventDefault();
 
-		API_Service.post("students/register-student", formData).then((response) => {
-			console.log(response);
-		});
+		API_Service.post("students/reg-student", formData)
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => {
+				console.log("error:", error);
+			});
 
-		console.log(formData);
-		setFormData({
-			fname: "",
-			lname: "",
-			age: "",
-			email: "",
-			username: "",
-			gender: "",
-			contact: "",
-			password: "",
-		});
+		if (formData.password !== formData.password2) {
+			alert("Passwords do not match");
+		} else {
+			console.log(formData);
+			setFormData({
+				fname: "",
+				lname: "",
+				username: "",
+				contact: "",
+				email: "",
+				age: "",
+				gender: "",
+				address: "",
+				password: "",
+				password2: "",
+			});
+		}
 	};
+
+	// const handleErrorFunction = (name) => {
+	// 	name === error.name && (
+	// 		<div className='error__messages'>{error.message}</div>
+	// 	);
+	// };
 
 	return (
 		<Container className='my-5'>
@@ -81,6 +100,19 @@ function Register() {
 						className='input-container'
 						type='number'
 						placeholder='Enter you age'
+						required
+					/>
+				</Form.Group>
+
+				<Form.Group className='mb-3' controlId='formBasicAddress'>
+					<Form.Label>Address:</Form.Label>
+					<Form.Control
+						onChange={handleChange}
+						value={formData.address}
+						name='address'
+						className='input-container'
+						type='text'
+						placeholder='Enter address'
 						required
 					/>
 				</Form.Group>
@@ -144,6 +176,19 @@ function Register() {
 						onChange={handleChange}
 						value={formData.password}
 						name='password'
+						className='input-container'
+						type='password'
+						placeholder='Enter password'
+						required
+					/>
+				</Form.Group>
+
+				<Form.Group className='mb-3' controlId='formBasicPassword2'>
+					<Form.Label>Confirm Password:</Form.Label>
+					<Form.Control
+						onChange={handleChange}
+						value={formData.password2}
+						name='password2'
 						className='input-container'
 						type='password'
 						placeholder='Enter password'
