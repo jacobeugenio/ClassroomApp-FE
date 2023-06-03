@@ -8,7 +8,7 @@ import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import API_Service from "../../api-service/API_Service";
-
+import T_Image from "../../img/ava2.png";
 const Home = () => {
 	const [teacher, setTeacher] = useState([]);
 
@@ -29,6 +29,7 @@ const Home = () => {
 	useEffect(() => {
 		// console.log(teacher);
 	}, [teacher]);
+
 
 	return (
 		<>
@@ -62,6 +63,7 @@ const Home = () => {
 										See all students
 									</Button>
 								</div>
+
 
 								<Table striped>
 									<thead>
