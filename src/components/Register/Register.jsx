@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import API_Service from "../../api-service/API_Service";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -18,12 +19,16 @@ function Register() {
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
-		console.log(value);
+		// console.log(value);
 		setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
 	};
 
 	const onSubmitForm = (event) => {
 		event.preventDefault();
+
+		API_Service.post("students/register-student", formData).then((response) => {
+			console.log(response);
+		});
 
 		console.log(formData);
 		setFormData({

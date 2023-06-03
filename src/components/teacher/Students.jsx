@@ -11,6 +11,16 @@ import Container from "react-bootstrap/Container";
 const Students = () => {
   const [data, setData] = useState([]);
 
+  const handleRefresh = () => {
+    API_Service.get("students/get-students").then((response) =>
+      setData(response.data)
+    );
+  };
+
+  useEffect(() => {
+    handleRefresh();
+  }, []);
+
   useEffect(() => {
     const getUser = async () => {
       try {
@@ -30,9 +40,10 @@ const Students = () => {
       <Container className="my-4">
         <h3>Students List</h3>
         <hr />
-        <StudentRegModal />
+        <StudentRegmodal />
       </Container>
       <Container>
+        <button onClick={handleRefresh}>Refresh</button>
         <StudentDetails data={data} />
       </Container>
     </>

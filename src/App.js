@@ -11,26 +11,28 @@ import "./App.css";
 import Teach_Profile from "./components/teacher/teacher-component/Teach_Profile";
 import Activities from "./components/teacher/Activities";
 
-function App() {
-  // const url = 'http://localhost:5000/teachers/get-students';
-  // fetch(url).then(res => res.json).then(data=> console.log(data));
+import API_Service from "./api-service/API_Service";
 
-  return (
-    <>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
-        {/* <Route path='/register' element={<Register />} /> */}
-        <Route path="/teacher" element={<Home />} />
-        <Route path="/teacher/students" element={<Students />} />
-        <Route path="/teacher/grades" element={<Grades />} />
-        <Route path="/teacher/profile" element={<Teach_Profile />} />
-        <Route path="/teacher/activities" element={<Activities />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </>
-  );
+function App() {
+	// const url = 'http://localhost:5000/teachers/get-students';
+	// fetch(url).then(res => res.json).then(data=> console.log(data));
+
+	return (
+		<>
+			<Routes>
+				<Route path='/' element={<LandingPage />} />
+				<Route path='/login' element={<Login />} />
+				{/* <Route path='/register' element={<Register />} /> */}
+				<Route path='/teacher' element={<Home />} />
+				<Route path='/teacher/students' element={<Students />} />
+				<Route path='/teacher/grades' element={<Grades />} />
+				<Route path='/teacher/profile' element={<Teach_Profile />} />
+				<Route path='/teacher/activities' element={<Activities />} />
+				<Route path='/register' element={<Register />} />
+				<Route path='*' element={<NotFound />} />
+			</Routes>
+		</>
+	);
 }
 
 export default App;
