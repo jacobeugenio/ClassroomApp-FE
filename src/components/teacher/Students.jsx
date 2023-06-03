@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import Header from "../../layout/Header";
 import StudentDetails from "./student-component/StudentDetails";
-import StudentRegModal from "./student-component/StudentRegModal";
+import StudentRegmodal from "./student-component/StudentRegModal";
 
 import API_Service from "../../api-service/API_Service";
 
