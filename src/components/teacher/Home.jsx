@@ -17,8 +17,8 @@ const Home = () => {
     const getTeacher = async () => {
       try {
         const response = await API_Service.get("/teachers/get-teachers");
-        setTeacher(response.data.teacher[0]);
-        // console.log(response.data.fname);
+        setTeacher(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -36,10 +36,22 @@ const Home = () => {
       <Header />
       <Container className="mt-4">
         <Row>
-          <Col sm={4}>
+          <Col sm={4} className="text-center">
             {" "}
             {/* <Teach_Profile data={teacher} /> */}
             {/* {teacher.length > 0 && <Teach_Profile data={teacher} />} */}
+            <Card.Img
+              variant="top"
+              src={T_Image}
+              style={{ height: 120, width: 120 }}
+            />
+            {/* <h4>Hello Teacher {teacher}</h4> */}
+            <br />
+            <Link to="/teacher/profile">
+              <Button variant="outline-info" size="sm">
+                View Profile
+              </Button>{" "}
+            </Link>
           </Col>
           <Col sm={8}>
             {" "}
@@ -99,6 +111,28 @@ const Home = () => {
         </Row>
       </Container>
       <hr />
+      <Container className="activities-container">
+        {Array.from({ length: 12 }).map((_, idx) => (
+          <Card>
+            <Card.Header>Header</Card.Header>
+            <Card.Body>
+              <Card.Title> Card Title </Card.Title>
+              <Card.Text>Lorem ipsum dolor sit amet.</Card.Text>
+            </Card.Body>
+          </Card>
+        ))}
+      </Container>
+      <Container className="s_profile_container my-4">
+        {Array.from({ length: 20 }).map((_, idx) => (
+          <Card>
+            <Card.Img
+              variant="top"
+              src={T_Image}
+              style={{ height: 50, width: 50 }}
+            />
+          </Card>
+        ))}
+      </Container>
     </>
   );
 };

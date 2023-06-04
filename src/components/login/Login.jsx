@@ -7,81 +7,66 @@ import "./login.css";
 import API_Service from "../../api-service/API_Service";
 
 const Login = () => {
-	// const [mockDatabase, setMockDatabase] = useState([{}]);
+  // const [mockDatabase, setMockDatabase] = useState([{}]);
 
-	// console.log(mockDatabase);
+  // console.log(mockDatabase);
 
-	const [userLogin, setUserLogin] = useState({
-		username: "",
-		password: "",
-	});
+  const [userLogin, setUserLogin] = useState({
+    username: "",
+    password: "",
+  });
 
-	const handleLoginSubmit = (event) => {
-		event.preventDefault();
+  const handleLoginSubmit = (event) => {
+    event.preventDefault();
 
-		const { username, password } = event.target.elements;
-		setUserLogin({
-			username: username.value,
-			password: password.value,
-		});
-		// console.log(username.value);
-		// console.log(password.value);
+    const { username, password } = event.target.elements;
+    setUserLogin({
+      username: username.value,
+      password: password.value,
+    });
 
-		API_Service.post("students/login", userLogin)
-			.then((response) => {
-				// setMockDatabase(response.data);
+    API_Service.post("/students/login", userLogin)
+      .then((response) => {
+        // setMockDatabase(response.data);
 
-				console.log(response.data);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-		// const studentData = mockDatabase.find((data) => {
-		// 	return (
-		// 		data.username === username.value && data.password === password.value
-		// 	);
-		// });
-
-		// if (studentData) {
-		// 	console.log(studentData);
-		// 	alert("Login Successful!");
-		// } else {
-		// 	alert("Invalid username or password");
-		// }
-	};
-
-	return (
-		<Container className='my-5'>
-			<Form onSubmit={handleLoginSubmit} className=''>
-				<Form.Group className='mb-3' controlId='formBasicEmail'>
-					<Form.Label>Username</Form.Label>
-					<Form.Control
-						className='input-container'
-						type='text'
-						name='username'
-						placeholder='Enter username'
-					/>
-					{/* <Form.Text className="text-muted">
+  return (
+    <Container className="my-5">
+      <Form onSubmit={handleLoginSubmit} className="">
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            className="input-container"
+            type="text"
+            name="username"
+            placeholder="Enter username"
+          />
+          {/* <Form.Text className="text-muted">
             We'll never share your email with anyone else.
             </Form.Text> */}
-				</Form.Group>
+        </Form.Group>
 
-				<Form.Group className='mb-3' controlId='formBasicPassword'>
-					<Form.Label>Password</Form.Label>
-					<Form.Control
-						className='input-container'
-						type='password'
-						name='password'
-						placeholder='Password'
-					/>
-				</Form.Group>
-				<Button variant='primary' type='submit'>
-					Login
-				</Button>
-			</Form>
-		</Container>
-	);
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            className="input-container"
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Login
+        </Button>
+      </Form>
+    </Container>
+  );
 };
 
 export default Login;

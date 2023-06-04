@@ -7,6 +7,8 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import API_Service from "../../../api-service/API_Service";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 const StudentRegModal = () => {
   //For registration Modal
   const [show, setShow] = useState(false);
@@ -26,6 +28,8 @@ const StudentRegModal = () => {
     password2: "",
   });
 
+  //  fname, lname, username, contact, age, gender, address, password, password2
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     // console.log(value);
@@ -35,33 +39,58 @@ const StudentRegModal = () => {
   const onSubmitForm = (event) => {
     event.preventDefault();
 
-    const addStudent = async () => {
-      try {
-        const response = await API_Service.post(
-          "/teachers/add-student",
-          formData
-        );
+    API_Service.post("/teachers/add-student", {
+      fname: formData.fname,
+      lname: formData.lname,
+      username: formData.username,
+      email: formData.email,
+      contact: formData.contact,
+      age: formData.age,
+      gender: formData.gender,
+      address: formData.address,
+      password: formData.password,
+      password2: formData.password2,
+    })
+      .then((response) => {
         console.log(response);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // const addStudent = async () => {
+    //   try {
+    //     const response =   await API_Service.post("/teachers/add-student", {
+    //         fname: formData.fname,
+    //         lname: formData.lname,
+    //         username: formData.username,
+    //          email: formData.email,
+    //          contact: formData.contact,
+    //          age: formData.age,
+    //          gender: formData.gender,
+    //        address: formData.address,
+    //          password: formData.password,
+    //          password2: formData.password2,
+    //        })
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // };
 
-    addStudent();
+    // addStudent();
 
     // console.log(formData);
-    setFormData({
-      fname: "",
-      lname: "",
-      age: "",
-      email: "",
-      address: "",
-      username: "",
-      gender: "",
-      contact: "",
-      password: "",
-      password2: "",
-    });
+    // setFormData({
+    //   fname: "",
+    //   lname: "",
+    //   age: "",
+    //   email: "",
+    //   address: "",
+    //   username: "",
+    //   gender: "",
+    //   contact: "",
+    //   password: "",
+    //   password2: "",
+    // });
   };
 
   return (
@@ -193,7 +222,7 @@ const StudentRegModal = () => {
             </Row>
 
             <hr className="mt-4" />
-            <Button variant="primary" type="submit" onClick={handleClose}>
+            <Button variant="primary" type="submit">
               Add Sudent
             </Button>
           </Form>

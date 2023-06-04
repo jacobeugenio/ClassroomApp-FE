@@ -1,7 +1,12 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEye,
+  faPenToSquare,
+  faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
 const StudentDetails = ({ data }) => {
   // console.log(data);
   const studentData = data.map((student, index) => {
@@ -16,10 +21,15 @@ const StudentDetails = ({ data }) => {
         <td>{student.gender}</td>
         <td>{student.age}</td>
         <td className="d-flex flex-row">
-          <Button variant="success" size="sm" className="mx-2">
-            View
+          <Button variant="outline-success" size="sm" className="mx-2">
+            <FontAwesomeIcon icon={faEye} /> View
           </Button>
-          <Button variant="outline-success" size="sm" className="">
+          <Button variant="outline-danger" size="sm" className="mx-2">
+            <FontAwesomeIcon icon={faPenToSquare} />
+            Edit
+          </Button>
+          <Button variant="outline-primary" size="sm" className="">
+            <FontAwesomeIcon icon={faTrashCan} />
             Delete
           </Button>
         </td>
