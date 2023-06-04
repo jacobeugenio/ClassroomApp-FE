@@ -7,7 +7,9 @@ import StudentRegmodal from "./student-component/StudentRegModal";
 import API_Service from "../../api-service/API_Service";
 
 import Container from "react-bootstrap/Container";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "react-bootstrap";
 const Students = () => {
   const [data, setData] = useState([]);
 
@@ -41,9 +43,17 @@ const Students = () => {
         <h3>Students List</h3>
         <hr />
         <StudentRegmodal />
+        <Button
+          variant="outline-danger"
+          className="ms-2"
+          size="sm"
+          onClick={handleRefresh}
+        >
+          <FontAwesomeIcon icon={faRotateLeft} className="me-1" />
+          Refresh
+        </Button>
       </Container>
       <Container>
-        <button onClick={handleRefresh}>Refresh</button>
         <StudentDetails data={data} />
       </Container>
     </>
