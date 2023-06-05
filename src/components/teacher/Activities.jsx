@@ -8,20 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Activities = () => {
-  const [exam, setExam] = useState([]);
-  useEffect(() => {
-    const getExam = async () => {
-      try {
-        const response = await API_Service.get("/teachers/get-exams");
-        // console.log(response.data);
-        setExam(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getExam();
-  }, []);
   return (
     <>
       <Header />
@@ -30,7 +16,7 @@ const Activities = () => {
           <FontAwesomeIcon icon={faPlus} /> <span>Create Exam</span>
         </Button>
       </Container>
-      <Container className="d-flex flex-wrap gap-1 mt-3">
+      <Container className="d-flex flex-wrap gap-2 mt-3">
         <Activities_Card />
       </Container>
     </>

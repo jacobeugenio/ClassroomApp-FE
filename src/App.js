@@ -11,28 +11,30 @@ import "./App.css";
 import TeachProfile from "./components/teacher/teacher-component/Teach_Profile";
 import Activities from "./components/teacher/Activities";
 import StudentsPage from "./components/students/Students";
+import Activity_Details from "./components/teacher/activities-comp/Activity_Details";
 
 function App() {
-	// const url = 'http://localhost:5000/teachers/get-students';
-	// fetch(url).then(res => res.json).then(data=> console.log(data));
+  // const url = 'http://localhost:5000/teachers/get-students';
+  // fetch(url).then(res => res.json).then(data=> console.log(data));
 
-	return (
-		<>
-			<Routes>
-				<Route path='/' element={<LandingPage />} />
-				<Route path='/login' element={<Login />} />
-				{/* <Route path='/register' element={<Register />} /> */}
-				<Route path='/teacher' element={<Home />} />
-				<Route path='/teacher/students' element={<Students />} />
-				<Route path='/teacher/grades' element={<Grades />} />
-				<Route path='/teacher/profile' element={<TeachProfile />} />
-				<Route path='/teacher/activities' element={<Activities />} />
-				<Route path='/register' element={<Register />} />
-				<Route path='*' element={<NotFound />} />
-				<Route path='/students' element={<StudentsPage />} />
-			</Routes>
-		</>
-	);
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login />} />
+        {/* <Route path='/register' element={<Register />} /> */}
+        <Route path="/teacher" element={<Home />} />
+        <Route path="/teacher/students" element={<Students />} />
+        <Route path="/teacher/grades" element={<Grades />} />
+        <Route path="/teacher/profile" element={<TeachProfile />} />
+        <Route path="/teacher/activities" element={<Activities />} />
+        <Route path="/teacher/activities/:id" element={<Activity_Details />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="*" element={<NotFound />} />
+        <Route path="/students" element={<StudentsPage />} />
+      </Routes>
+    </>
+  );
 }
 
 export default App;

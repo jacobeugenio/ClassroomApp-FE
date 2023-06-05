@@ -52,6 +52,17 @@ nav a {
   height: 50px;
   border: none;
 }
+.questionaire {
+  width: 500px;
+  margin: 0 auto;
+}
+.questionaire h6 {
+  font-size: 13px;
+  font-style: italic;
+}
+.view-questionaire > div > span {
+  font-size: 11px;
+}
 /* .App {
   text-align: center;
 }
