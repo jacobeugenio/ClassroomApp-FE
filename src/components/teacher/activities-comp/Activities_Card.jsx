@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import API_Service from "../../../api-service/API_Service";
 import { Link } from "react-router-dom";
-import Activity_Details from "./Activity_Details";
 
 const Activities_Card = () => {
   const [exams, setExams] = useState([]);
@@ -25,17 +23,17 @@ const Activities_Card = () => {
     <>
       {/* <Container className="activities-container"> */}
       {exams &&
-        exams.map((exam, index) => {
+        exams.map((exam) => {
           return (
-            <Link to={`/teacher/activities/` + exam.id}>
-              <Card key={index} className="">
+            <Card key={exam.id}>
+              <Link to={`/teacher/activities/` + exam.id}>
                 <Card.Header>{exam.subject}</Card.Header>
                 <Card.Body>
                   <Card.Title>{exam.title}</Card.Title>
                   <Card.Text>{exam.desc}</Card.Text>
                 </Card.Body>
-              </Card>
-            </Link>
+              </Link>
+            </Card>
           );
         })}
       {/* </Container> */}

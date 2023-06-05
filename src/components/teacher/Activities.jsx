@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Header from "../../layout/Header";
 import Container from "react-bootstrap/Container";
-import API_Service from "../../api-service/API_Service";
 import Activities_Card from "./activities-comp/Activities_Card";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

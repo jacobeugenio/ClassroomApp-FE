@@ -12,11 +12,11 @@ const Activity_Details = () => {
   useEffect(() => {
     const getExam = async () => {
       try {
-        const response = await API_Service.get(`/teacher/activities`);
-        // console.log(response.data);
+        const response = await API_Service.get(`/teachers/activities/` + id);
+        console.log(response.data);
         setExam(response.data.exam);
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       }
     };
 
