@@ -10,6 +10,8 @@ import Button from "react-bootstrap/Button";
 import API_Service from "../../api-service/API_Service";
 import T_Image from "../../img/ava2.png";
 import { Link } from "react-router-dom";
+import Activities_Card from "./activities-comp/Activities_Card";
+import Student_Profile from "./profile-comp/Student_Profile";
 const Home = () => {
   const [teacher, setTeacher] = useState([]);
 
@@ -18,7 +20,7 @@ const Home = () => {
       try {
         const response = await API_Service.get("/teachers/get-teachers");
         setTeacher(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -47,6 +49,7 @@ const Home = () => {
             />
             {/* <h4>Hello Teacher {teacher}</h4> */}
             <br />
+            <h5>Ms. Jane Doe</h5>
             <Link to="/teacher/profile">
               <Button variant="outline-info" size="sm">
                 View Profile
@@ -69,10 +72,10 @@ const Home = () => {
                 ))}
               </Row>
               <hr />
-              <Row>
-                <div>
+              <Row style={{ marginTop: -20 }}>
+                <div className="mt-0">
                   <Button variant="success" size="sm" className="mt-4">
-                    See all students
+                    <Link to="/teacher/students">See all students</Link>
                   </Button>
                 </div>
 
@@ -112,27 +115,10 @@ const Home = () => {
       </Container>
       <hr />
       <Container className="activities-container">
-        {Array.from({ length: 12 }).map((_, idx) => (
-          <Card>
-            <Card.Header>Header</Card.Header>
-            <Card.Body>
-              <Card.Title> Card Title </Card.Title>
-              <Card.Text>Lorem ipsum dolor sit amet.</Card.Text>
-            </Card.Body>
-          </Card>
-        ))}
+        <Activities_Card />
       </Container>
-      <Container className="s_profile_container my-4">
-        {Array.from({ length: 20 }).map((_, idx) => (
-          <Card>
-            <Card.Img
-              variant="top"
-              src={T_Image}
-              style={{ height: 50, width: 50 }}
-            />
-          </Card>
-        ))}
-      </Container>
+
+      <Student_Profile />
     </>
   );
 };

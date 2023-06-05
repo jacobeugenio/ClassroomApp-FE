@@ -22,6 +22,7 @@ const StudentRegModal = () => {
     email: "",
     contact: "",
     age: "",
+    img: "",
     gender: "",
     address: "",
     password: "",
@@ -32,7 +33,7 @@ const StudentRegModal = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    // console.log(value);
+    console.log(value);
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
@@ -45,6 +46,7 @@ const StudentRegModal = () => {
       username: formData.username,
       email: formData.email,
       contact: formData.contact,
+      img: formData.img,
       age: formData.age,
       gender: formData.gender,
       address: formData.address,
@@ -95,8 +97,8 @@ const StudentRegModal = () => {
 
   return (
     <>
-      <Button variant="outline-danger" size="sm" onClick={handleShow}>
-        Add New Student
+      <Button variant="danger" size="sm" onClick={handleShow}>
+        <FontAwesomeIcon icon={faPlus} /> New Student
       </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -194,6 +196,17 @@ const StudentRegModal = () => {
                   value={formData.contact}
                   name="contact"
                   type="text"
+                />
+              </Form.Group>
+            </Row>
+            <Row className="mb-3">
+              <Form.Group controlId="formFile" className="mb-3">
+                <Form.Label>Upload profile picture</Form.Label>
+                <Form.Control
+                  type="file"
+                  onChange={handleChange}
+                  value={formData.img}
+                  name="img"
                 />
               </Form.Group>
             </Row>

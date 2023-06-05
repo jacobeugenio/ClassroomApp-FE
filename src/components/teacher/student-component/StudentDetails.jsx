@@ -18,19 +18,33 @@ const StudentDetails = ({ data }) => {
         <td>{student.username}</td>
         <td>{student.contact}</td>
         <td>{student.email}</td>
+        {/* <td>{student.img}</td> */}
         <td>{student.gender}</td>
         <td>{student.age}</td>
         <td className="d-flex flex-row">
-          <Button variant="outline-success" size="sm" className="mx-2">
-            <FontAwesomeIcon icon={faEye} /> View
+          <Button
+            variant="outline-success"
+            size="sm"
+            className="mx-2 d-flex flex-row align-items-center p-1"
+          >
+            <FontAwesomeIcon icon={faEye} />
+            <span>View</span>
           </Button>
-          <Button variant="outline-danger" size="sm" className="mx-2">
+          <Button
+            variant="outline-danger"
+            size="sm"
+            className="mx-2 d-flex flex-row align-items-center p-1"
+          >
             <FontAwesomeIcon icon={faPenToSquare} />
-            Edit
+            <span className="ms-1">Edit</span>
           </Button>
-          <Button variant="outline-primary" size="sm" className="">
+          <Button
+            variant="outline-primary"
+            size="sm"
+            className="mx-2 d-flex flex-row align-items-center p-1"
+          >
             <FontAwesomeIcon icon={faTrashCan} />
-            Delete
+            <span className="ms-1">Delete</span>
           </Button>
         </td>
       </tr>
@@ -39,7 +53,7 @@ const StudentDetails = ({ data }) => {
 
   return (
     <Table responsive className="mt-2 p-0" size="sm">
-      <thead>
+      <thead className="">
         <tr>
           <th>#</th>
           <th>First Name</th>
@@ -49,7 +63,7 @@ const StudentDetails = ({ data }) => {
           <th>Email</th>
           <th>Gender</th>
           <th>Age</th>
-          <th>Action</th>
+          <th className="text-center">Action</th>
         </tr>
       </thead>
       <tbody>{studentData}</tbody>

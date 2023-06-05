@@ -4,7 +4,8 @@ import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   return (
@@ -23,7 +24,7 @@ const Header = () => {
               {/* <NavLink to="/teacher/grades">Grades</NavLink> */}
               <NavLink to="/teacher/logout">
                 <Button variant="warning" size="sm">
-                  LOGOUT
+                  <FontAwesomeIcon icon={faRightFromBracket} /> LOGOUT
                 </Button>
               </NavLink>
             </Nav>
