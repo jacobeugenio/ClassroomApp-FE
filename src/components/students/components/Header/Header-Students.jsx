@@ -15,10 +15,10 @@ function HeaderStudents() {
 					<Navbar.Toggle aria-controls='basic-navbar-nav' />
 					<Navbar.Collapse id='basic-navbar-nav'>
 						<Nav className='ms-auto'>
-							<Nav.Link href='#home'>Home</Nav.Link>
-							<Nav.Link href='#attendance'>Attendance</Nav.Link>
-							<Nav.Link href='#grades'>Grades</Nav.Link>
-							<Nav.Link href='#exams'>Exams</Nav.Link>
+							<Nav.Link href='/students'>Home</Nav.Link>
+							<Nav.Link href='/students-attendance'>Attendance</Nav.Link>
+							<Nav.Link href='/students-grades'>Grades</Nav.Link>
+							<Nav.Link href='/students-exams'>Exams</Nav.Link>
 						</Nav>
 					</Navbar.Collapse>
 				</Container>

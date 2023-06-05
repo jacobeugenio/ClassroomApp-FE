@@ -10,31 +10,40 @@ import Register from "./components/Register/Register";
 import "./App.css";
 import TeachProfile from "./components/teacher/teacher-component/Teach_Profile";
 import Activities from "./components/teacher/Activities";
-import StudentsPage from "./components/students/Students";
 import Activity_Details from "./components/teacher/activities-comp/Activity_Details";
 
-function App() {
-  // const url = 'http://localhost:5000/teachers/get-students';
-  // fetch(url).then(res => res.json).then(data=> console.log(data));
+//Students Page
+import StudentsPage from "./components/students/Students";
+import AttendanceStudents from "./components/students/components/Main/Attendance/Attendance-Students";
+import GradesStudents from "./components/students/components/Main/Grades/Grades-Students";
+import ExamsStudents from "./components/students/components/Main/Exams/Exams-Students";
 
-  return (
-    <>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
-        {/* <Route path='/register' element={<Register />} /> */}
-        <Route path="/teacher" element={<Home />} />
-        <Route path="/teacher/students" element={<Students />} />
-        <Route path="/teacher/grades" element={<Grades />} />
-        <Route path="/teacher/profile" element={<TeachProfile />} />
-        <Route path="/teacher/activities" element={<Activities />} />
-        <Route path="/teacher/activities/:id" element={<Activity_Details />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="/students" element={<StudentsPage />} />
-      </Routes>
-    </>
-  );
+function App() {
+	// const url = 'http://localhost:5000/teachers/get-students';
+	// fetch(url).then(res => res.json).then(data=> console.log(data));
+
+	return (
+		<>
+			<Routes>
+				<Route path='/' element={<LandingPage />} />
+				<Route path='/login' element={<Login />} />
+				<Route path='/register' element={<Register />} />
+				<Route path='/teacher' element={<Home />} />
+				<Route path='/teacher/students' element={<Students />} />
+				<Route path='/teacher/grades' element={<Grades />} />
+				<Route path='/teacher/profile' element={<TeachProfile />} />
+				<Route path='/teacher/activities' element={<Activities />} />
+				<Route path='/teacher/activities/:id' element={<Activity_Details />} />
+				<Route path='*' element={<NotFound />} />
+
+				{/* Students Page */}
+				<Route path='/students' element={<StudentsPage />} />
+				<Route path='/students-attendance' element={<AttendanceStudents />} />
+				<Route path='/students-grades' element={<GradesStudents />} />
+				<Route path='/students-exams' element={<ExamsStudents />} />
+			</Routes>
+		</>
+	);
 }
 
 export default App;
