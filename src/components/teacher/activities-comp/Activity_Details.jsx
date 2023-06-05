@@ -12,8 +12,8 @@ const Activity_Details = () => {
   useEffect(() => {
     const getExam = async () => {
       try {
-        const response = await API_Service.get(`/teacher/activities/` + id);
-        // console.log(response.data.exam);
+        const response = await API_Service.get(`/teacher/activities`);
+        // console.log(response.data);
         setExam(response.data.exam);
       } catch (error) {
         console.error(error);
@@ -26,7 +26,7 @@ const Activity_Details = () => {
   return (
     <Container className="mt-3">
       <div className="questionaire">
-        <Link to="/teachers/activities">
+        <Link to="/teacher/activities">
           <Button variant="outline-success" size="sm">
             <FontAwesomeIcon icon={faArrowLeft} />
             Back

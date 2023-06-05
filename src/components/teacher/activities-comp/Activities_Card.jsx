@@ -12,6 +12,7 @@ const Activities_Card = () => {
     const getExams = async () => {
       try {
         const response = await API_Service.get("/teachers/activities");
+        // console.log(response.data);
         setExams(response.data);
       } catch (error) {
         console.error(error);
@@ -24,10 +25,10 @@ const Activities_Card = () => {
     <>
       {/* <Container className="activities-container"> */}
       {exams &&
-        exams.map((exam) => {
+        exams.map((exam, index) => {
           return (
             <Link to={`/teacher/activities/` + exam.id}>
-              <Card key={exam.id} className="">
+              <Card key={index} className="">
                 <Card.Header>{exam.subject}</Card.Header>
                 <Card.Body>
                   <Card.Title>{exam.title}</Card.Title>
