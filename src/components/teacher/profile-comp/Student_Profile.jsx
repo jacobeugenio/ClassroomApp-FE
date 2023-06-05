@@ -11,7 +11,7 @@ const Student_Profile = () => {
       try {
         const response = await API_Service.get("/teachers/get-students");
         // setProfiles(response.data);
-        console.log(response);
+        // console.log(response);
       } catch (error) {
         console.error(error);
       }

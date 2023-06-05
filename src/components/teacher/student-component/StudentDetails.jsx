@@ -7,6 +7,7 @@ import {
   faPenToSquare,
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
+import Edit_Student_Details from "./Edit_Student_Details";
 const StudentDetails = ({ data }) => {
   // console.log(data);
   const studentData = data.map((student, index) => {
@@ -30,14 +31,7 @@ const StudentDetails = ({ data }) => {
             <FontAwesomeIcon icon={faEye} />
             <span>View</span>
           </Button>
-          <Button
-            variant="outline-danger"
-            size="sm"
-            className="mx-2 d-flex flex-row align-items-center p-1"
-          >
-            <FontAwesomeIcon icon={faPenToSquare} />
-            <span className="ms-1">Edit</span>
-          </Button>
+          <Edit_Student_Details />
           <Button
             variant="outline-primary"
             size="sm"
