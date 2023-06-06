@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderStudents from "../../Header/Header-Students";
+import HeaderStudents from "../../../layout/Header/Header-Students";
 
 function ExamsStudents() {
 	return (
