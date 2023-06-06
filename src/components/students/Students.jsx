@@ -1,7 +1,7 @@
 import React from "react";
 
 import HeaderStudents from "./components/Header/Header-Students";
-import MainStudents from "./components/Main/Main-Students";
+import HeroStudents from "./components/Main/Hero/Hero-Students";
 import FooterStudents from "./components/Footer/Footer-Students";
 
 function Students() {
@@ -11,7 +11,9 @@ function Students() {
 				<HeaderStudents />
 			</header>
 			<main>
-				<MainStudents />
+				<section>
+					<HeroStudents />
+				</section>
 			</main>
 			<footer>
 				<FooterStudents />
