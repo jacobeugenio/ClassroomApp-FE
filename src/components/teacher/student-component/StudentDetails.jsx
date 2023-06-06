@@ -2,11 +2,11 @@ import React from "react";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEye,
-  faPenToSquare,
-  faTrashCan,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+
+import EditStudentDetails from "./Edit_Student_Details";
+import DeleteStudent from "./Delete_Student";
+
 const StudentDetails = ({ data }) => {
   // console.log(data);
   const studentData = data.map((student, index) => {
@@ -25,27 +25,15 @@ const StudentDetails = ({ data }) => {
           <Button
             variant="outline-success"
             size="sm"
-            className="mx-2 d-flex flex-row align-items-center p-1"
+            className="mx-1 d-flex flex-row align-items-center p-1"
           >
             <FontAwesomeIcon icon={faEye} />
             <span>View</span>
           </Button>
-          <Button
-            variant="outline-danger"
-            size="sm"
-            className="mx-2 d-flex flex-row align-items-center p-1"
-          >
-            <FontAwesomeIcon icon={faPenToSquare} />
-            <span className="ms-1">Edit</span>
-          </Button>
-          <Button
-            variant="outline-primary"
-            size="sm"
-            className="mx-2 d-flex flex-row align-items-center p-1"
-          >
-            <FontAwesomeIcon icon={faTrashCan} />
-            <span className="ms-1">Delete</span>
-          </Button>
+
+          <EditStudentDetails props={student} />
+
+          <DeleteStudent props={student} />
         </td>
       </tr>
     );
@@ -63,7 +51,7 @@ const StudentDetails = ({ data }) => {
           <th>Email</th>
           <th>Gender</th>
           <th>Age</th>
-          <th className="text-center">Action</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>{studentData}</tbody>
