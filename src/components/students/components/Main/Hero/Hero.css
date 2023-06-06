@@ -1,0 +1,57 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+p {
+	font: 1em sans-serif;
+}
+
+.title__holder {
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.title__holder h2 {
+	text-transform: uppercase;
+}
+
+/* Student-Profile Section */
+.student__profile--container {
+	border: 1px solid black;
+}
+
+.student__profile {
+	padding: 10px;
+}
+
+.profile__picture--img {
+	height: 100px;
+}
+/* Student-Profile Section End */
+
+/* Welcome-Message Section */
+.welcome__message--container {
+	border: 1px solid black;
+}
+.welcome__message {
+	text-align: center;
+}
+/* Welcome-Message Section End */
+
+/* Important-Announcements Section */
+.important__announcements--container {
+	border: 1px solid black;
+}
+/* Important-Announcements Section End */
+
+/* Motivational-Quotes Section */
+.motivational__quotes--container {
+	border: 1px solid black;
+}
+
+.motivational__quotes {
+	text-align: center;
+}
+/* Motivational-Quotes Section End   */

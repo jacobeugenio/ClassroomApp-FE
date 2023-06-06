@@ -4,6 +4,9 @@ import API_Service from "../../api-service/API_Service";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
+import InputGroup from "react-bootstrap/InputGroup";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 function Register() {
 	const [formData, setFormData] = useState({
@@ -17,13 +20,19 @@ function Register() {
 		address: "",
 		password: "",
 		password2: "",
+		type: "",
 	});
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
 		// console.log(value);
 		console.log(name);
-		setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+
+		if (event.target.type === "radio") {
+			setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+		} else {
+			setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+		}
 	};
 
 	const onSubmitForm = (event) => {
@@ -52,6 +61,7 @@ function Register() {
 				address: "",
 				password: "",
 				password2: "",
+				type: "",
 			});
 		}
 	};
@@ -118,16 +128,20 @@ function Register() {
 				</Form.Group>
 
 				<Form.Group className='mb-3' controlId='formBasicEmail'>
-					<Form.Label>Email:</Form.Label>
-					<Form.Control
-						onChange={handleChange}
-						value={formData.email}
-						name='email'
-						className='input-container'
-						type='email'
-						placeholder='Enter email'
-						required
-					/>
+					<InputGroup>
+						<Form.Control
+							onChange={handleChange}
+							value={formData.email}
+							name='email'
+							className='input-container'
+							type='email'
+							placeholder='Enter email'
+							aria-label='Enter email'
+							aria-describedby='basic-addon2'
+							required
+						/>
+						<InputGroup.Text id='basic-addon2'>@example.com</InputGroup.Text>
+					</InputGroup>
 				</Form.Group>
 
 				<Form.Group className='mb-3' controlId='formBasicUsername'>
@@ -196,7 +210,34 @@ function Register() {
 					/>
 				</Form.Group>
 
-				<Button variant='primary' type='submit'>
+				<div className='mb-3'>
+					<Form.Group>
+						<Row>
+							<Col>
+								<Form.Check
+									type='radio'
+									label='Student'
+									name='type'
+									value='student'
+									checked={formData.type === "student"}
+									onChange={handleChange}
+								/>
+							</Col>
+							<Col>
+								<Form.Check
+									type='radio'
+									label='Teacher'
+									name='type'
+									value='teacher'
+									checked={formData.attendance === "teacher"}
+									onChange={handleChange}
+								/>
+							</Col>
+						</Row>
+					</Form.Group>
+				</div>
+
+				<Button variant='primary' type='submit' className='mt-4'>
 					Register
 				</Button>
 			</Form>
