@@ -29,8 +29,6 @@ const StudentRegModal = () => {
     password2: "",
   });
 
-  //  fname, lname, username, contact, age, gender, address, password, password2
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     console.log(value);
