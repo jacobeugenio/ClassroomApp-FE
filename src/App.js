@@ -11,7 +11,7 @@ import "./App.css";
 import TeachProfile from "./components/teacher/teacher-component/Teach_Profile";
 import Activities from "./components/teacher/Activities";
 import StudentsPage from "./components/students/Students";
-import Activity_Details from "./components/teacher/activities-comp/Activity_Details";
+import ActivityDetails from "./components/teacher/activities-comp/Activity_Details";
 
 function App() {
   // const url = 'http://localhost:5000/teachers/get-students';
@@ -28,7 +28,7 @@ function App() {
         <Route path="/teacher/grades" element={<Grades />} />
         <Route path="/teacher/profile" element={<TeachProfile />} />
         <Route path="/teacher/activities" element={<Activities />} />
-        <Route path="/teacher/activities/:id" element={<Activity_Details />} />
+        <Route path="/teacher/activities/:id" element={<ActivityDetails />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/students" element={<StudentsPage />} />
