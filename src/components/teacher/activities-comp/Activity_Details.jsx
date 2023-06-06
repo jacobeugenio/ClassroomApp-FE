@@ -13,10 +13,10 @@ const Activity_Details = () => {
     const getExam = async () => {
       try {
         const response = await API_Service.get(`/teachers/activities/` + id);
-        console.log(response.data);
+        // console.log(response.data);
         setExam(response.data.exam);
       } catch (error) {
-        // console.error(error);
+        console.error(error);
       }
     };
 
@@ -56,8 +56,8 @@ const Activity_Details = () => {
         {exam.questions &&
           exam.questions.map((question) => {
             return (
-              <Container>
-                <div key={question.id} className="mt-3 view-questionaire">
+              <Container key={question.id}>
+                <div className="mt-3 view-questionaire">
                   <h6>
                     Q{question.id}: {question.question}
                   </h6>
