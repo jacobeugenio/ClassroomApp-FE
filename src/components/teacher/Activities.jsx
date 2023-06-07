@@ -1,22 +1,17 @@
 import React from "react";
 import Header from "../../layout/Header";
 import Container from "react-bootstrap/Container";
-import Activities_Card from "./activities-comp/Activities_Card";
-import Button from "react-bootstrap/Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import ActivitiesCard from "./activities-comp/Activities_Card";
+import CreateExamPt1 from "./activities-comp/Create_Exam_Pt1";
 
 const Activities = () => {
   return (
     <>
       <Header />
-      <Container className="mt-3">
-        <Button variant="danger" size="sm">
-          <FontAwesomeIcon icon={faPlus} /> <span>Create Exam</span>
-        </Button>
-      </Container>
+      <CreateExamPt1 />
+
       <Container className="d-flex flex-wrap gap-2 mt-3">
-        <Activities_Card />
+        <ActivitiesCard />
       </Container>
     </>
   );
