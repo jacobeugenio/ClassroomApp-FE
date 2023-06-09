@@ -23,7 +23,7 @@ const Edit_Student_Details = (student) => {
     email: student.props.email,
     contact: student.props.contact,
     age: student.props.age,
-    // img: student.props.fname,
+    // img: student.props.img,
     gender: student.props.gender,
     address: student.props.address,
     password: student.props.password,
@@ -39,8 +39,7 @@ const Edit_Student_Details = (student) => {
   const onSubmitForm = (event) => {
     event.preventDefault();
 
-    API_Service.put("/teachers/update-student/" + student.props.id, {
-      id: student.props.id,
+    API_Service.put("/teachers/update-student/" + student.props._id, {
       fname: formData.fname,
       lname: formData.lname,
       username: formData.username,
@@ -172,7 +171,7 @@ const Edit_Student_Details = (student) => {
               </Form.Group>
             </Row>
             {/* <Row className="mb-3">
-              <Form.Group controlId="formFile" className="mb-3">
+              <Form.Group controlId="img" className="mb-3">
                 <Form.Label>Upload profile picture</Form.Label>
                 <Form.Control
                   type="file"

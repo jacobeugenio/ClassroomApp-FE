@@ -9,6 +9,7 @@ import API_Service from "../../../api-service/API_Service";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+
 const StudentRegModal = () => {
   //For registration Modal
   const [show, setShow] = useState(false);
@@ -28,69 +29,32 @@ const StudentRegModal = () => {
     password: "",
     password2: "",
   });
+  // const [profileImg, setProfileImg] = useState({ img: "" });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(value);
+    // console.log(value);
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-  const onSubmitForm = (event) => {
+  const handleFile = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertToBase64(file);
+    formData.img = base64;
+    // setProfileImg(base64);
+    // formData.img = base64;
+  };
+  const onSubmitForm = async (event) => {
     event.preventDefault();
 
-    API_Service.post("/teachers/add-student", {
-      fname: formData.fname,
-      lname: formData.lname,
-      username: formData.username,
-      email: formData.email,
-      contact: formData.contact,
-      img: formData.img,
-      age: formData.age,
-      gender: formData.gender,
-      address: formData.address,
-      password: formData.password,
-      password2: formData.password2,
-    })
+    // formData.img = profileImg;
+    await API_Service.post("/teachers/add-student", formData)
       .then((response) => {
         console.log(response);
       })
       .catch((error) => {
         console.log(error);
       });
-    // const addStudent = async () => {
-    //   try {
-    //     const response =   await API_Service.post("/teachers/add-student", {
-    //         fname: formData.fname,
-    //         lname: formData.lname,
-    //         username: formData.username,
-    //          email: formData.email,
-    //          contact: formData.contact,
-    //          age: formData.age,
-    //          gender: formData.gender,
-    //        address: formData.address,
-    //          password: formData.password,
-    //          password2: formData.password2,
-    //        })
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
-
-    // addStudent();
-
-    // console.log(formData);
-    // setFormData({
-    //   fname: "",
-    //   lname: "",
-    //   age: "",
-    //   email: "",
-    //   address: "",
-    //   username: "",
-    //   gender: "",
-    //   contact: "",
-    //   password: "",
-    //   password2: "",
-    // });
   };
 
   return (
@@ -198,13 +162,13 @@ const StudentRegModal = () => {
               </Form.Group>
             </Row>
             <Row className="mb-3">
-              <Form.Group controlId="formFile" className="mb-3">
+              <Form.Group controlId="img" className="mb-3">
                 <Form.Label>Upload profile picture</Form.Label>
                 <Form.Control
                   type="file"
-                  onChange={handleChange}
-                  value={formData.img}
+                  onChange={(e) => handleFile(e)}
                   name="img"
+                  accept=".jpeg, .jpg, .png"
                 />
               </Form.Group>
             </Row>
@@ -252,3 +216,16 @@ const StudentRegModal = () => {
 };
 
 export default StudentRegModal;
+
+function convertToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      resolve(fileReader.result);
+    };
+    fileReader.onerror = (error) => {
+      reject(error);
+    };
+  });
+}

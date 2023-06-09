@@ -17,6 +17,7 @@ import StudentsPage from "./components/students/Students";
 import AttendanceStudents from "./components/students/components/Main/Attendance/Attendance-Students";
 import GradesStudents from "./components/students/components/Main/Grades/Grades-Students";
 import ExamsStudents from "./components/students/components/Main/Exams/Exams-Students";
+import CreateExamPt2 from "./components/teacher/activities-comp/Create_Exam_Pt2";
 
 function App() {
   // const url = 'http://localhost:5000/teachers/get-students';
@@ -34,6 +35,7 @@ function App() {
         <Route path="/teacher/profile" element={<TeachProfile />} />
         <Route path="/teacher/activities" element={<Activities />} />
         <Route path="/teacher/activities/:id" element={<ActivityDetails />} />
+        <Route path="/teacher/create_exam_pt_two" element={<CreateExamPt2 />} />
         <Route path="*" element={<NotFound />} />
 
         {/* Students Page */}

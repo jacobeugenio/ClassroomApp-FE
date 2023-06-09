@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import API_Service from "../../../api-service/API_Service";
 // import API_Service from "../../../api-service/API_Service";
 const Delete_Student = (student) => {
   //   API_Service.delete("/teachers/delete-student/" + student.props.id);
@@ -10,6 +11,14 @@ const Delete_Student = (student) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleDelete = async () => {
+    const res = await API_Service.delete(
+      "/teachers/delete-student/" + student.props._id
+    );
+    console.log(res.data);
+    handleClose();
+  };
   return (
     <>
       <Button
@@ -37,7 +46,7 @@ const Delete_Student = (student) => {
           <Button variant="warning" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="danger" onClick={handleClose}>
+          <Button variant="danger" onClick={handleDelete}>
             Delete
           </Button>
         </Modal.Footer>
