@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import API_Service from "../../api-service/API_Service";
+import "./Register.css";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -66,22 +67,17 @@ function Register() {
 		}
 	};
 
-	// const handleErrorFunction = (name) => {
-	// 	name === error.name && (
-	// 		<div className='error__messages'>{error.message}</div>
-	// 	);
-	// };
-
 	return (
-		<Container className='my-5'>
-			<Form onSubmit={onSubmitForm}>
+		<Container className='container__registration'>
+			<Form onSubmit={onSubmitForm} className='form__registration'>
+				<h1>Register</h1>
 				<Form.Group className='mb-3' controlId='formBasicFirstName'>
 					<Form.Label>First Name:</Form.Label>
 					<Form.Control
 						onChange={handleChange}
 						value={formData.fname}
 						name='fname'
-						className='input-container'
+						className='input__container--registration'
 						type='text'
 						placeholder='Enter first name'
 						required
@@ -94,7 +90,7 @@ function Register() {
 						onChange={handleChange}
 						value={formData.lname}
 						name='lname'
-						className='input-container'
+						className='input__container--registration'
 						type='text'
 						placeholder='Enter last name'
 						required
@@ -107,7 +103,7 @@ function Register() {
 						onChange={handleChange}
 						value={formData.age}
 						name='age'
-						className='input-container'
+						className='input__container--registration'
 						type='number'
 						placeholder='Enter you age'
 						required
@@ -120,7 +116,7 @@ function Register() {
 						onChange={handleChange}
 						value={formData.address}
 						name='address'
-						className='input-container'
+						className='input__container--registration'
 						type='text'
 						placeholder='Enter address'
 						required
@@ -128,12 +124,13 @@ function Register() {
 				</Form.Group>
 
 				<Form.Group className='mb-3' controlId='formBasicEmail'>
+					<Form.Label>Email:</Form.Label>
 					<InputGroup>
 						<Form.Control
 							onChange={handleChange}
 							value={formData.email}
 							name='email'
-							className='input-container'
+							className='input__container--registration'
 							type='email'
 							placeholder='Enter email'
 							aria-label='Enter email'
@@ -150,7 +147,7 @@ function Register() {
 						onChange={handleChange}
 						value={formData.username}
 						name='username'
-						className='input-container'
+						className='input__container--registration'
 						type='text'
 						placeholder='Enter username'
 						required
@@ -164,6 +161,7 @@ function Register() {
 						onChange={handleChange}
 						value={formData.gender}
 						name='gender'
+						className='input__container--registration'
 					>
 						<option>Choose gender</option>
 						<option value='male'>Male</option>
@@ -177,7 +175,7 @@ function Register() {
 						onChange={handleChange}
 						value={formData.contact}
 						name='contact'
-						className='input-container'
+						className='input__container--registration'
 						type='tel'
 						placeholder='Enter contact number'
 						required
@@ -190,7 +188,7 @@ function Register() {
 						onChange={handleChange}
 						value={formData.password}
 						name='password'
-						className='input-container'
+						className='input__container--registration'
 						type='password'
 						placeholder='Enter password'
 						required
@@ -203,7 +201,7 @@ function Register() {
 						onChange={handleChange}
 						value={formData.password2}
 						name='password2'
-						className='input-container'
+						className='input__container--registration'
 						type='password'
 						placeholder='Enter password'
 						required
@@ -237,10 +235,69 @@ function Register() {
 					</Form.Group>
 				</div>
 
-				<Button variant='primary' type='submit' className='mt-4'>
+				<Button type='submit' className='mt-1 btn__registration'>
 					Register
 				</Button>
 			</Form>
+
+			<div className='intro__message--registration'>
+				<h1>Welcome to our Classroom Management App!</h1>
+				<p>
+					At [App Name], we are dedicated to providing teachers and students
+					with a user-friendly and efficient platform to enhance their classroom
+					experience. Our app simplifies the essential aspects of classroom
+					management, focusing on attendance, grades, and exams.
+				</p>
+				<p>
+					With our streamlined design and intuitive interface, you can easily
+					navigate through the app's main sections:
+				</p>
+				<ol>
+					<li>
+						Profile: Your profile is the heart of our app. Here, you can create
+						and manage your personal information, including your name, contact
+						details, and profile picture. It allows you to showcase your
+						professional identity and establish a connection with your students.
+					</li>
+					<li>
+						Attendance: Say goodbye to the hassle of paper attendance sheets.
+						Our Attendance page offers a convenient digital solution for
+						tracking attendance. With just a few taps, you can mark students as
+						present, absent, or late. Keep an organized record of attendance,
+						allowing you to easily identify patterns or address any concerns.
+					</li>
+					<li>
+						Grades: Our Grades page empowers you to efficiently manage and track
+						student progress. Create grade categories, input scores, and
+						calculate overall grades effortlessly. Stay organized with a
+						comprehensive overview of each student's performance, ensuring
+						accurate and timely grade reporting.
+					</li>
+					<li>
+						Exams: Prepare and manage exams with ease using our Exams page.
+						Create exam schedules, input exam details, and share important
+						information such as exam duration and materials needed. You can also
+						record and track exam scores to provide valuable feedback to your
+						students.
+					</li>
+				</ol>
+				<p>
+					Our Classroom Management App focuses on these essential components to
+					simplify your day-to-day teaching tasks, save you time, and promote
+					effective communication with your students. We understand that your
+					primary goal is to create a supportive and engaging learning
+					environment, and our app is designed to assist you in achieving that
+					objective.
+				</p>
+				<p>
+					Join us today and experience the convenience and efficiency of our
+					Classroom Management App. Together, let's foster a positive and
+					productive educational journey for both you and your students.
+				</p>
+				<p>
+					[App Name] - Simplifying Classroom Management for Modern Educators.
+				</p>
+			</div>
 		</Container>
 	);
 }

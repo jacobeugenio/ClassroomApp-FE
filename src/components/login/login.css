@@ -1,19 +1,25 @@
-.input-container:focus {
-	outline: none;
+* {
+	margin: 0;
+	padding: 0;
 }
 
-.input-container {
-	padding: 10px;
+.container__login {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
 }
 
-.container > form {
-	min-width: 350px;
-	max-width: 450px;
-	margin: 0 auto;
-	border: 1px solid goldenrod;
-	padding: 25px;
+.form__login {
+	padding: 20px;
+	border-radius: 20px;
+	box-shadow: 5px 5px 5px 2px;
+	background-color: #ffe5ca;
 }
-button[type="submit"] {
-	display: block;
+
+.btn__login {
+	border: none;
 	width: 100%;
+	background-color: #444;
+	color: #fff;
 }
