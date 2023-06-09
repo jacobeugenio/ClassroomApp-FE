@@ -7,66 +7,63 @@ import "./login.css";
 import API_Service from "../../api-service/API_Service";
 
 const Login = () => {
-  // const [mockDatabase, setMockDatabase] = useState([{}]);
+	const [userLogin, setUserLogin] = useState({
+		username: "",
+		password: "",
+	});
 
-  // console.log(mockDatabase);
+	const handleLoginSubmit = (event) => {
+		event.preventDefault();
 
-  const [userLogin, setUserLogin] = useState({
-    username: "",
-    password: "",
-  });
+		const { username, password } = event.target.elements;
+		setUserLogin({
+			username: username.value,
+			password: password.value,
+		});
 
-  const handleLoginSubmit = (event) => {
-    event.preventDefault();
+		API_Service.post("/students/login", userLogin)
+			.then((response) => {
+				console.log(response.data);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
 
-    const { username, password } = event.target.elements;
-    setUserLogin({
-      username: username.value,
-      password: password.value,
-    });
+	return (
+		<Container className='container__login'>
+			<Form onSubmit={handleLoginSubmit} className='form__login'>
+				<Form.Group className='mb-3' controlId='formBasicEmail'>
+					<h1>Login</h1>
+					<Form.Label>Username</Form.Label>
+					<Form.Control
+						className='input-container'
+						type='text'
+						name='username'
+						placeholder='Enter username'
+						required
+					/>
+					<Form.Text className='text-muted'>
+						We'll never share your email with anyone else.
+					</Form.Text>
+				</Form.Group>
 
-    API_Service.post("/students/login", userLogin)
-      .then((response) => {
-        // setMockDatabase(response.data);
-
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  return (
-    <Container className="my-5">
-      <Form onSubmit={handleLoginSubmit} className="">
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            className="input-container"
-            type="text"
-            name="username"
-            placeholder="Enter username"
-          />
-          {/* <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-            </Form.Text> */}
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            className="input-container"
-            type="password"
-            name="password"
-            placeholder="Password"
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Login
-        </Button>
-      </Form>
-    </Container>
-  );
+				<Form.Group className='mb-3' controlId='formBasicPassword'>
+					<Form.Label>Password</Form.Label>
+					<Form.Control
+						className='input-container'
+						type='password'
+						name='password'
+						placeholder='Password'
+						required
+					/>
+				</Form.Group>
+				<Button type='submit' className='btn__login'>
+					Login
+				</Button>
+			</Form>
+		</Container>
+	);
 };
 
 export default Login;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import HeaderStudents from "../../Header/Header-Students";
+import HeaderStudents from "../../../layout/Header/Header-Students";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
+import API_Service from "../../../../../api-service/API_Service";
 
 function AttendanceStudents() {
 	const [attendanceForm, setAttendanceForm] = useState({
@@ -14,6 +15,7 @@ function AttendanceStudents() {
 		fname: "",
 		lname: "",
 		email: "",
+		comment: "",
 	});
 
 	const handleChange = (event) => {
@@ -38,7 +40,22 @@ function AttendanceStudents() {
 	const handleSubmitForm = (event) => {
 		event.preventDefault();
 
+		API_Service.post("students/attendance-student", attendanceForm)
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+
 		console.log(attendanceForm);
+		setAttendanceForm({
+			attendance: "",
+			fname: "",
+			lname: "",
+			email: "",
+			comment: "",
+		});
 	};
 
 	return (
@@ -118,8 +135,12 @@ function AttendanceStudents() {
 							</Form.Group>
 							<Form.Control
 								as='textarea'
+								name='comment'
+								value={attendanceForm.comment}
+								onChange={handleChange}
 								placeholder='Leave a comment here'
 								style={{ height: "100px" }}
+								required
 							/>
 							<Button variant='primary' className='mt-4' type='submit'>
 								Send

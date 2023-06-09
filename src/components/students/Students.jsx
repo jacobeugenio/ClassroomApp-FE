@@ -1,8 +1,8 @@
 import React from "react";
 
-import HeaderStudents from "./components/Header/Header-Students";
+import HeaderStudents from "./layout/Header/Header-Students";
 import HeroStudents from "./components/Main/Hero/Hero-Students";
-import FooterStudents from "./components/Footer/Footer-Students";
+import FooterStudents from "./layout/Footer/Footer-Students";
 
 function Students() {
 	return (
