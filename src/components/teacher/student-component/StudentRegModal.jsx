@@ -41,6 +41,7 @@ const StudentRegModal = () => {
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
     setProfileImg(base64);
+    // formData.img = base64;
   };
   const onSubmitForm = async (event) => {
     event.preventDefault();

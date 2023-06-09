@@ -14,7 +14,7 @@ const Edit_Student_Details = (student) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  console.log(student);
+  // console.log(student);
 
   const [formData, setFormData] = useState({
     fname: student.props.fname,
@@ -23,7 +23,7 @@ const Edit_Student_Details = (student) => {
     email: student.props.email,
     contact: student.props.contact,
     age: student.props.age,
-    // img: student.props.fname,
+    // img: student.props.img,
     gender: student.props.gender,
     address: student.props.address,
     password: student.props.password,
@@ -171,7 +171,7 @@ const Edit_Student_Details = (student) => {
               </Form.Group>
             </Row>
             {/* <Row className="mb-3">
-              <Form.Group controlId="formFile" className="mb-3">
+              <Form.Group controlId="img" className="mb-3">
                 <Form.Label>Upload profile picture</Form.Label>
                 <Form.Control
                   type="file"

@@ -14,7 +14,7 @@ const Delete_Student = (student) => {
 
   const handleDelete = async () => {
     const res = await API_Service.delete(
-      "/teachers/delete-student/" + student.props.id
+      "/teachers/delete-student/" + student.props._id
     );
     console.log(res.data);
     handleClose();
