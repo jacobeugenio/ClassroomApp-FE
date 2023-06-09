@@ -5,12 +5,15 @@ import Container from "react-bootstrap/Container";
 import "./login.css";
 
 import API_Service from "../../api-service/API_Service";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 	const [userLogin, setUserLogin] = useState({
 		username: "",
 		password: "",
 	});
+
+	const navigate = useNavigate();
 
 	const handleLoginSubmit = (event) => {
 		event.preventDefault();
@@ -21,9 +24,13 @@ const Login = () => {
 			password: password.value,
 		});
 
-		API_Service.post("/students/login", userLogin)
+		console.log(username.value);
+		console.log(password.value);
+
+		API_Service.post("/users/login", userLogin)
 			.then((response) => {
-				console.log(response.data);
+				console.log(response);
+				navigate("/students");
 			})
 			.catch((error) => {
 				console.log(error);

@@ -27,7 +27,7 @@ const Students = () => {
 		const getUser = async () => {
 			try {
 				const response = await API_Service.get("/teachers/get-students");
-				setData(response.data.students);
+				setData(response.data);
 			} catch (error) {
 				console.error(error);
 			}

@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Hero.css";
 import Image from "../../../../../img/ava2.png";
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import API_Service from "../../../../../api-service/API_Service";
 
 function HeroStudents() {
+	const [studentData, setStudentData] = useState([]);
+
+	useEffect(() => {
+		API_Service.get("students/get-students").then((res) => {
+			// console.log(res.data);
+			setStudentData(res.data);
+		});
+	}, []);
+
+	console.log(studentData);
+
 	return (
 		<div>
 			<Container fluid>

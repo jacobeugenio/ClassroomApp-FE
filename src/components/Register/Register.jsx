@@ -19,6 +19,7 @@ function Register() {
 		age: "",
 		gender: "",
 		address: "",
+		img: "",
 		password: "",
 		password2: "",
 		type: "",
@@ -26,7 +27,6 @@ function Register() {
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
-		// console.log(value);
 		console.log(name);
 
 		if (event.target.type === "radio") {
@@ -39,7 +39,7 @@ function Register() {
 	const onSubmitForm = (event) => {
 		event.preventDefault();
 
-		API_Service.post("students/reg-student", formData)
+		API_Service.post("users/register", formData)
 			.then((response) => {
 				console.log(response);
 			})
@@ -167,6 +167,17 @@ function Register() {
 						<option value='male'>Male</option>
 						<option value='female'>Female</option>
 					</Form.Control>
+				</Form.Group>
+
+				<Form.Group controlId='formFile'>
+					<Form.Label>Upload profile picture</Form.Label>
+					<Form.Control
+						type='file'
+						className='input__container--registration'
+						onChange={handleChange}
+						value={formData.img}
+						name='img'
+					/>
 				</Form.Group>
 
 				<Form.Group className='mb-3' controlId='formBasicContact'>
