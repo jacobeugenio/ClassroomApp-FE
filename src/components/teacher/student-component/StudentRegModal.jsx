@@ -29,7 +29,7 @@ const StudentRegModal = () => {
     password: "",
     password2: "",
   });
-  const [profileImg, setProfileImg] = useState({ img: "" });
+  // const [profileImg, setProfileImg] = useState({ img: "" });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -40,13 +40,14 @@ const StudentRegModal = () => {
   const handleFile = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
-    setProfileImg(base64);
+    formData.img = base64;
+    // setProfileImg(base64);
     // formData.img = base64;
   };
   const onSubmitForm = async (event) => {
     event.preventDefault();
 
-    formData.img = profileImg;
+    // formData.img = profileImg;
     await API_Service.post("/teachers/add-student", formData)
       .then((response) => {
         console.log(response);
