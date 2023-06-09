@@ -13,12 +13,20 @@ const StudentDetails = ({ data }) => {
     return (
       <tr key={index}>
         <td>{index + 1}</td>
+        <td>
+          <img
+            src={student.img}
+            width={40}
+            height={40}
+            alt="profile"
+            style={{ borderRadius: 50 }}
+          />
+        </td>
         <td>{student.fname}</td>
         <td>{student.lname}</td>
         <td>{student.username}</td>
         <td>{student.contact}</td>
         <td>{student.email}</td>
-        {/* <td>{student.img}</td> */}
         <td>{student.gender}</td>
         <td>{student.age}</td>
         <td className="d-flex flex-row">
@@ -44,6 +52,7 @@ const StudentDetails = ({ data }) => {
       <thead className="">
         <tr>
           <th>#</th>
+          <th>Img</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>Username</th>

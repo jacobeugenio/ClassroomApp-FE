@@ -25,7 +25,7 @@ const Activities_Card = () => {
       {exams &&
         exams.map((exam) => {
           return (
-            <Card key={exam.id}>
+            <Card key={exam.id} className="card_activity">
               <Link to={`/teacher/activities/` + exam.id}>
                 <Card.Header>{exam.subject}</Card.Header>
                 <Card.Body>

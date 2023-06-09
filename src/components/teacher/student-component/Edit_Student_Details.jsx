@@ -14,7 +14,7 @@ const Edit_Student_Details = (student) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  // console.log(student);
+  console.log(student);
 
   const [formData, setFormData] = useState({
     fname: student.props.fname,
@@ -39,8 +39,7 @@ const Edit_Student_Details = (student) => {
   const onSubmitForm = (event) => {
     event.preventDefault();
 
-    API_Service.put("/teachers/update-student/" + student.props.id, {
-      id: student.props.id,
+    API_Service.put("/teachers/update-student/" + student.props._id, {
       fname: formData.fname,
       lname: formData.lname,
       username: formData.username,

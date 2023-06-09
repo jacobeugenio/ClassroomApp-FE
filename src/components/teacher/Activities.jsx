@@ -10,7 +10,7 @@ const Activities = () => {
       <Header />
       <CreateExamPt1 />
 
-      <Container className="d-flex flex-wrap gap-2 mt-3">
+      <Container className="d-flex flex-wrap gap-3 mt-3">
         <ActivitiesCard />
       </Container>
     </>
