@@ -19,6 +19,7 @@ function Register() {
 		age: "",
 		gender: "",
 		address: "",
+		img: "",
 		password: "",
 		password2: "",
 		type: "",
@@ -26,7 +27,6 @@ function Register() {
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
-		// console.log(value);
 		console.log(name);
 
 		if (event.target.type === "radio") {
@@ -36,10 +36,16 @@ function Register() {
 		}
 	};
 
+	const handleFile = async (e) => {
+		const file = e.target.files[0];
+		const base64 = await convertToBase64(file);
+		formData.img = base64;
+	};
+
 	const onSubmitForm = (event) => {
 		event.preventDefault();
 
-		API_Service.post("students/reg-student", formData)
+		API_Service.post("users/register", formData)
 			.then((response) => {
 				console.log(response);
 			})
@@ -58,6 +64,7 @@ function Register() {
 				contact: "",
 				email: "",
 				age: "",
+				img: "",
 				gender: "",
 				address: "",
 				password: "",
@@ -66,6 +73,19 @@ function Register() {
 			});
 		}
 	};
+
+	function convertToBase64(file) {
+		return new Promise((resolve, reject) => {
+			const fileReader = new FileReader();
+			fileReader.readAsDataURL(file);
+			fileReader.onload = () => {
+				resolve(fileReader.result);
+			};
+			fileReader.onerror = (error) => {
+				reject(error);
+			};
+		});
+	}
 
 	return (
 		<Container className='container__registration'>
@@ -169,6 +189,16 @@ function Register() {
 					</Form.Control>
 				</Form.Group>
 
+				<Form.Group controlId='formFile'>
+					<Form.Label>Upload profile picture</Form.Label>
+					<Form.Control
+						type='file'
+						className='input__container--registration'
+						onChange={(e) => handleFile(e)}
+						name='img'
+					/>
+				</Form.Group>
+
 				<Form.Group className='mb-3' controlId='formBasicContact'>
 					<Form.Label>Contact:</Form.Label>
 					<Form.Control
@@ -217,7 +247,7 @@ function Register() {
 									label='Student'
 									name='type'
 									value='student'
-									checked={formData.type === "student"}
+									// checked={formData.type === "student"}
 									onChange={handleChange}
 								/>
 							</Col>
@@ -227,7 +257,7 @@ function Register() {
 									label='Teacher'
 									name='type'
 									value='teacher'
-									checked={formData.attendance === "teacher"}
+									// checked={formData.attendance === "teacher"}
 									onChange={handleChange}
 								/>
 							</Col>

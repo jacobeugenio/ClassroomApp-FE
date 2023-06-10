@@ -40,7 +40,7 @@ function AttendanceStudents() {
 	const handleSubmitForm = (event) => {
 		event.preventDefault();
 
-		API_Service.post("students/attendance-student", attendanceForm)
+		API_Service.post("students/attendance-students", attendanceForm)
 			.then((response) => {
 				console.log(response);
 			})
