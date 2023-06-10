@@ -1,40 +1,48 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import "./login.css";
 
 import API_Service from "../../api-service/API_Service";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-	const [userLogin, setUserLogin] = useState({
-		username: "",
-		password: "",
-	});
+	// const [userLogin, setUserLogin] = useState({
+	// 	username: "",
+	// 	password: "",
+	// });
 
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
+
+	// const [data, setData] = useState({});
 
 	const handleLoginSubmit = (event) => {
 		event.preventDefault();
 
 		const { username, password } = event.target.elements;
-		setUserLogin({
+		const userLogin = {
 			username: username.value,
 			password: password.value,
-		});
+		};
 
 		console.log(username.value);
 		console.log(password.value);
 
 		API_Service.post("/users/login", userLogin)
 			.then((response) => {
-				console.log(response);
-				navigate("/students");
+				// console.log(response.data[0]._id);
+				// navigate("/students", {
+				// 	state: { userId: 1, name: "Frank Edwards" },
+				// });
+				console.log(response.data);
+				// setData(response);
 			})
 			.catch((error) => {
 				console.log(error);
 			});
+
+		// console.log(data);
 	};
 
 	return (

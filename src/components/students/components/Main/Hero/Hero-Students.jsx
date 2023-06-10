@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Hero.css";
-import Image from "../../../../../img/ava2.png";
+import { useLocation } from "react-router-dom";
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -10,18 +10,21 @@ import API_Service from "../../../../../api-service/API_Service";
 function HeroStudents() {
 	const [studentData, setStudentData] = useState([]);
 
+	const location = useLocation();
+	console.log(location);
+
 	useEffect(() => {
 		API_Service.get("students/get-students").then((res) => {
 			// console.log(res.data);
-			setStudentData(res.data);
+			setStudentData(res.data[3]);
 		});
 	}, []);
 
-	console.log(studentData);
+	// console.log(studentData);
 
 	return (
 		<div>
-			<Container fluid>
+			<Container>
 				<Row>
 					<Col lg={6} md={6} className='student__profile--container'>
 						{/* Student Name and Profile */}
@@ -30,25 +33,26 @@ function HeroStudents() {
 								<Col lg={6} md={6} sm={6}>
 									<div className='profile__picture'>
 										<img
-											src={Image}
+											src={studentData.img}
 											alt='Profile'
 											className='profile__picture--img'
 										/>
 										<h5>
-											<strong>Mr.</strong> John Doe
+											<strong>Mr.</strong> {studentData.fname}{" "}
+											{studentData.lname}
 										</h5>
 									</div>
 								</Col>
 								<Col lg={6} md={6} sm={6}>
 									<div className='profile__details'>
 										<p>
-											<strong>Username:</strong> John
+											<strong>Username:</strong> {studentData.username}
 										</p>
 										<p>
-											<strong>Contact:</strong> 1234
+											<strong>Contact:</strong> {studentData.contact}
 										</p>
 										<p>
-											<strong>Email:</strong> @gmail.com
+											<strong>Email:</strong> {studentData.email}
 										</p>
 										<p>
 											<strong>Password:</strong> Edit your password

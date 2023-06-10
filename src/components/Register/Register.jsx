@@ -36,6 +36,12 @@ function Register() {
 		}
 	};
 
+	const handleFile = async (e) => {
+		const file = e.target.files[0];
+		const base64 = await convertToBase64(file);
+		formData.img = base64;
+	};
+
 	const onSubmitForm = (event) => {
 		event.preventDefault();
 
@@ -58,6 +64,7 @@ function Register() {
 				contact: "",
 				email: "",
 				age: "",
+				img: "",
 				gender: "",
 				address: "",
 				password: "",
@@ -66,6 +73,19 @@ function Register() {
 			});
 		}
 	};
+
+	function convertToBase64(file) {
+		return new Promise((resolve, reject) => {
+			const fileReader = new FileReader();
+			fileReader.readAsDataURL(file);
+			fileReader.onload = () => {
+				resolve(fileReader.result);
+			};
+			fileReader.onerror = (error) => {
+				reject(error);
+			};
+		});
+	}
 
 	return (
 		<Container className='container__registration'>
@@ -174,8 +194,7 @@ function Register() {
 					<Form.Control
 						type='file'
 						className='input__container--registration'
-						onChange={handleChange}
-						value={formData.img}
+						onChange={(e) => handleFile(e)}
 						name='img'
 					/>
 				</Form.Group>
@@ -228,7 +247,7 @@ function Register() {
 									label='Student'
 									name='type'
 									value='student'
-									checked={formData.type === "student"}
+									// checked={formData.type === "student"}
 									onChange={handleChange}
 								/>
 							</Col>
@@ -238,7 +257,7 @@ function Register() {
 									label='Teacher'
 									name='type'
 									value='teacher'
-									checked={formData.attendance === "teacher"}
+									// checked={formData.attendance === "teacher"}
 									onChange={handleChange}
 								/>
 							</Col>
