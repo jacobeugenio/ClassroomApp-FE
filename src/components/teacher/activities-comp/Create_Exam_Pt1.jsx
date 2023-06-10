@@ -11,7 +11,7 @@ import API_Service from "../../../api-service/API_Service";
 import { useNavigate, useParams } from "react-router-dom";
 
 const Create_Exam_Pt1 = () => {
-  const { id } = useParams();
+  const id = useParams();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -28,17 +28,18 @@ const Create_Exam_Pt1 = () => {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
   const navigate = useNavigate();
-  const onSubmitForm = (event) => {
+
+  const onSubmitForm = async (event) => {
     event.preventDefault();
-    console.log(formData);
-    API_Service.post("/teachers/create-exam-first-part", formData)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    navigate("/teacher/create_exam_pt_two");
+    // console.log(formData);
+    const response = await API_Service.post(
+      "/teachers/create-exam-first-part",
+      formData
+    );
+
+    console.log(response);
+
+    // navigate("/teacher/create_exam_pt_two");
   };
   return (
     <>

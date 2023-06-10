@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import S_Image from "../../../img/ava2.png";
 import API_Service from "../../../api-service/API_Service";
+
 const Student_Profile = () => {
   const [profiles, setProfiles] = useState([]);
 
@@ -10,8 +11,8 @@ const Student_Profile = () => {
     const getProfiles = async () => {
       try {
         const response = await API_Service.get("/teachers/get-students");
-        // setProfiles(response.data);
-        // console.log(response);
+        setProfiles(response.data);
+        console.log(response);
       } catch (error) {
         console.error(error);
       }
@@ -36,10 +37,10 @@ const Student_Profile = () => {
             <Card key={index}>
               <Card.Img
                 variant="top"
-                src={S_Image}
-                style={{ height: 50, width: 50 }}
+                src={profile.img}
+                style={{ height: 40, width: 40, borderRadius: 50 }}
               />
-              <Card.Text>{profile.fname}</Card.Text>
+              <Card.Text style={{ fontSize: 11 }}>{profile.fname}</Card.Text>
             </Card>
           );
         })}

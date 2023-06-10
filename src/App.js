@@ -35,7 +35,7 @@ function App() {
         <Route path="/teacher/profile" element={<TeachProfile />} />
         <Route path="/teacher/activities" element={<Activities />} />
         <Route path="/teacher/activities/:id" element={<ActivityDetails />} />
-        <Route path="/teacher/create_exam_pt_two" element={<CreateExamPt2 />} />
+        {/* <Route path="/teacher/create_exam_pt_two" element={<CreateExamPt2 />} /> */}
         <Route path="*" element={<NotFound />} />
 
         {/* Students Page */}

@@ -8,13 +8,13 @@ import Button from "react-bootstrap/Button";
 
 const Activity_Details = () => {
   const [exam, setExam] = useState([]);
-  const { id } = useParams();
+  const id = useParams();
   useEffect(() => {
     const getExam = async () => {
       try {
         const response = await API_Service.get(`/teachers/activities/` + id);
-        // console.log(response.data);
-        setExam(response.data.exam);
+        console.log(response.data);
+        // setExam(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -22,7 +22,7 @@ const Activity_Details = () => {
 
     getExam();
   }, []);
-  //   console.log(typeof exam.id);
+  console.log(typeof exam.id);
   return (
     <Container className="mt-3">
       <div className="questionaire">
@@ -54,9 +54,9 @@ const Activity_Details = () => {
 
         <h6>Questions</h6>
         {exam.questions &&
-          exam.questions.map((question) => {
+          exam.questions.map((question, index) => {
             return (
-              <Container key={question.id}>
+              <Container key={index}>
                 <div className="mt-3 view-questionaire">
                   <h6>
                     Q{question.id}: {question.question}
