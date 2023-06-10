@@ -12,7 +12,7 @@ const Student_Profile = () => {
       try {
         const response = await API_Service.get("/teachers/get-students");
         setProfiles(response.data);
-        console.log(response);
+        // console.log(response);
       } catch (error) {
         console.error(error);
       }
@@ -40,7 +40,7 @@ const Student_Profile = () => {
                 src={profile.img}
                 style={{ height: 40, width: 40, borderRadius: 50 }}
               />
-              <Card.Text style={{ fontSize: 11 }}>{profile.fname}</Card.Text>
+              <Card.Text style={{ fontSize: 11 }}>{profile.username}</Card.Text>
             </Card>
           );
         })}

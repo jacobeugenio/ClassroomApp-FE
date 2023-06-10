@@ -7,22 +7,23 @@ import API_Service from "../../../api-service/API_Service";
 import Button from "react-bootstrap/Button";
 
 const Activity_Details = () => {
-  const [exam, setExam] = useState([]);
-  const id = useParams();
+  const [exam, setExam] = useState({});
+  const { id } = useParams();
+
   useEffect(() => {
     const getExam = async () => {
       try {
-        const response = await API_Service.get(`/teachers/activities/` + id);
-        console.log(response.data);
-        // setExam(response.data);
+        const response = await API_Service.get(`/teachers/activities/${id}`);
+        // console.log(response.data[0]);
+        setExam(response.data[0]);
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
     };
 
     getExam();
   }, []);
-  console.log(typeof exam.id);
+  // console.log(typeof exam.id);
   return (
     <Container className="mt-3">
       <div className="questionaire">
@@ -45,7 +46,7 @@ const Activity_Details = () => {
           <span className="ms-4">{exam.desc}</span>
         </div>
         <div className="d-flex">
-          <h6>Activity No: </h6> <span className="ms-4">{exam.id}</span>
+          <h6>Activity No: </h6> <span className="ms-4">{exam._id}</span>
         </div>
         <div className="d-flex">
           <h6>Activity Length: </h6>
