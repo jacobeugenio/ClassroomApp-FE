@@ -28,7 +28,7 @@ const Students = () => {
       try {
         const response = await API_Service.get("/teachers/get-students");
         setData(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.error(error);
       }

@@ -1,13 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import LandingPage from "./components/landing-page/LandingPage";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/login/Login";
 import Home from "./components/teacher/Home";
 import Students from "./components/teacher/Students";
 import NotFound from "./NotFound";
 import Grades from "./components/teacher/Grades";
 import Register from "./components/Register/Register";
-import "./App.css";
 import TeachProfile from "./components/teacher/teacher-component/Teach_Profile";
 import Activities from "./components/teacher/Activities";
 import ActivityDetails from "./components/teacher/activities-comp/Activity_Details";
@@ -18,6 +16,9 @@ import AttendanceStudents from "./components/students/components/Main/Attendance
 import GradesStudents from "./components/students/components/Main/Grades/Grades-Students";
 import ExamsStudents from "./components/students/components/Main/Exams/Exams-Students";
 import CreateExamPt2 from "./components/teacher/activities-comp/Create_Exam_Pt2";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 function App() {
   // const url = 'http://localhost:5000/teachers/get-students';
@@ -35,7 +36,10 @@ function App() {
         <Route path="/teacher/profile" element={<TeachProfile />} />
         <Route path="/teacher/activities" element={<Activities />} />
         <Route path="/teacher/activities/:id" element={<ActivityDetails />} />
-        {/* <Route path="/teacher/create_exam_pt_two" element={<CreateExamPt2 />} /> */}
+        <Route
+          path="/teacher/activities/part2/:id"
+          element={<CreateExamPt2 />}
+        />
         <Route path="*" element={<NotFound />} />
 
         {/* Students Page */}

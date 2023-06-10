@@ -8,10 +8,9 @@ import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import API_Service from "../../../api-service/API_Service";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Create_Exam_Pt1 = () => {
-  const id = useParams();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -20,11 +19,12 @@ const Create_Exam_Pt1 = () => {
     title: "",
     desc: "",
     examLength: "",
+    questions: [{}],
   });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(value);
+    // console.log(value);
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
   const navigate = useNavigate();
@@ -37,9 +37,9 @@ const Create_Exam_Pt1 = () => {
       formData
     );
 
-    console.log(response);
-
-    // navigate("/teacher/create_exam_pt_two");
+    if (response.data._id) {
+      navigate("/teacher/activities/part2/" + response.data._id);
+    }
   };
   return (
     <>
@@ -102,7 +102,7 @@ const Create_Exam_Pt1 = () => {
 
             <hr className="mt-4" />
             <Button variant="primary" type="submit">
-              Add Sudent
+              Continue
             </Button>
           </Modal.Body>
         </Form>
