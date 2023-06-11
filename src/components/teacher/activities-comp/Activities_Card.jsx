@@ -4,7 +4,9 @@ import API_Service from "../../../api-service/API_Service";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import DeleteExam from "./Delete_Exam";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShareFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { Container } from "react-bootstrap";
 const Activities_Card = () => {
   const [exams, setExams] = useState([]);
 
@@ -21,11 +23,17 @@ const Activities_Card = () => {
 
     getExams();
   }, []);
-  console.log(exams.length);
+  // console.log(exams.length);
   // useEffect(() => {
   //   window.location.reload(true);
   // }, [exams]);
-
+  // const handleRefresh = () => {
+  //   return (
+  //     <>
+  //       <h2>This is function</h2>
+  //     </>
+  //   );
+  // };
   return (
     <>
       {/* <Container className="activities-container"> */}
@@ -35,15 +43,26 @@ const Activities_Card = () => {
           return (
             <Card key={index} className="card_activity">
               <Link to={`/teacher/activities/` + exam._id}>
-                <Card.Header>{exam.subject}</Card.Header>
+                <Card.Header>
+                  {exam.subject}{" "}
+                  <h6 className="float-end">{exam.examLength}</h6>
+                </Card.Header>
                 <Card.Body className="card-body">
                   <Card.Title>{exam.title}</Card.Title>
                 </Card.Body>
               </Link>
-              <Card.Footer className="text-muted" style={{ fontSize: 10 }}>
+              <Card.Footer
+                className="text-muted d-flex"
+                style={{ fontSize: 10 }}
+              >
                 {/* {exam.createdAt} */}
                 <DeleteExam examID={exam._id} />
-                <Button variant="outline-success" size="sm">
+                <Button
+                  variant="outline-success"
+                  size="sm"
+                  className="d-flex align-items-center"
+                >
+                  <FontAwesomeIcon icon={faShareFromSquare} className="me-1" />
                   Publish
                 </Button>
               </Card.Footer>

@@ -146,8 +146,8 @@ const StudentRegModal = () => {
                   name="gender"
                 >
                   <option>Choose...</option>
-                  <option value="female">Male</option>
-                  <option value="male">Female</option>
+                  <option value="Female">FeMale</option>
+                  <option value="Male">Memale</option>
                 </Form.Control>
               </Form.Group>
 

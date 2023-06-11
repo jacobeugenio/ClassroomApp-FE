@@ -36,7 +36,7 @@ nav a {
 }
 .activities-container > .card {
   margin: 10px 5px;
-  width: 150px;
+  width: 180px;
   height: 150px;
 }
 .s_profile_container {
@@ -68,7 +68,7 @@ nav a {
   font-size: 11px;
 }
 .card_activity {
-  width: 160px;
+  width: 180px;
   height: 150px;
 }
 .create-exam {

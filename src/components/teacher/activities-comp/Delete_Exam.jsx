@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import API_Service from "../../../api-service/API_Service";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 const Delete_Exam = (exam) => {
-  //   console.log(exam.examID);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -19,12 +18,12 @@ const Delete_Exam = (exam) => {
   return (
     <>
       <Button
-        variant="outline-primary"
+        variant="success"
         size="sm"
-        className="mx-1 d-flex flex-row align-items-center p-1"
+        className="d-flex align-items-center me-1"
         onClick={handleShow}
       >
-        {/* <FontAwesomeIcon icon={faTrashCan} /> */}
+        <FontAwesomeIcon icon={faTrashCan} />
         <span className="ms-1">Delete</span>
       </Button>
       <Modal show={show} onHide={handleClose}>
