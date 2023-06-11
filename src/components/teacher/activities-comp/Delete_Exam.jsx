@@ -11,10 +11,11 @@ const Delete_Exam = (exam) => {
   const handleShow = () => setShow(true);
 
   const handleDelete = async () => {
-    const res = await API_Service.delete("/teachers/activities/" + exam.examID);
+    await API_Service.delete("/teachers/activities/" + exam.examID);
 
     handleClose();
   };
+
   return (
     <>
       <Button
@@ -32,8 +33,8 @@ const Delete_Exam = (exam) => {
         </Modal.Header>
         <Modal.Body>
           <span>
-            Are you sure to delete this exam?...
-            <span className="h5">""</span>
+            Are you sure to delete this exam:
+            <span className="h5"> "{exam.exam.subject}"</span>
           </span>
         </Modal.Body>
         <Modal.Footer>

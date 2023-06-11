@@ -57,7 +57,7 @@ const Activities_Card = () => {
                 style={{ fontSize: 10 }}
               >
                 {/* {exam.createdAt} */}
-                <DeleteExam examID={exam._id} />
+                <DeleteExam exam={exam} />
                 <Button
                   variant="outline-success"
                   size="sm"

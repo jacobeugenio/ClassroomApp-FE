@@ -96,6 +96,7 @@ const Create_Exam_Pt1 = () => {
                   value={formData.examLength}
                   name="examLength"
                   type="text"
+                  placeholder="0"
                 />
               </Form.Group>
             </Row>

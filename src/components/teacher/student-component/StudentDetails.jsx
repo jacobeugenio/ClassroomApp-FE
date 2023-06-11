@@ -17,8 +17,8 @@ const StudentDetails = ({ data }) => {
           <img
             src={student.img}
             alt="profile"
-            width={40}
-            height={40}
+            width={30}
+            height={30}
             style={{ borderRadius: 50 }}
           />
         </td>

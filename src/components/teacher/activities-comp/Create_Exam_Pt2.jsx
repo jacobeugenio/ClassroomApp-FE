@@ -51,7 +51,10 @@ const Create_Exam_Pt2 = () => {
           <h4>Questions</h4>
           {Array.from({ length: examData.examLength }).map((_, index) => (
             <div key={index}>
-              <Form.Group className="mb-3" controlId="desc">
+              <Form.Group
+                className="mb-3"
+                controlId={examData.questions + index + 1}
+              >
                 <Form.Label className="mt-3">
                   Question {index + 1} <hr style={{ marginTop: 0 }} />
                 </Form.Label>
@@ -64,7 +67,7 @@ const Create_Exam_Pt2 = () => {
               </Form.Group>
 
               <Row className="mb-3">
-                <Form.Group as={Col} controlId="subject">
+                <Form.Group as={Col} controlId="subject{index}">
                   <Form.Label>A</Form.Label>
                   <Form.Control type="text" placeholder="Enter choice A" />
                 </Form.Group>
@@ -75,17 +78,17 @@ const Create_Exam_Pt2 = () => {
                 </Form.Group>
               </Row>
               <Row className="mb-3">
-                <Form.Group as={Col} controlId="subject">
+                <Form.Group as={Col} controlId="subject{index}">
                   <Form.Label>C</Form.Label>
                   <Form.Control type="text" placeholder="Enter choice C" />
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="title">
+                <Form.Group as={Col} controlId="title{index}">
                   <Form.Label>D</Form.Label>
                   <Form.Control type="text" placeholder="Enter choice D" />
                 </Form.Group>
               </Row>
-              <Form.Group as={Col} controlId="answer">
+              <Form.Group as={Col} controlId="answer{index}">
                 <Form.Label>Answer Key</Form.Label>
                 <Form.Control
                   as="select"
