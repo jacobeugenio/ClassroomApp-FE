@@ -7,6 +7,7 @@ import DeleteExam from "./Delete_Exam";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShareFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { Container } from "react-bootstrap";
+
 const Activities_Card = () => {
   const [exams, setExams] = useState([]);
 
@@ -22,7 +23,7 @@ const Activities_Card = () => {
     };
 
     getExams();
-  }, []);
+  }, [exams]);
   // console.log(exams.length);
   // useEffect(() => {
   //   window.location.reload(true);

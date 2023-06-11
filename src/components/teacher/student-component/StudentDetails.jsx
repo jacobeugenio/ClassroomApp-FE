@@ -8,7 +8,7 @@ import EditStudentDetails from "./Edit_Student_Details";
 import DeleteStudent from "./Delete_Student";
 
 const StudentDetails = ({ data }) => {
-  console.log(data);
+  // console.log(data);
   const studentData = data.map((student, index) => {
     return (
       <tr key={index}>

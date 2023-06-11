@@ -51,7 +51,7 @@ const Home = () => {
             <br />
             <h5>Ms. Jane Doe</h5>
             <Link to="/teacher/profile">
-              <Button variant="outline-info" size="sm">
+              <Button variant="outline-info" size="sm" className="mb-4">
                 View Profile
               </Button>{" "}
             </Link>

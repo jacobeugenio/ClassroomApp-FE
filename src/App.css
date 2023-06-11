@@ -24,20 +24,21 @@ nav a {
 }
 
 .activities-container {
-  display: grid;
-  grid-auto-flow: column;
+  /* display: grid;
+  grid-auto-flow: column; */
   /* grid-auto-columns: 15%; */
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
-  /* display: flex;
+  /* overflow-x: auto;
+  overscroll-behavior-inline: contain; */
+  display: flex;
   flex-flow: row nowrap;
   overflow-x: auto;
-  flex-shrink: 0; */
+  flex-shrink: 0;
 }
 .activities-container > .card {
   margin: 10px 5px;
-  width: 180px;
+
   height: 150px;
+  flex-shrink: 0;
 }
 .s_profile_container {
   /* display: grid;
@@ -68,12 +69,10 @@ nav a {
   font-size: 11px;
 }
 .card_activity {
-  width: 180px;
+  width: 185px;
   height: 150px;
 }
-.create-exam {
-  /* max-width: 700px; */
-}
+
 .card-body {
   height: 70px;
 }

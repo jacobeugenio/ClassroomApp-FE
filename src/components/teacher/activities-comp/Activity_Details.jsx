@@ -60,7 +60,7 @@ const Activity_Details = () => {
               <Container key={index}>
                 <div className="mt-3 view-questionaire">
                   <h6>
-                    Q{question.id}: {question.question}
+                    Q{index + 1}: {question.question}
                   </h6>
                   <div className="">
                     <span className="mx-3">A. {question.a}</span>

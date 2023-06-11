@@ -30,29 +30,24 @@ const Create_Exam_Pt2 = () => {
     <>
       <Container className="mt-4 create-exam">
         <h2>Create Exam</h2>
+        <hr />
+        <p className="h6">
+          Subject: <span>{examData.subject}</span>
+        </p>
+        <p className="h6">
+          Title: <span>{examData.title}</span>
+        </p>
+        <p className="h6">
+          Description: <span>{examData.desc}</span>
+        </p>
+        <p className="h6">
+          Exam ID: <span>{examData._id}</span>
+        </p>
+        <p className="h6">
+          Length <span>{examData.examLength}</span>
+        </p>
+
         <Form>
-          <Row className="mb-3">
-            <Form.Group as={Col} controlId="subject">
-              <Form.Label>Subject</Form.Label>
-              <Form.Control type="text" value={examData.subject} readOnly />
-            </Form.Group>
-
-            <Form.Group as={Col} controlId="title">
-              <Form.Label>Title</Form.Label>
-              <Form.Control type="text" value={examData.title} readOnly />
-            </Form.Group>
-          </Row>
-          <Row className="mb-3">
-            <Form.Group as={Col} controlId="desc">
-              <Form.Label>Description</Form.Label>
-              <Form.Control type="text" value={examData.desc} readOnly />
-            </Form.Group>
-
-            <Form.Group as={Col} controlId="exam-length">
-              <Form.Label>Length</Form.Label>
-              <Form.Control type="text" value={examData.examLength} readOnly />
-            </Form.Group>
-          </Row>
           <h4>Questions</h4>
           {Array.from({ length: examData.examLength }).map((_, index) => (
             <div key={index}>
@@ -90,6 +85,23 @@ const Create_Exam_Pt2 = () => {
                   <Form.Control type="text" placeholder="Enter choice D" />
                 </Form.Group>
               </Row>
+              <Form.Group as={Col} controlId="answer">
+                <Form.Label>Answer Key</Form.Label>
+                <Form.Control
+                  as="select"
+                  // onChange={handleChange}
+                  // value={formData.gender}
+                  name="answer"
+                  // placeholder="{formData.gender}"
+                >
+                  {/* <option>{formData.gender}</option> */}
+                  <option disabled>Select Answer key...</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                </Form.Control>
+              </Form.Group>
             </div>
           ))}
 

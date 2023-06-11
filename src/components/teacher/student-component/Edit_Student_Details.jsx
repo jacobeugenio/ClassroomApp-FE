@@ -57,6 +57,7 @@ const Edit_Student_Details = (student) => {
       .catch((error) => {
         console.log(error);
       });
+    handleClose();
   };
 
   return (

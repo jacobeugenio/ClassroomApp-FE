@@ -11,30 +11,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "react-bootstrap";
 const Students = () => {
-  const [data, setData] = useState([]);
+  const [students, setStudents] = useState([]);
 
-  const handleRefresh = () => {
-    API_Service.get("students/get-students").then((response) =>
-      setData(response.data)
-    );
-  };
+  // const handleRefresh = () => {
+  //   API_Service.get("students/get-students").then((response) =>
+  //     setData(response.data)
+  //   );
+  // };
 
-  useEffect(() => {
-    handleRefresh();
-  }, []);
+  // useEffect(() => {
+  //   handleRefresh();
+  // }, []);
 
   useEffect(() => {
     const getUser = async () => {
       try {
         const response = await API_Service.get("/teachers/get-students");
-        setData(response.data);
+        setStudents(response.data);
       } catch (error) {
         console.error(error);
       }
     };
 
     getUser();
-  }, []);
+  }, [students]);
 
   return (
     <>
@@ -43,7 +43,7 @@ const Students = () => {
         <h3>Students List</h3>
         <hr />
         <StudentRegmodal />
-        <Button
+        {/* <Button
           variant="outline-danger"
           className="ms-2"
           size="sm"
@@ -51,10 +51,10 @@ const Students = () => {
         >
           <FontAwesomeIcon icon={faRotateLeft} className="me-1" />
           Refresh
-        </Button>
+        </Button> */}
       </Container>
       <Container>
-        <StudentDetails data={data} />
+        <StudentDetails data={students} />
       </Container>
     </>
   );

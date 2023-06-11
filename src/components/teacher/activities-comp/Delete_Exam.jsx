@@ -12,7 +12,7 @@ const Delete_Exam = (exam) => {
 
   const handleDelete = async () => {
     const res = await API_Service.delete("/teachers/activities/" + exam.examID);
-    console.log(res.data);
+
     handleClose();
   };
   return (
