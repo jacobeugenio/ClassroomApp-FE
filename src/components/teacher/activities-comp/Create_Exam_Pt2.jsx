@@ -51,10 +51,7 @@ const Create_Exam_Pt2 = () => {
           <h4>Questions</h4>
           {Array.from({ length: examData.examLength }).map((_, index) => (
             <div key={index}>
-              <Form.Group
-                className="mb-3"
-                controlId={examData.questions + index + 1}
-              >
+              <Form.Group className="mb-3" controlId={index + 1}>
                 <Form.Label className="mt-3">
                   Question {index + 1} <hr style={{ marginTop: 0 }} />
                 </Form.Label>
