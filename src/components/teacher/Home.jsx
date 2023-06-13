@@ -12,6 +12,7 @@ import T_Image from "../../img/ava2.png";
 import { Link } from "react-router-dom";
 import Activities_Card from "./activities-comp/Activities_Card";
 import Student_Profile from "./profile-comp/Student_Profile";
+import GenDetail from "./Gen_Detail";
 const Home = () => {
   const [teacher, setTeacher] = useState([]);
   const [students, setStudents] = useState([]);
@@ -74,18 +75,8 @@ const Home = () => {
           <Col sm={8}>
             {" "}
             <Container>
-              <Row xs={1} md={3} className="g-4">
-                {Array.from({ length: 3 }).map((_, idx) => (
-                  <Col key={idx}>
-                    <Card>
-                      <Card.Body>
-                        <Card.Title>25</Card.Title>
-                        <Card.Text>Present</Card.Text>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                ))}
-              </Row>
+              <GenDetail teacher={teacher.length} student={students.length} />
+
               <hr />
               <Row style={{ marginTop: -20 }}>
                 <div className="mt-0">
