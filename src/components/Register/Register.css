@@ -1,71 +1,71 @@
 * {
-	margin: 0;
-	padding: 0;
-	font-family: "Times New Roman", Times, serif;
+  margin: 0;
+  padding: 0;
+  font-family: "Times New Roman", Times, serif;
 }
 
 h1 {
-	text-align: center;
-	font-weight: 700;
+  text-align: center;
+  font-weight: 700;
 }
 
 .container__registration {
-	border-radius: 20px;
-	box-shadow: 5px 5px 5px 2px;
-	display: flex;
-	flex-direction: row;
-	margin-top: 20px;
-	background-color: #ffe5ca;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px 2px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  background-color: #ffe5ca;
 }
 
 .form__registration {
-	padding: 20px;
-	width: 40%;
-	height: fit-content;
-	border-radius: 20px 0px 0px 20px;
+  padding: 20px;
+  width: 40%;
+  height: fit-content;
+  border-radius: 20px 0px 0px 20px;
 }
 
 .input__container--registration {
-	box-sizing: border-box;
-	border-radius: 20px;
+  box-sizing: border-box;
+  border-radius: 20px;
 }
 
 .intro__message--registration {
-	border-left: 1px solid lightgrey;
-	padding: 20px;
-	width: 60%;
-	border-radius: 0px 20px 20px 0px;
-	height: 100%;
-	color: black;
+  border-left: 1px solid lightgrey;
+  padding: 20px;
+  width: 60%;
+  border-radius: 0px 20px 20px 0px;
+  height: 100%;
+  color: black;
 }
 
 .btn__registration {
-	width: 100%;
-	background-color: #444;
-	color: #fff;
-	border: none;
-	font-weight: 700;
-	text-transform: uppercase;
+  width: 100%;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 @media (min-width: 320px) and (max-width: 768px) {
-	.container__registration {
-		display: flex;
-		flex-direction: column;
-	}
+  .container__registration {
+    display: flex;
+    flex-direction: column;
+  }
 
-	.form__registration {
-		padding: 20px;
-		width: 100%;
-		height: fit-content;
-		border-radius: 20px 0px 0px 20px;
-	}
+  .form__registration {
+    padding: 20px;
+    width: 100%;
+    height: fit-content;
+    border-radius: 20px 0px 0px 20px;
+  }
 
-	.intro__message--registration {
-		padding: 20px;
-		width: 100%;
-		border-radius: 0px 20px 20px 0px;
-		height: 100%;
-		color: black;
-	}
+  .intro__message--registration {
+    padding: 20px;
+    width: 100%;
+    border-radius: 0px 20px 20px 0px;
+    height: 100%;
+    color: black;
+  }
 }

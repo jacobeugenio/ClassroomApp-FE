@@ -14,6 +14,7 @@ import Activities_Card from "./activities-comp/Activities_Card";
 import Student_Profile from "./profile-comp/Student_Profile";
 const Home = () => {
   const [teacher, setTeacher] = useState([]);
+  const [students, setStudents] = useState([]);
 
   useEffect(() => {
     const getTeacher = async () => {
@@ -27,6 +28,20 @@ const Home = () => {
     };
 
     getTeacher();
+  }, []);
+
+  useEffect(() => {
+    const getStudents = async () => {
+      try {
+        const response = await API_Service.get("/teachers/get-students");
+        setStudents(response.data);
+        // console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getStudents();
   }, []);
 
   useEffect(() => {
@@ -89,7 +104,19 @@ const Home = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    {students.map((student, index) => {
+                      if (index < 3) {
+                        return (
+                          <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{student.fname}</td>
+                            <td>{student.lname}</td>
+                            <td>{student.username}</td>
+                          </tr>
+                        );
+                      }
+                    })}
+                    {/* <tr>
                       <td>1</td>
                       <td>Mark</td>
                       <td>Otto</td>
@@ -105,7 +132,7 @@ const Home = () => {
                       <td>3</td>
                       <td colSpan={2}>Larry the Bird</td>
                       <td>@twitter</td>
-                    </tr>
+                    </tr> */}
                   </tbody>
                 </Table>
               </Row>
