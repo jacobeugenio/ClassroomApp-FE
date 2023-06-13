@@ -24,7 +24,7 @@ function HeroStudents() {
 
 	return (
 		<div>
-			<Container>
+			<Container className='container__hero'>
 				<Row>
 					<Col lg={6} md={6} className='student__profile--container'>
 						{/* Student Name and Profile */}
@@ -38,8 +38,7 @@ function HeroStudents() {
 											className='profile__picture--img'
 										/>
 										<h5>
-											<strong>Mr.</strong> {studentData.fname}{" "}
-											{studentData.lname}
+											{studentData.fname} <br /> {studentData.lname}
 										</h5>
 									</div>
 								</Col>
@@ -65,7 +64,9 @@ function HeroStudents() {
 					<Col lg={6} md={6} className='welcome__message--container'>
 						{/* Welcome Message */}
 						<div className='title__holder'>
-							<h2>Welcome, John Doe!</h2>
+							<h2>
+								Welcome, {studentData.fname} {studentData.lname}
+							</h2>
 						</div>
 						<div className='welcome__message'>
 							<p>
