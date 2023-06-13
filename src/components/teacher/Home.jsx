@@ -12,8 +12,10 @@ import T_Image from "../../img/ava2.png";
 import { Link } from "react-router-dom";
 import Activities_Card from "./activities-comp/Activities_Card";
 import Student_Profile from "./profile-comp/Student_Profile";
+import GenDetail from "./Gen_Detail";
 const Home = () => {
   const [teacher, setTeacher] = useState([]);
+  const [students, setStudents] = useState([]);
 
   useEffect(() => {
     const getTeacher = async () => {
@@ -27,6 +29,20 @@ const Home = () => {
     };
 
     getTeacher();
+  }, []);
+
+  useEffect(() => {
+    const getStudents = async () => {
+      try {
+        const response = await API_Service.get("/teachers/get-students");
+        setStudents(response.data);
+        // console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getStudents();
   }, []);
 
   useEffect(() => {
@@ -59,18 +75,8 @@ const Home = () => {
           <Col sm={8}>
             {" "}
             <Container>
-              <Row xs={1} md={3} className="g-4">
-                {Array.from({ length: 3 }).map((_, idx) => (
-                  <Col key={idx}>
-                    <Card>
-                      <Card.Body>
-                        <Card.Title>25</Card.Title>
-                        <Card.Text>Present</Card.Text>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                ))}
-              </Row>
+              <GenDetail teacher={teacher.length} student={students.length} />
+
               <hr />
               <Row style={{ marginTop: -20 }}>
                 <div className="mt-0">
@@ -89,7 +95,19 @@ const Home = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    {students.map((student, index) => {
+                      if (index < 3) {
+                        return (
+                          <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{student.fname}</td>
+                            <td>{student.lname}</td>
+                            <td>{student.username}</td>
+                          </tr>
+                        );
+                      }
+                    })}
+                    {/* <tr>
                       <td>1</td>
                       <td>Mark</td>
                       <td>Otto</td>
@@ -105,7 +123,7 @@ const Home = () => {
                       <td>3</td>
                       <td colSpan={2}>Larry the Bird</td>
                       <td>@twitter</td>
-                    </tr>
+                    </tr> */}
                   </tbody>
                 </Table>
               </Row>

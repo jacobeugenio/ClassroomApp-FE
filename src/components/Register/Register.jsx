@@ -27,7 +27,7 @@ function Register() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name);
+    console.log(name, value);
 
     if (event.target.type === "radio") {
       setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -246,7 +246,7 @@ function Register() {
                   type="radio"
                   label="Student"
                   name="type"
-                  value="student"
+                  value="Student"
                   // checked={formData.type === "student"}
                   onChange={handleChange}
                 />
@@ -256,7 +256,7 @@ function Register() {
                   type="radio"
                   label="Teacher"
                   name="type"
-                  value="teacher"
+                  value="Teacher"
                   // checked={formData.attendance === "teacher"}
                   onChange={handleChange}
                 />

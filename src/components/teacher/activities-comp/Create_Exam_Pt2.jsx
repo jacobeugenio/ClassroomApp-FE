@@ -6,10 +6,75 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 const Create_Exam_Pt2 = () => {
   const { id } = useParams();
+  const [count, setCount] = useState(1);
+  const [disAbled, setDisAbled] = useState(false);
+  const [error, setError] = useState({
+    question: "",
+  });
   const [examData, setExamData] = useState({});
+  const [questions, setQuestions] = useState([
+    {
+      question: "",
+      choice_a: "",
+      choice_b: "",
+      choice_c: "",
+      choice_d: "",
+      answer: "",
+    },
+  ]);
+
+  const handleChange = (e, index) => {
+    console.log(index, e.target.name, e.target.value);
+    const data = [...questions];
+    data[index][e.target.name] = e.target.value;
+    setQuestions(data);
+    // setDisAbled(false);
+  };
+
+  const onSubmitForm = async (event) => {
+    event.preventDefault();
+    console.log(questions);
+    const response = await API_Service.patch(
+      "/teachers/create-exam-second-part/" + id,
+      questions,
+      examData
+    );
+    console.log(response);
+  };
+
+  const addFields = (e) => {
+    console.log(questions);
+    setCount((prevCount) => prevCount + 1);
+    const obj = {
+      question: "",
+      choice_a: "",
+      choice_b: "",
+      choice_c: "",
+      choice_d: "",
+      answer: "",
+    };
+    setQuestions([...questions, obj]);
+    // questions.map((question, index) => {
+    //   if (
+    //     !question.question ||
+    //     !question.choice_a ||
+    //     !question.choice_b ||
+    //     !question.choice_c ||
+    //     !question.choice_d ||
+    //     !question.answer
+    //   ) {
+    //     return setDisAbled(true);
+    //   } else {
+    //     return setDisAbled(false);
+    //   }
+
+    // });
+  };
 
   useEffect(() => {
     const getExam = async () => {
@@ -26,9 +91,10 @@ const Create_Exam_Pt2 = () => {
 
     getExam();
   }, [id]);
+
   return (
     <>
-      <Container className="mt-4 create-exam">
+      <Container className="my-4 create-exam px-5">
         <h2>Create Exam</h2>
         <hr />
         <p className="h6">
@@ -44,9 +110,18 @@ const Create_Exam_Pt2 = () => {
           Exam ID: <span>{examData._id}</span>
         </p>
         <p className="h6">
-          Length <span>{examData.examLength}</span>
+          Length: <span>{examData.examLength}</span>
         </p>
+        <Form onSubmit={onSubmitForm}>
+          {questions.map((question, index) => {
+            return (
+              <div key={index}>
+                <Form.Group className="mb-3" controlId="question">
+                  <Form.Label className="mt-3">
+                    Question {index + 1} <hr style={{ marginTop: 0 }} />
+                  </Form.Label>
 
+<<<<<<< HEAD
         <Form>
           <h4>Questions</h4>
           {Array.from({ length: examData.examLength }).map((_, index) => (
@@ -67,102 +142,252 @@ const Create_Exam_Pt2 = () => {
                 <Form.Group as={Col} controlId="subject{index}">
                   <Form.Label>A</Form.Label>
                   <Form.Control type="text" placeholder="Enter choice A" />
+=======
+                  <Form.Control
+                    type="text"
+                    name="question"
+                    placeholder="question"
+                    value={questions.question}
+                    onChange={(e) => handleChange(e, index)}
+                  />
+                  {error.question}
+>>>>>>> my-branch
                 </Form.Group>
+                <Row className="mb-3">
+                  <Form.Group as={Col} controlId="choice_a">
+                    <Form.Label>A</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="choice_a"
+                      placeholder="choice_a"
+                      value={questions.choice_a}
+                      onChange={(e) => handleChange(e, index)}
+                    />
+                  </Form.Group>
 
-                <Form.Group as={Col} controlId="title">
-                  <Form.Label>B</Form.Label>
-                  <Form.Control type="text" placeholder="Enter choice B" />
-                </Form.Group>
-              </Row>
-              <Row className="mb-3">
-                <Form.Group as={Col} controlId="subject{index}">
-                  <Form.Label>C</Form.Label>
-                  <Form.Control type="text" placeholder="Enter choice C" />
-                </Form.Group>
+                  <Form.Group as={Col} controlId="choice_b">
+                    <Form.Label>B</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="choice_b"
+                      placeholder="choice_b"
+                      value={questions.choice_b}
+                      onChange={(e) => handleChange(e, index)}
+                    />
+                  </Form.Group>
+                </Row>
+                <Row className="mb-3">
+                  <Form.Group as={Col} controlId="choice_c">
+                    <Form.Label>C</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="choice_c"
+                      placeholder="choice_c"
+                      value={questions.choice_c}
+                      onChange={(e) => handleChange(e, index)}
+                    />
+                  </Form.Group>
 
-                <Form.Group as={Col} controlId="title{index}">
-                  <Form.Label>D</Form.Label>
-                  <Form.Control type="text" placeholder="Enter choice D" />
+                  <Form.Group as={Col} controlId="choice_d">
+                    <Form.Label>D</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="choice_d"
+                      placeholder="choice_d"
+                      value={questions.choice_d}
+                      onChange={(e) => handleChange(e, index)}
+                    />
+                  </Form.Group>
+                </Row>
+                <Form.Group as={Col} controlId="answer">
+                  <Form.Label>Gender</Form.Label>
+                  <Form.Control
+                    type="text"
+                    as="select"
+                    value={questions.answer}
+                    onChange={(e) => handleChange(e, index)}
+                    name="answer"
+                  >
+                    <option disabled>Select answer key...</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                  </Form.Control>
                 </Form.Group>
-              </Row>
-              <Form.Group as={Col} controlId="answer{index}">
-                <Form.Label>Answer Key</Form.Label>
-                <Form.Control
-                  as="select"
-                  // onChange={handleChange}
-                  // value={formData.gender}
-                  name="answer"
-                  // placeholder="{formData.gender}"
-                >
-                  {/* <option>{formData.gender}</option> */}
-                  <option disabled>Select Answer key...</option>
-                  <option value="A">A</option>
-                  <option value="B">B</option>
-                  <option value="C">C</option>
-                  <option value="D">D</option>
-                </Form.Control>
-              </Form.Group>
-            </div>
-          ))}
-
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
+              </div>
+            );
+          })}
         </Form>
+
+        {count === examData.examLength ? (
+          <>
+            <p className="mt-3 text-center">
+              /* You have reached the exam alloted length!...*/
+            </p>
+
+            <Button
+              className="mb-5"
+              variant="success"
+              size="md"
+              style={{ width: "50%", textTransform: "uppercase" }}
+              onClick={onSubmitForm}
+            >
+              <FontAwesomeIcon icon={faPaperPlane} /> Submit
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button
+              disabled={disAbled}
+              className="mt-3 mb-5"
+              variant="success"
+              size="sm"
+              onClick={addFields}
+            >
+              <FontAwesomeIcon icon={faArrowDown} /> Continue to Question #
+              {count + 1}
+            </Button>
+          </>
+        )}
       </Container>
-      {/* <Form>
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-          </Form.Group>
-
-          <Form.Group as={Col} controlId="formGridPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-        </Row>
-
-        <Form.Group className="mb-3" controlId="formGridAddress1">
-          <Form.Label>Address</Form.Label>
-          <Form.Control placeholder="1234 Main St" />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formGridAddress2">
-          <Form.Label>Address 2</Form.Label>
-          <Form.Control placeholder="Apartment, studio, or floor" />
-        </Form.Group>
-
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridCity">
-            <Form.Label>City</Form.Label>
-            <Form.Control />
-          </Form.Group>
-
-          <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>State</Form.Label>
-            <Form.Select defaultValue="Choose...">
-              <option>Choose...</option>
-              <option>...</option>
-            </Form.Select>
-          </Form.Group>
-
-          <Form.Group as={Col} controlId="formGridZip">
-            <Form.Label>Zip</Form.Label>
-            <Form.Control />
-          </Form.Group>
-        </Row>
-
-        <Form.Group className="mb-3" id="formGridCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form> */}
     </>
   );
 };
 
 export default Create_Exam_Pt2;
+
+{
+  /* <Form onSubmit={onSubmitForm}>
+              <h4>Questions</h4>
+              {Array.from({ length: examData.examLength }).map((_, index) => (
+                <div key={index}>
+                  <Form.Group className="mb-3">
+                    <Form.Label className="mt-3">
+                      Question {index + 1} <hr style={{ marginTop: 0 }} />
+                    </Form.Label>
+
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter question"
+                      name="question"
+                      style={{ marginTop: -7 }}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+
+                  <Row className="mb-3">
+                    <Form.Group as={Col}>
+                      <Form.Label>A</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="choice_a"
+                        placeholder="Enter choice A"
+                        onChange={handleChange}
+                      />
+                    </Form.Group>
+
+                    <Form.Group as={Col}>
+                      <Form.Label>B</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="choice_b"
+                        placeholder="Enter choice B"
+                        onChange={handleChange}
+                      />
+                    </Form.Group>
+                  </Row>
+                  <Row className="mb-3">
+                    <Form.Group as={Col}>
+                      <Form.Label>C</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="choice_c"
+                        placeholder="Enter choice C"
+                        onChange={handleChange}
+                      />
+                    </Form.Group>
+
+                    <Form.Group as={Col}>
+                      <Form.Label>D</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="choice_d"
+                        placeholder="Enter choice D"
+                        onChange={handleChange}
+                      />
+                    </Form.Group>
+                  </Row>
+                  <Form.Group as={Col}>
+                    <Form.Label>Answer Key</Form.Label>
+                    <Form.Control
+                      as="select"
+                      name="answer"
+                      onChange={handleChange}
+                    >
+                      <option disabled>Select Answer key...</option>
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                      <option value="D">D</option>
+                    </Form.Control>
+                  </Form.Group>
+                </div>
+              ))}
+
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </Form> */
+}
+{
+  /* <input
+                      type="text"
+                      name="question"
+                      placeholder="question"
+                      value={questions.question}
+                      onChange={(e) => handleChange(e, index)}
+                    /> */
+}
+{
+  /* <input
+                      type="text"
+                      name="choice_a"
+                      placeholder="choice_a"
+                      value={questions.choice_a}
+                      onChange={(e) => handleChange(e, index)}
+                    />
+                    <input
+                      type="text"
+                      name="choice_b"
+                      placeholder="choice_b"
+                      value={questions.choice_b}
+                      onChange={(e) => handleChange(e, index)}
+                    /> */
+}
+{
+  /* <input
+                      type="text"
+                      name="choice_c"
+                      placeholder="choice_c"
+                      value={questions.choice_c}
+                      onChange={(e) => handleChange(e, index)}
+                    />
+                    <input
+                      type="text"
+                      name="choice_d"
+                      placeholder="choice_d"
+                      value={questions.choice_d}
+                      onChange={(e) => 
+                        handleChange(e, index)}
+                    /> */
+}
+{
+  /* <input
+                      type="text"
+                      name="answer"
+                      placeholder="answer"
+                      value={questions.answer}
+                      onChange={(e) => handleChange(e, index)}
+                    /> */
+}

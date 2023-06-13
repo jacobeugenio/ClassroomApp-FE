@@ -25,7 +25,7 @@ const Activity_Details = () => {
   }, []);
   // console.log(typeof exam.id);
   return (
-    <Container className="mt-3">
+    <Container className="my-3">
       <div className="questionaire">
         <Link to="/teacher/activities">
           <Button variant="outline-success" size="sm">
@@ -63,10 +63,10 @@ const Activity_Details = () => {
                     Q{index + 1}: {question.question}
                   </h6>
                   <div className="">
-                    <span className="mx-3">A. {question.a}</span>
-                    <span className="mx-3">B. {question.b}</span>
-                    <span className="mx-3">C. {question.c}</span>
-                    <span className="mx-3">D. {question.d}</span>
+                    <span className="mx-3">A. {question.choice_a}</span>
+                    <span className="mx-3">B. {question.choice_b}</span>
+                    <span className="mx-3">C. {question.choice_c}</span>
+                    <span className="mx-3">D. {question.choice_d}</span>
                   </div>
                 </div>
               </Container>

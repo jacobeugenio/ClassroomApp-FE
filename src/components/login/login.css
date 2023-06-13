@@ -1,25 +1,25 @@
 * {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .container__login {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .form__login {
-	padding: 20px;
-	border-radius: 20px;
-	box-shadow: 5px 5px 5px 2px;
-	background-color: #ffe5ca;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px 2px;
+  background-color: #ffe5ca;
 }
 
 .btn__login {
-	border: none;
-	width: 100%;
-	background-color: #444;
-	color: #fff;
+  border: none;
+  width: 100%;
+  background-color: #444;
+  color: #fff;
 }

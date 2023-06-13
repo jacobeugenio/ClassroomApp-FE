@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 import API_Service from "../../../api-service/API_Service";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 const StudentRegModal = () => {
   //For registration Modal
@@ -60,7 +60,7 @@ const StudentRegModal = () => {
   return (
     <>
       <Button variant="danger" size="sm" onClick={handleShow}>
-        <FontAwesomeIcon icon={faPlus} /> New Student
+        <FontAwesomeIcon icon={faUserPlus} /> New Student
       </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

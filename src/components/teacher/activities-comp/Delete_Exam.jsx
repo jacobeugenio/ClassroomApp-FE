@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import API_Service from "../../../api-service/API_Service";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Delete_Exam = (exam) => {
   const [show, setShow] = useState(false);
@@ -39,10 +39,11 @@ const Delete_Exam = (exam) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="warning" onClick={handleClose}>
+            <FontAwesomeIcon icon={faXmark} className="me-1" />
             Cancel
           </Button>
           <Button variant="danger" onClick={handleDelete}>
-            Delete
+            <FontAwesomeIcon icon={faTrashCan} /> Delete
           </Button>
         </Modal.Footer>
       </Modal>

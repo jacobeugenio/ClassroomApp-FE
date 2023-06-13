@@ -38,7 +38,12 @@ const Student_Profile = () => {
               <Card.Img
                 variant="top"
                 src={profile.img}
-                style={{ height: 40, width: 40, borderRadius: 50 }}
+                style={{
+                  height: 40,
+                  width: 40,
+                  borderRadius: 50,
+                  border: "1px solid green",
+                }}
               />
               <Card.Text style={{ fontSize: 11 }}>{profile.username}</Card.Text>
             </Card>
