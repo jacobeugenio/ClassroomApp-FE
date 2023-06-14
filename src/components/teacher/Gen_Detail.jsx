@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 const Gen_Detail = (num) => {
-  console.log(num);
+  // console.log(num);
   return (
     <Row>
       <Col md={4}>

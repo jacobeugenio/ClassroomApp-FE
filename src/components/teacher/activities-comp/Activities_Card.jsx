@@ -6,22 +6,20 @@ import Button from "react-bootstrap/Button";
 import DeleteExam from "./Delete_Exam";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShareFromSquare } from "@fortawesome/free-solid-svg-icons";
-import { Container } from "react-bootstrap";
 
 const Activities_Card = () => {
   const [exams, setExams] = useState([]);
 
+  const getExams = async () => {
+    try {
+      const response = await API_Service.get("/teachers/activities");
+      // console.log(response.data);
+      setExams(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
-    const getExams = async () => {
-      try {
-        const response = await API_Service.get("/teachers/activities");
-        console.log(response.data);
-        setExams(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     getExams();
   }, []);
 
