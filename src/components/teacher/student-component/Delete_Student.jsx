@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import API_Service from "../../../api-service/API_Service";
-// import API_Service from "../../../api-service/API_Service";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan, faXmark } from "@fortawesome/free-solid-svg-icons";
+
 const Delete_Student = (student) => {
   //   API_Service.delete("/teachers/delete-student/" + student.props.id);
   //   console.log(student);
@@ -44,10 +45,11 @@ const Delete_Student = (student) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="warning" onClick={handleClose}>
+            <FontAwesomeIcon icon={faXmark} className="me-1" />
             Cancel
           </Button>
           <Button variant="danger" onClick={handleDelete}>
-            Delete
+            <FontAwesomeIcon icon={faTrashCan} /> Delete
           </Button>
         </Modal.Footer>
       </Modal>

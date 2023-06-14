@@ -27,7 +27,7 @@ const Gen_Detail = (num) => {
       <Col md={4}>
         <Card>
           <Card.Body>
-            <Card.Title>25</Card.Title>
+            <Card.Title>{num.exam}</Card.Title>
             <Card.Text>Activities</Card.Text>
           </Card.Body>
         </Card>

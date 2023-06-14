@@ -16,6 +16,7 @@ import GenDetail from "./Gen_Detail";
 const Home = () => {
   const [teacher, setTeacher] = useState([]);
   const [students, setStudents] = useState([]);
+  const [exams, setExams] = useState([]);
 
   useEffect(() => {
     const getTeacher = async () => {
@@ -43,6 +44,20 @@ const Home = () => {
     };
 
     getStudents();
+  }, []);
+
+  useEffect(() => {
+    const getExams = async () => {
+      try {
+        const response = await API_Service.get("/teachers/activities");
+        console.log(response.data);
+        setExams(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getExams();
   }, []);
 
   useEffect(() => {
@@ -75,7 +90,11 @@ const Home = () => {
           <Col sm={8}>
             {" "}
             <Container>
-              <GenDetail teacher={teacher.length} student={students.length} />
+              <GenDetail
+                teacher={teacher.length}
+                student={students.length}
+                exam={exams.length}
+              />
 
               <hr />
               <Row style={{ marginTop: -20 }}>

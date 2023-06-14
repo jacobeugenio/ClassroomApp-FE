@@ -15,7 +15,7 @@ const Activities_Card = () => {
     const getExams = async () => {
       try {
         const response = await API_Service.get("/teachers/activities");
-        // console.log(response.data);
+        console.log(response.data);
         setExams(response.data);
       } catch (error) {
         console.error(error);
@@ -23,18 +23,8 @@ const Activities_Card = () => {
     };
 
     getExams();
-  }, [exams]);
-  // console.log(exams.length);
-  // useEffect(() => {
-  //   window.location.reload(true);
-  // }, [exams]);
-  // const handleRefresh = () => {
-  //   return (
-  //     <>
-  //       <h2>This is function</h2>
-  //     </>
-  //   );
-  // };
+  }, []);
+
   return (
     <>
       {/* <Container className="activities-container"> */}

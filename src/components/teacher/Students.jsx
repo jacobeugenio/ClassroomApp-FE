@@ -34,7 +34,7 @@ const Students = () => {
     };
 
     getUser();
-  }, [students]);
+  }, []);
 
   return (
     <>

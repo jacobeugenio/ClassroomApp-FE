@@ -121,28 +121,6 @@ const Create_Exam_Pt2 = () => {
                     Question {index + 1} <hr style={{ marginTop: 0 }} />
                   </Form.Label>
 
-<<<<<<< HEAD
-        <Form>
-          <h4>Questions</h4>
-          {Array.from({ length: examData.examLength }).map((_, index) => (
-            <div key={index}>
-              <Form.Group className="mb-3" controlId={index + 1}>
-                <Form.Label className="mt-3">
-                  Question {index + 1} <hr style={{ marginTop: 0 }} />
-                </Form.Label>
-
-                <Form.Control
-                  type="text"
-                  placeholder="Enter question"
-                  style={{ marginTop: -7 }}
-                />
-              </Form.Group>
-
-              <Row className="mb-3">
-                <Form.Group as={Col} controlId="subject{index}">
-                  <Form.Label>A</Form.Label>
-                  <Form.Control type="text" placeholder="Enter choice A" />
-=======
                   <Form.Control
                     type="text"
                     name="question"
@@ -151,7 +129,6 @@ const Create_Exam_Pt2 = () => {
                     onChange={(e) => handleChange(e, index)}
                   />
                   {error.question}
->>>>>>> my-branch
                 </Form.Group>
                 <Row className="mb-3">
                   <Form.Group as={Col} controlId="choice_a">
@@ -256,138 +233,3 @@ const Create_Exam_Pt2 = () => {
 };
 
 export default Create_Exam_Pt2;
-
-{
-  /* <Form onSubmit={onSubmitForm}>
-              <h4>Questions</h4>
-              {Array.from({ length: examData.examLength }).map((_, index) => (
-                <div key={index}>
-                  <Form.Group className="mb-3">
-                    <Form.Label className="mt-3">
-                      Question {index + 1} <hr style={{ marginTop: 0 }} />
-                    </Form.Label>
-
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter question"
-                      name="question"
-                      style={{ marginTop: -7 }}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-
-                  <Row className="mb-3">
-                    <Form.Group as={Col}>
-                      <Form.Label>A</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="choice_a"
-                        placeholder="Enter choice A"
-                        onChange={handleChange}
-                      />
-                    </Form.Group>
-
-                    <Form.Group as={Col}>
-                      <Form.Label>B</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="choice_b"
-                        placeholder="Enter choice B"
-                        onChange={handleChange}
-                      />
-                    </Form.Group>
-                  </Row>
-                  <Row className="mb-3">
-                    <Form.Group as={Col}>
-                      <Form.Label>C</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="choice_c"
-                        placeholder="Enter choice C"
-                        onChange={handleChange}
-                      />
-                    </Form.Group>
-
-                    <Form.Group as={Col}>
-                      <Form.Label>D</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="choice_d"
-                        placeholder="Enter choice D"
-                        onChange={handleChange}
-                      />
-                    </Form.Group>
-                  </Row>
-                  <Form.Group as={Col}>
-                    <Form.Label>Answer Key</Form.Label>
-                    <Form.Control
-                      as="select"
-                      name="answer"
-                      onChange={handleChange}
-                    >
-                      <option disabled>Select Answer key...</option>
-                      <option value="A">A</option>
-                      <option value="B">B</option>
-                      <option value="C">C</option>
-                      <option value="D">D</option>
-                    </Form.Control>
-                  </Form.Group>
-                </div>
-              ))}
-
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </Form> */
-}
-{
-  /* <input
-                      type="text"
-                      name="question"
-                      placeholder="question"
-                      value={questions.question}
-                      onChange={(e) => handleChange(e, index)}
-                    /> */
-}
-{
-  /* <input
-                      type="text"
-                      name="choice_a"
-                      placeholder="choice_a"
-                      value={questions.choice_a}
-                      onChange={(e) => handleChange(e, index)}
-                    />
-                    <input
-                      type="text"
-                      name="choice_b"
-                      placeholder="choice_b"
-                      value={questions.choice_b}
-                      onChange={(e) => handleChange(e, index)}
-                    /> */
-}
-{
-  /* <input
-                      type="text"
-                      name="choice_c"
-                      placeholder="choice_c"
-                      value={questions.choice_c}
-                      onChange={(e) => handleChange(e, index)}
-                    />
-                    <input
-                      type="text"
-                      name="choice_d"
-                      placeholder="choice_d"
-                      value={questions.choice_d}
-                      onChange={(e) => 
-                        handleChange(e, index)}
-                    /> */
-}
-{
-  /* <input
-                      type="text"
-                      name="answer"
-                      placeholder="answer"
-                      value={questions.answer}
-                      onChange={(e) => handleChange(e, index)}
-                    /> */
-}
