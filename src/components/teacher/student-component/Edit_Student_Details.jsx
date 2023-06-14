@@ -197,7 +197,8 @@ const Edit_Student_Details = (student) => {
 
             <hr className="mt-4" />
             <Button variant="primary" type="submit">
-              Update Student Information
+              <FontAwesomeIcon icon={faPenToSquare} /> Update Student
+              Information
             </Button>
           </Form>
         </Modal.Body>

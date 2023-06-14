@@ -1,15 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 import EditStudentDetails from "./Edit_Student_Details";
-import DeleteStudent from "./Delete_Student";
+import API_Service from "../../../api-service/API_Service";
 
-const StudentDetails = ({ data }) => {
+const StudentDetails = () => {
+  const [students, setStudents] = useState([]);
+
+  const getUser = async () => {
+    try {
+      const response = await API_Service.get("/teachers/get-students");
+      setStudents(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    const response = await API_Service.delete("/teachers/delete-student/" + id);
+    console.log(response);
+    getUser();
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
   // console.log(data);
-  const studentData = data.map((student, index) => {
+  const studentData = students.map((student, index) => {
     return (
       <tr key={index}>
         <td>{index + 1}</td>
@@ -27,7 +48,7 @@ const StudentDetails = ({ data }) => {
         <td>{student.username}</td>
         <td>{student.contact}</td>
         <td>{student.email}</td>
-        {/* <td>{student.img}</td> */}
+
         <td>{student.gender}</td>
         <td>{student.age}</td>
         <td className="d-flex flex-row">
@@ -42,7 +63,15 @@ const StudentDetails = ({ data }) => {
 
           <EditStudentDetails props={student} />
 
-          <DeleteStudent props={student} />
+          <Button
+            variant="outline-primary"
+            size="sm"
+            className="mx-1 d-flex flex-row align-items-center p-1"
+            onClick={() => handleDelete(student._id)}
+          >
+            <FontAwesomeIcon icon={faTrashCan} />
+            <span className="ms-1">Delete</span>
+          </Button>
         </td>
       </tr>
     );

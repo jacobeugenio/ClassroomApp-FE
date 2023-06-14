@@ -26,11 +26,9 @@ function Register() {
 		type: "",
 	});
 
-	const navigate = useNavigate();
-
 	const handleChange = (event) => {
 		const { name, value } = event.target;
-		console.log(name);
+		console.log(name, value);
 
 		if (event.target.type === "radio") {
 			setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));

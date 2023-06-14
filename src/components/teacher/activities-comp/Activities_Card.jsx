@@ -3,38 +3,34 @@ import Card from "react-bootstrap/Card";
 import API_Service from "../../../api-service/API_Service";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import DeleteExam from "./Delete_Exam";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShareFromSquare } from "@fortawesome/free-solid-svg-icons";
-import { Container } from "react-bootstrap";
+import {
+  faShareFromSquare,
+  faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Activities_Card = () => {
   const [exams, setExams] = useState([]);
 
+  const getExams = async () => {
+    try {
+      const response = await API_Service.get("/teachers/activities");
+      console.log(response.data);
+      setExams(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
-    const getExams = async () => {
-      try {
-        const response = await API_Service.get("/teachers/activities");
-        // console.log(response.data);
-        setExams(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     getExams();
-  }, [exams]);
-  // console.log(exams.length);
-  // useEffect(() => {
-  //   window.location.reload(true);
-  // }, [exams]);
-  // const handleRefresh = () => {
-  //   return (
-  //     <>
-  //       <h2>This is function</h2>
-  //     </>
-  //   );
-  // };
+  }, []);
+
+  const handleDelete = async (id) => {
+    const response = await API_Service.delete("/teachers/activities/" + id);
+    console.log(response);
+    getExams();
+  };
+
   return (
     <>
       {/* <Container className="activities-container"> */}
@@ -56,8 +52,15 @@ const Activities_Card = () => {
                 className="text-muted d-flex"
                 style={{ fontSize: 10 }}
               >
-                {/* {exam.createdAt} */}
-                <DeleteExam exam={exam} />
+                <Button
+                  variant="success"
+                  size="sm"
+                  className="d-flex align-items-center me-1"
+                  onClick={() => handleDelete(exam._id)}
+                >
+                  <FontAwesomeIcon icon={faTrashCan} />
+                  <span className="ms-1">Delete</span>
+                </Button>
                 <Button
                   variant="outline-success"
                   size="sm"
@@ -70,7 +73,6 @@ const Activities_Card = () => {
             </Card>
           );
         })}
-      {/* </Container> */}
     </>
   );
 };
