@@ -11,14 +11,54 @@ function HeroStudents() {
 	const [studentData, setStudentData] = useState([]);
 
 	const location = useLocation();
-	console.log(location);
+	const email = location.state && location.state.email;
 
 	useEffect(() => {
-		API_Service.get("students/get-students").then((res) => {
-			// console.log(res.data);
-			setStudentData(res.data[3]);
-		});
-	}, []);
+		const getStudentData = async () => {
+			console.log("Fetching student data...");
+			try {
+				const response = await API_Service.get(`students/student/${email}`);
+				setStudentData(response.data[0]);
+				window.localStorage.setItem(
+					"studentData",
+					JSON.stringify(response.data[0])
+				); // Store the student data in localStorage
+				console.log(response.data[0]);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		const storedData = window.localStorage.getItem("studentData");
+		console.log(storedData);
+		// Retrieve the student data from localStorage
+		if (storedData) {
+			setStudentData(JSON.parse(storedData));
+		} else {
+			getStudentData();
+		}
+	}, [email]);
+	console.log(studentData);
+
+	// useEffect(() => {
+	// 	if (location.state && location.state.email) {
+	// 		const email = location.state.email;
+	// 		console.log(email);
+	// 		console.log(location.state);
+
+	// 		const getStudent = async (email) => {
+	// 			try {
+	// 				const response = await API_Service.get(`students/student/${email}`);
+	// 				setStudentData(response.data[0]);
+	// 				localStorage.setItem("studentData", JSON.stringify(response.data[0]));
+	// 			} catch (error) {
+	// 				console.log(error);
+	// 			}
+	// 		};
+
+	// 		getStudent(email);
+	// 	}
+	// }, [location.state]);
 
 	// console.log(studentData);
 
@@ -40,6 +80,7 @@ function HeroStudents() {
 										<h5>
 											{studentData.fname} <br /> {studentData.lname}
 										</h5>
+										{/* <div>{location.state.id}</div> */}
 									</div>
 								</Col>
 								<Col lg={6} md={6} sm={6}>
@@ -54,7 +95,7 @@ function HeroStudents() {
 											<strong>Email:</strong> {studentData.email}
 										</p>
 										<p>
-											<strong>Password:</strong> Edit your password
+											<strong>Password:</strong> {studentData.password}
 										</p>
 									</div>
 								</Col>
