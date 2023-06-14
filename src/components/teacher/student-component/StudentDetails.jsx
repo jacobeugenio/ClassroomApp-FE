@@ -43,13 +43,19 @@ const StudentDetails = () => {
             style={{ borderRadius: 50 }}
           />
         </td>
-        <td>{student.fname}</td>
-        <td>{student.lname}</td>
+        <td>
+          {student.fname.charAt(0).toUpperCase() + student.fname.slice(1)}
+        </td>
+        <td>
+          {student.lname.charAt(0).toUpperCase() + student.lname.slice(1)}
+        </td>
         <td>{student.username}</td>
         <td>{student.contact}</td>
         <td>{student.email}</td>
 
-        <td>{student.gender}</td>
+        <td>
+          {student.gender.charAt(0).toUpperCase() + student.gender.slice(1)}
+        </td>
         <td>{student.age}</td>
         <td className="d-flex flex-row">
           <Button
@@ -79,7 +85,13 @@ const StudentDetails = () => {
 
   return (
     <Table responsive className="mt-2 p-0" size="sm">
-      <thead className="">
+      <thead
+        className="p-3"
+        style={{
+          backgroundColor: "#98eecc",
+          border: "black",
+        }}
+      >
         <tr>
           <th>#</th>
           <th>Profile</th>

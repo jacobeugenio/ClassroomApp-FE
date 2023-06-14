@@ -49,7 +49,7 @@ const Home = () => {
     const getExams = async () => {
       try {
         const response = await API_Service.get("/teachers/activities");
-        console.log(response.data);
+        // console.log(response.data);
         setExams(response.data);
       } catch (error) {
         console.error(error);
@@ -96,7 +96,12 @@ const Home = () => {
               <Row style={{ marginTop: -20 }}>
                 <div className="mt-0">
                   <Button variant="success" size="sm" className="mt-4">
-                    <Link to="/teacher/students">See all students</Link>
+                    <Link
+                      to="/teacher/students"
+                      style={{ textDecoration: "none", color: "#fbffdc" }}
+                    >
+                      See all students
+                    </Link>
                   </Button>
                 </div>
 

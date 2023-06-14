@@ -16,39 +16,75 @@ import {
 const Header = () => {
   return (
     <>
-      <Navbar bg="light" expand="md">
+      <Navbar className="teacher-nav" expand="md">
         <Container>
           <Navbar.Brand href="/teacher">Classroom App</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <NavLink to="/teacher">
+              <NavLink to="/teacher" className="d-flex align-items-center" end>
                 {" "}
-                <FontAwesomeIcon className="me-1" icon={faHouse} />
+                <FontAwesomeIcon
+                  className="me-1"
+                  style={{ height: 11 }}
+                  icon={faHouse}
+                  // activeClassName="active"
+                />
                 Home
               </NavLink>
 
-              <NavLink to="/teacher/profile">
+              <NavLink
+                to="/teacher/profile"
+                className="d-flex align-items-center"
+              >
                 {" "}
-                <FontAwesomeIcon className="me-1" icon={faUser} />
+                <FontAwesomeIcon
+                  className="me-1"
+                  style={{ height: 11 }}
+                  icon={faUser}
+                  // activeClassName="active"
+                />
                 Profile
               </NavLink>
 
-              <NavLink to="/teacher/students">
+              <NavLink
+                to="/teacher/students"
+                className="d-flex align-items-center"
+              >
                 {" "}
-                <FontAwesomeIcon className="me-1" icon={faUsers} />
+                <FontAwesomeIcon
+                  style={{ height: 11 }}
+                  className="me-1"
+                  icon={faUsers}
+                />
                 Students
               </NavLink>
 
-              <NavLink to="/teacher/activities">
+              <NavLink
+                to="/teacher/activities"
+                className="d-flex align-items-center"
+              >
                 {" "}
-                <FontAwesomeIcon className="me-1" icon={faList} />
+                <FontAwesomeIcon
+                  className="me-1"
+                  style={{ height: 11 }}
+                  icon={faList}
+                />
                 Activities
               </NavLink>
               {/* <NavLink to="/teacher/grades">Grades</NavLink> */}
               <NavLink to="/teacher/logout">
-                <Button variant="warning" size="sm">
-                  <FontAwesomeIcon icon={faRightFromBracket} /> LOGOUT
+                <Button
+                  variant="success"
+                  size="sm"
+                  className="d-flex align-items-center"
+                >
+                  <FontAwesomeIcon
+                    icon={faRightFromBracket}
+                    style={{ height: 11 }}
+                    className="me-1"
+                  />{" "}
+                  LOGOUT
                 </Button>
               </NavLink>
             </Nav>
