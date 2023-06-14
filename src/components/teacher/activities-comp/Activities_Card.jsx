@@ -3,9 +3,11 @@ import Card from "react-bootstrap/Card";
 import API_Service from "../../../api-service/API_Service";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import DeleteExam from "./Delete_Exam";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShareFromSquare } from "@fortawesome/free-solid-svg-icons";
+import {
+  faShareFromSquare,
+  faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Activities_Card = () => {
   const [exams, setExams] = useState([]);
@@ -13,7 +15,7 @@ const Activities_Card = () => {
   const getExams = async () => {
     try {
       const response = await API_Service.get("/teachers/activities");
-      // console.log(response.data);
+      console.log(response.data);
       setExams(response.data);
     } catch (error) {
       console.error(error);
@@ -22,6 +24,12 @@ const Activities_Card = () => {
   useEffect(() => {
     getExams();
   }, []);
+
+  const handleDelete = async (id) => {
+    const response = await API_Service.delete("/teachers/activities/" + id);
+    console.log(response);
+    getExams();
+  };
 
   return (
     <>
@@ -44,8 +52,15 @@ const Activities_Card = () => {
                 className="text-muted d-flex"
                 style={{ fontSize: 10 }}
               >
-                {/* {exam.createdAt} */}
-                <DeleteExam exam={exam} />
+                <Button
+                  variant="success"
+                  size="sm"
+                  className="d-flex align-items-center me-1"
+                  onClick={() => handleDelete(exam._id)}
+                >
+                  <FontAwesomeIcon icon={faTrashCan} />
+                  <span className="ms-1">Delete</span>
+                </Button>
                 <Button
                   variant="outline-success"
                   size="sm"
@@ -58,7 +73,6 @@ const Activities_Card = () => {
             </Card>
           );
         })}
-      {/* </Container> */}
     </>
   );
 };

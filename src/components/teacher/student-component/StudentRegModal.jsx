@@ -29,7 +29,6 @@ const StudentRegModal = () => {
     password: "",
     password2: "",
   });
-  // const [profileImg, setProfileImg] = useState({ img: "" });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -41,20 +40,19 @@ const StudentRegModal = () => {
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
     formData.img = base64;
-    // setProfileImg(base64);
-    // formData.img = base64;
   };
+
   const onSubmitForm = async (event) => {
     event.preventDefault();
 
-    // formData.img = profileImg;
-    await API_Service.post("/teachers/add-student", formData)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      const response = await API_Service.post(
+        "/teachers/add-student",
+        formData
+      );
+      console.log(response);
+      handleClose();
+    } catch (error) {}
   };
 
   return (
@@ -198,18 +196,10 @@ const StudentRegModal = () => {
 
             <hr className="mt-4" />
             <Button variant="primary" type="submit">
-              Add Sudent
+              <FontAwesomeIcon icon={faUserPlus} /> Add Sudent
             </Button>
           </Form>
         </Modal.Body>
-        {/* <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer> */}
       </Modal>
     </>
   );

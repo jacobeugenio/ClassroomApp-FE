@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import API_Service from "../../../api-service/API_Service";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -35,7 +35,7 @@ const Create_Exam_Pt2 = () => {
     setQuestions(data);
     // setDisAbled(false);
   };
-
+  const navigate = useNavigate();
   const onSubmitForm = async (event) => {
     event.preventDefault();
     console.log(questions);
@@ -45,6 +45,7 @@ const Create_Exam_Pt2 = () => {
       examData
     );
     console.log(response);
+    navigate("/teacher/activities");
   };
 
   const addFields = (e) => {
