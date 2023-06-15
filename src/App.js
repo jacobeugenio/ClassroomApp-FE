@@ -15,11 +15,12 @@ import ActivityDetails from "./components/teacher/activities-comp/Activity_Detai
 import StudentsPage from "./components/students/Students";
 import AttendanceStudents from "./components/students/components/Attendance/Attendance-Students";
 import GradesStudents from "./components/students/components/Grades/Grades-Students";
-import ExamsStudents from "./components/students/components/Exams/Exams-Students";
+import ExamsCardsStudents from "./components/students/components/Exams/Exams-Cards-Students";
 import CreateExamPt2 from "./components/teacher/activities-comp/Create_Exam_Pt2";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import TakeExamsStudents from "./components/students/components/Exams/Take-Exams-Students";
 
 function App() {
 	// const url = 'http://localhost:5000/teachers/get-students';
@@ -44,10 +45,11 @@ function App() {
 				<Route path='*' element={<NotFound />} />
 
 				{/* Students Page */}
-				<Route path='/students' element={<StudentsPage />} />
-				<Route path='/students-attendance' element={<AttendanceStudents />} />
-				<Route path='/students-grades' element={<GradesStudents />} />
-				<Route path='/students-exams' element={<ExamsStudents />} />
+				<Route path='/student' element={<StudentsPage />} />
+				<Route path='/student/attendance' element={<AttendanceStudents />} />
+				<Route path='/student/grades' element={<GradesStudents />} />
+				<Route path='/student/exams' element={<ExamsCardsStudents />} />
+				<Route path='/student/take-exams' element={<TakeExamsStudents />} />
 			</Routes>
 		</>
 	);

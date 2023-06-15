@@ -18,11 +18,11 @@ function HeaderStudents() {
 					<Navbar.Toggle aria-controls='basic-navbar-nav' />
 					<Navbar.Collapse id='basic-navbar-nav'>
 						<Nav className='ms-auto'>
-							<Nav.Link href='/students'>Home</Nav.Link>
-							<Nav.Link href='/students-attendance'>Attendance</Nav.Link>
-							<Nav.Link href='/students-grades'>Grades</Nav.Link>
-							<Nav.Link href='/students-exams'>Exams</Nav.Link>
-							<Nav.Link to='/teacher/logout'>
+							<Nav.Link href='/student'>Home</Nav.Link>
+							<Nav.Link href='/student/attendance'>Attendance</Nav.Link>
+							<Nav.Link href='/student/grades'>Grades</Nav.Link>
+							<Nav.Link href='/student/exams'>Exams</Nav.Link>
+							<Nav.Link to='/student/logout'>
 								<Button variant='warning' size='sm'>
 									<FontAwesomeIcon icon={faRightFromBracket} /> LOGOUT
 								</Button>
