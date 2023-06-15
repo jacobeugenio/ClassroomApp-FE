@@ -63,7 +63,7 @@ const Home = () => {
     };
 
     getLoggedInTeacher();
-  }, []);
+  }, [user.userID]);
 
   useEffect(() => {
     const getExams = async () => {

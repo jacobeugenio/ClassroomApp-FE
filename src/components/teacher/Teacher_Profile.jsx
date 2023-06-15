@@ -5,22 +5,27 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import API_Service from "../../api-service/API_Service";
+import { useSelector } from "react-redux";
 
 const Teacher_Profile = () => {
-  const [teacher, setTeacher] = useState([]);
+  const [loggedInTeacher, setLoggedInTeacher] = useState([]);
+  const user = useSelector((state) => state.user.value);
+
   useEffect(() => {
-    const getTeacher = async () => {
+    const getLoggedInTeacher = async () => {
       try {
-        const response = await API_Service.get("/teachers/get-teachers");
-        setTeacher(response.data[4]);
-        console.log(response.data[4]);
+        const response = await API_Service.get(
+          "/teachers/get-teacher/" + user.userID
+        );
+        setLoggedInTeacher(response.data[0]);
+        console.log(response.data);
       } catch (error) {
         console.error(error);
       }
     };
 
-    getTeacher();
-  }, []);
+    getLoggedInTeacher();
+  }, [user.userID]);
   return (
     <>
       <Header />
@@ -32,41 +37,45 @@ const Teacher_Profile = () => {
                 <Col sm={5}>
                   <Card.Img
                     variant=""
-                    src={teacher.img}
-                    style={{ border: "1px solid green" }}
+                    src={loggedInTeacher.img}
+                    style={{
+                      border: "1px solid green",
+                      width: 150,
+                      height: 150,
+                    }}
                   />
                   <Card.Text>
-                    Ms. {teacher.fname} {teacher.lname}
+                    Ms. {loggedInTeacher.fname} {loggedInTeacher.lname}
                   </Card.Text>
                 </Col>
                 <Col sm={7}>
                   <Card.Text>
                     <span>ID: </span>
-                    <span>{teacher._id}</span>
+                    <span>{loggedInTeacher._id}</span>
                   </Card.Text>
                   <Card.Text>
                     <span>Address: </span>
-                    <span>{teacher.address}</span>
+                    <span>{loggedInTeacher.address}</span>
                   </Card.Text>
                   <Card.Text>
                     <span>Email: </span>
-                    <span>{teacher.email}</span>
+                    <span>{loggedInTeacher.email}</span>
                   </Card.Text>
                   <Card.Text>
                     <span>Contact: </span>
-                    <span>{teacher.contact}</span>
+                    <span>{loggedInTeacher.contact}</span>
                   </Card.Text>
                   <Card.Text>
                     <span>Gender: </span>
-                    <span>{teacher.gender}</span>
+                    <span>{loggedInTeacher.gender}</span>
                   </Card.Text>
                   <Card.Text>
                     <span>Age: </span>
-                    <span>{teacher.age}</span>
+                    <span>{loggedInTeacher.age}</span>
                   </Card.Text>
                   <Card.Text>
                     <span>Date Joined: </span>
-                    <span>{teacher.createdAt}</span>
+                    <span>{loggedInTeacher.createdAt}</span>
                   </Card.Text>
                 </Col>
               </Row>
