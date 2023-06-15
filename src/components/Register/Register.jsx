@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import API_Service from "../../api-service/API_Service";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
@@ -47,13 +47,14 @@ function Register() {
 
 	const onSubmitForm = (event) => {
 		event.preventDefault();
+		console.log(formData);
 
 		API_Service.post("users/register", formData)
 			.then((response) => {
-				console.log(response.data.registeredData);
+				console.log(response);
 				if (response.data.status) {
 					if (response.data.type === "student") {
-						navigate("/students", {
+						navigate("/student", {
 							state: { email: response.data.registeredData.email },
 						});
 					} else {
@@ -194,10 +195,15 @@ function Register() {
 						value={formData.gender}
 						name='gender'
 						className='input__container--registration'
+						required
 					>
 						<option>Choose gender</option>
-						<option value='Male'>Male</option>
-						<option value='Female'>Female</option>
+						<option value='Male' required>
+							Male
+						</option>
+						<option value='Female' required>
+							Female
+						</option>
 					</Form.Control>
 				</Form.Group>
 
@@ -208,6 +214,7 @@ function Register() {
 						className='input__container--registration'
 						onChange={(e) => handleFile(e)}
 						name='img'
+						required
 					/>
 				</Form.Group>
 
@@ -260,6 +267,7 @@ function Register() {
 									name='type'
 									value='student'
 									onChange={handleChange}
+									required
 								/>
 							</Col>
 							<Col>
@@ -269,6 +277,7 @@ function Register() {
 									name='type'
 									value='teacher'
 									onChange={handleChange}
+									required
 								/>
 							</Col>
 						</Row>

@@ -13,8 +13,8 @@ function TakeExamsStudents() {
 	useEffect(() => {
 		const getExam = async () => {
 			try {
-				const response = await API_Service.get(`/student/take-exams/${id}`);
-				// console.log(response.data[0]);
+				const response = await API_Service.get(`/students/exam/:${id}`);
+				console.log(response.data[0]);
 				setExam(response.data[0]);
 			} catch (error) {
 				console.log(error);

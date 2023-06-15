@@ -8,9 +8,14 @@ import Container from "react-bootstrap/Container";
 import API_Service from "../../../../api-service/API_Service";
 
 function HeroStudents() {
-	const [studentData, setStudentData] = useState([]);
-
+	const [studentData, setStudentData] = useState({});
 	const location = useLocation();
+
+	// const dataTest = localStorage.getItem("studentData");
+	// console.log(JSON.parse(dataTest));
+
+	const dataTest = JSON.parse(localStorage.getItem("studentData"));
+	console.log(dataTest);
 
 	useEffect(() => {
 		if (location.state && location.state.email) {
@@ -61,12 +66,12 @@ function HeroStudents() {
 								<Col lg={6} md={6} sm={6}>
 									<div className='profile__picture'>
 										<img
-											src={studentData.img}
+											src={dataTest.img}
 											alt='Profile'
 											className='profile__picture--img'
 										/>
 										<h5>
-											{studentData.fname} <br /> {studentData.lname}
+											{dataTest.fname} <br /> {dataTest.lname}
 										</h5>
 										{/* <div>{location.state.id}</div> */}
 									</div>
@@ -74,16 +79,16 @@ function HeroStudents() {
 								<Col lg={6} md={6} sm={6}>
 									<div className='profile__details'>
 										<p>
-											<strong>Username:</strong> {studentData.username}
+											<strong>Username:</strong> {dataTest.username}
 										</p>
 										<p>
-											<strong>Contact:</strong> {studentData.contact}
+											<strong>Contact:</strong> {dataTest.contact}
 										</p>
 										<p>
-											<strong>Email:</strong> {studentData.email}
+											<strong>Email:</strong> {dataTest.email}
 										</p>
 										<p>
-											<strong>Address:</strong> {studentData.address}
+											<strong>Address:</strong> {dataTest.address}
 										</p>
 									</div>
 								</Col>
@@ -94,7 +99,7 @@ function HeroStudents() {
 						{/* Welcome Message */}
 						<div className='title__holder'>
 							<h2>
-								Welcome, {studentData.fname} {studentData.lname}
+								Welcome, {dataTest.fname} {dataTest.lname}
 							</h2>
 						</div>
 						<div className='welcome__message'>
