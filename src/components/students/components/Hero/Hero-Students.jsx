@@ -5,62 +5,50 @@ import { useLocation } from "react-router-dom";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import API_Service from "../../../../../api-service/API_Service";
+import API_Service from "../../../../api-service/API_Service";
 
 function HeroStudents() {
 	const [studentData, setStudentData] = useState([]);
 
 	const location = useLocation();
-	const email = location.state && location.state.email;
 
 	useEffect(() => {
-		const getStudentData = async () => {
-			console.log("Fetching student data...");
-			try {
-				const response = await API_Service.get(`students/student/${email}`);
-				setStudentData(response.data[0]);
-				window.localStorage.setItem(
-					"studentData",
-					JSON.stringify(response.data[0])
-				); // Store the student data in localStorage
-				console.log(response.data[0]);
-			} catch (error) {
-				console.log(error);
-			}
-		};
+		if (location.state && location.state.email) {
+			const email = location.state.email;
 
-		const storedData = window.localStorage.getItem("studentData");
-		console.log(storedData);
-		// Retrieve the student data from localStorage
-		if (storedData) {
-			setStudentData(JSON.parse(storedData));
-		} else {
-			getStudentData();
+			const getStudent = async (email) => {
+				try {
+					const response = await API_Service.get(`students/student/${email}`);
+					setStudentData(response.data[0]);
+					localStorage.setItem("studentData", JSON.stringify(response.data[0]));
+				} catch (error) {
+					console.log(error);
+				}
+			};
+
+			getStudent(email);
 		}
-	}, [email]);
-	console.log(studentData);
+	}, [location.state]);
+
+	// const email = location.state && location.state.email;
 
 	// useEffect(() => {
-	// 	if (location.state && location.state.email) {
-	// 		const email = location.state.email;
-	// 		console.log(email);
-	// 		console.log(location.state);
+	// 	const getStudentData = async () => {
+	// 		try {
+	// 			const response = await API_Service.get(`students/student/${email}`);
+	// 			setStudentData(response.data[0]);
+	// 			localStorage.setItem("studentData", JSON.stringify(response.data[0]));
+	// 		} catch (error) {
+	// 			console.log(error);
+	// 		}
 
-	// 		const getStudent = async (email) => {
-	// 			try {
-	// 				const response = await API_Service.get(`students/student/${email}`);
-	// 				setStudentData(response.data[0]);
-	// 				localStorage.setItem("studentData", JSON.stringify(response.data[0]));
-	// 			} catch (error) {
-	// 				console.log(error);
-	// 			}
-	// 		};
+	// 		const storedStudentData = localStorage.getItem("studentData");
+	// 		setStudentData(JSON.parse(storedStudentData));
+	// 	};
+	// 	getStudentData();
+	// }, []);
 
-	// 		getStudent(email);
-	// 	}
-	// }, [location.state]);
-
-	// console.log(studentData);
+	console.log(studentData);
 
 	return (
 		<div>
@@ -95,7 +83,7 @@ function HeroStudents() {
 											<strong>Email:</strong> {studentData.email}
 										</p>
 										<p>
-											<strong>Password:</strong> {studentData.password}
+											<strong>Address:</strong> {studentData.address}
 										</p>
 									</div>
 								</Col>

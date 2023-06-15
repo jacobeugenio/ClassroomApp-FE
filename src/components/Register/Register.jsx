@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import API_Service from "../../api-service/API_Service";
+import { useNavigate } from "react-router-dom";
 import "./Register.css";
 
 import Button from "react-bootstrap/Button";
@@ -8,7 +9,6 @@ import Container from "react-bootstrap/Container";
 import InputGroup from "react-bootstrap/InputGroup";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { useNavigate } from "react-router-dom";
 
 function Register() {
 	const [formData, setFormData] = useState({
@@ -26,9 +26,11 @@ function Register() {
 		type: "",
 	});
 
+	const navigate = useNavigate();
+
 	const handleChange = (event) => {
 		const { name, value } = event.target;
-		console.log(name, value);
+		// console.log(name, value);
 
 		if (event.target.type === "radio") {
 			setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -257,7 +259,6 @@ function Register() {
 									label='Student'
 									name='type'
 									value='student'
-									// checked={formData.type === "student"}
 									onChange={handleChange}
 								/>
 							</Col>
@@ -267,7 +268,6 @@ function Register() {
 									label='Teacher'
 									name='type'
 									value='teacher'
-									// checked={formData.attendance === "teacher"}
 									onChange={handleChange}
 								/>
 							</Col>
