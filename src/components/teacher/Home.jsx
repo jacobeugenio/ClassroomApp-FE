@@ -7,28 +7,32 @@ import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import API_Service from "../../api-service/API_Service";
-import T_Image from "../../img/ava2.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ActivitiesCard from "./activities-comp/Activities_Card";
 import StudentProfile from "./profile-comp/Student_Profile";
 import GenDetail from "./Gen_Detail";
+
 const Home = () => {
-  const [teacher, setTeacher] = useState([]);
+  const [teachers, setTeachers] = useState([]);
   const [students, setStudents] = useState([]);
   const [exams, setExams] = useState([]);
+  const [loggedInTeacher, setLoggedInTeacher] = useState([]);
+  const location = useLocation();
+  let userId = location.state;
+  // console.log(userId.id);
 
   useEffect(() => {
-    const getTeacher = async () => {
+    const getTeachers = async () => {
       try {
         const response = await API_Service.get("/teachers/get-teachers");
-        setTeacher(response.data);
+        setTeachers(response.data);
         // console.log(response.data);
       } catch (error) {
         console.error(error);
       }
     };
 
-    getTeacher();
+    getTeachers();
   }, []);
 
   useEffect(() => {
@@ -59,9 +63,21 @@ const Home = () => {
     getExams();
   }, []);
 
-  useEffect(() => {
-    // console.log(teacher);
-  }, [teacher]);
+  // useEffect(() => {
+  //   const getTeacher = async () => {
+  //     try {
+  //       const response = await API_Service.get(
+  //         "/teachers/get-teacher/" + userId.id
+  //       );
+  //       setLoggedInTeacher(response.data[0]);
+  //       console.log(response.data);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+
+  //   getTeacher();
+  // }, []);
 
   return (
     <>
@@ -72,11 +88,18 @@ const Home = () => {
             {" "}
             <Card.Img
               variant="top"
-              src={T_Image}
-              style={{ height: 120, width: 120 }}
+              src={loggedInTeacher.img}
+              style={{
+                height: 120,
+                width: 120,
+                borderRadius: 50,
+                border: "1px solid green",
+              }}
             />
             <br />
-            <h5>Ms. Jane Doe</h5>
+            <h5>
+              Ms. {loggedInTeacher.fname} {loggedInTeacher.lname}
+            </h5>
             <Link to="/teacher/profile">
               <Button variant="outline-info" size="sm" className="mb-4">
                 View Profile
@@ -87,7 +110,7 @@ const Home = () => {
             {" "}
             <Container>
               <GenDetail
-                teacher={teacher.length}
+                teacher={teachers.length}
                 student={students.length}
                 exam={exams.length}
               />

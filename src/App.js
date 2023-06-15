@@ -22,9 +22,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 function App() {
-  // const url = 'http://localhost:5000/teachers/get-students';
-  // fetch(url).then(res => res.json).then(data=> console.log(data));
-
   return (
     <>
       <Routes>
