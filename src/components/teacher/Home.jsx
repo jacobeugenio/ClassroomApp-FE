@@ -7,19 +7,19 @@ import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import API_Service from "../../api-service/API_Service";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ActivitiesCard from "./activities-comp/Activities_Card";
 import StudentProfile from "./profile-comp/Student_Profile";
 import GenDetail from "./Gen_Detail";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   const [teachers, setTeachers] = useState([]);
   const [students, setStudents] = useState([]);
   const [exams, setExams] = useState([]);
   const [loggedInTeacher, setLoggedInTeacher] = useState([]);
-  const location = useLocation();
-  let userId = location.state;
-  // console.log(userId.id);
+
+  const user = useSelector((state) => state.user.value);
 
   useEffect(() => {
     const getTeachers = async () => {
@@ -50,6 +50,22 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
+    const getLoggedInTeacher = async () => {
+      try {
+        const response = await API_Service.get(
+          "/teachers/get-teacher/" + user.userID
+        );
+        setLoggedInTeacher(response.data[0]);
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getLoggedInTeacher();
+  }, []);
+
+  useEffect(() => {
     const getExams = async () => {
       try {
         const response = await API_Service.get("/teachers/activities");
@@ -62,22 +78,6 @@ const Home = () => {
 
     getExams();
   }, []);
-
-  // useEffect(() => {
-  //   const getTeacher = async () => {
-  //     try {
-  //       const response = await API_Service.get(
-  //         "/teachers/get-teacher/" + userId.id
-  //       );
-  //       setLoggedInTeacher(response.data[0]);
-  //       console.log(response.data);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-
-  //   getTeacher();
-  // }, []);
 
   return (
     <>

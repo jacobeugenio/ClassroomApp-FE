@@ -6,9 +6,11 @@ import "./login.css";
 
 import API_Service from "../../api-service/API_Service";
 import { useNavigate } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/user";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [userLogin, setUserLogin] = useState({
     username: "",
@@ -25,13 +27,14 @@ const Login = () => {
     event.preventDefault();
     try {
       const response = await API_Service.post("/users/login", userLogin);
-      console.log(response.data.id);
+      console.log(typeof response.data.id);
       if (!response.data.status) {
         console.log("User not found");
       } else {
         response.data.type === "student"
           ? navigate("/students")
-          : navigate("/teacher", { state: { id: response.data.id } });
+          : navigate("/teacher");
+        dispatch(login({ userID: response.data.id }));
       }
     } catch (error) {
       console.error(error);

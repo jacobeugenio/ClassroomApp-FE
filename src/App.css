@@ -20,9 +20,10 @@ body {
   background-color: var(--navColor);
   padding: 0;
 }
-.active {
+.teacher-nav a.active {
   background-color: var(--textColor);
   font-weight: 700;
+  font-size: 15px;
 }
 .teacher-nav a {
   text-decoration: none;
