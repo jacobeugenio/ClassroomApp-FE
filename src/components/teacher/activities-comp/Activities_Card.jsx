@@ -15,7 +15,7 @@ const Activities_Card = () => {
   const getExams = async () => {
     try {
       const response = await API_Service.get("/teachers/activities");
-      console.log(response.data);
+      // console.log(response.data);
       setExams(response.data);
     } catch (error) {
       console.error(error);
@@ -25,24 +25,27 @@ const Activities_Card = () => {
     getExams();
   }, []);
 
-  const handleDelete = async (id) => {
-    const response = await API_Service.delete("/teachers/activities/" + id);
-    console.log(response);
+  const handleDelete = async (id, e) => {
+    e.preventDefault();
+    alert("Are oy sure to delete? ");
+    // const response = await API_Service.delete("/teachers/activities/" + id);
+    // console.log(response);
     getExams();
   };
 
   return (
     <>
-      {/* <Container className="activities-container"> */}
-      {/* <Button onClick={() => refresh()}>Refresh</Button> */}
       {exams &&
         exams.map((exam, index) => {
           return (
             <Card key={index} className="card_activity">
-              <Link to={`/teacher/activities/` + exam._id}>
+              <Link
+                to={`/teacher/activities/` + exam._id}
+                style={{ textDecoration: "none", color: "black" }}
+              >
                 <Card.Header>
                   {exam.subject}{" "}
-                  <h6 className="float-end">{exam.examLength}</h6>
+                  <h4 className="float-end">{exam.examLength}</h4>
                 </Card.Header>
                 <Card.Body className="card-body">
                   <Card.Title>{exam.title}</Card.Title>
@@ -56,7 +59,7 @@ const Activities_Card = () => {
                   variant="success"
                   size="sm"
                   className="d-flex align-items-center me-1"
-                  onClick={() => handleDelete(exam._id)}
+                  onClick={(e) => handleDelete(exam._id, e)}
                 >
                   <FontAwesomeIcon icon={faTrashCan} />
                   <span className="ms-1">Delete</span>
