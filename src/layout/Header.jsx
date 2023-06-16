@@ -2,7 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,8 +12,24 @@ import {
   faUsers,
   faList,
 } from "@fortawesome/free-solid-svg-icons";
+import { useLogoutMutation } from "../redux/usersApiSlice";
+import { logout } from "../redux/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
+  const { userInfo } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [logoutApiCall] = useLogoutMutation();
+  const logoutHandler = async () => {
+    try {
+      await logoutApiCall().unwrap();
+      dispatch(logout());
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <>
       <Navbar className="teacher-nav" expand="md">
@@ -73,11 +89,12 @@ const Header = () => {
                 Activities
               </NavLink>
               {/* <NavLink to="/teacher/grades">Grades</NavLink> */}
-              <NavLink to="/teacher/logout">
+              <NavLink to="/">
                 <Button
                   variant="success"
                   size="sm"
                   className="d-flex align-items-center"
+                  onClick={logoutHandler}
                 >
                   <FontAwesomeIcon
                     icon={faRightFromBracket}

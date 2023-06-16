@@ -17,9 +17,8 @@ const Home = () => {
   const [teachers, setTeachers] = useState([]);
   const [students, setStudents] = useState([]);
   const [exams, setExams] = useState([]);
-  const [loggedInTeacher, setLoggedInTeacher] = useState([]);
 
-  const user = useSelector((state) => state.user.value);
+  const { userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const getTeachers = async () => {
@@ -49,21 +48,21 @@ const Home = () => {
     getStudents();
   }, []);
 
-  useEffect(() => {
-    const getLoggedInTeacher = async () => {
-      try {
-        const response = await API_Service.get(
-          "/teachers/get-teacher/" + user.userID
-        );
-        setLoggedInTeacher(response.data[0]);
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  // useEffect(() => {
+  //   const getLoggedInTeacher = async () => {
+  //     try {
+  //       const response = await API_Service.get(
+  //         "/teachers/get-teacher/" + user.userID
+  //       );
+  //       setLoggedInTeacher(response.data[0]);
+  //       console.log(response.data);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
 
-    getLoggedInTeacher();
-  }, []);
+  //   getLoggedInTeacher();
+  // }, []);
 
   useEffect(() => {
     const getExams = async () => {
@@ -88,7 +87,7 @@ const Home = () => {
             {" "}
             <Card.Img
               variant="top"
-              src={loggedInTeacher.img}
+              src={userInfo.data.teachersData.img}
               style={{
                 height: 120,
                 width: 120,
@@ -98,7 +97,8 @@ const Home = () => {
             />
             <br />
             <h5>
-              Ms. {loggedInTeacher.fname} {loggedInTeacher.lname}
+              Ms. {userInfo.data.teachersData.lname},{" "}
+              {userInfo.data.teachersData.fname}
             </h5>
             <Link to="/teacher/profile">
               <Button variant="outline-info" size="sm" className="mb-4">
