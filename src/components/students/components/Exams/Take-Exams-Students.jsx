@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import API_Service from "../../../../api-service/API_Service";
+
 import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import API_Service from "../../../../api-service/API_Service";
-import Button from "react-bootstrap/Button";
 
 function TakeExamsStudents() {
 	const [exam, setExam] = useState({});
@@ -14,7 +16,8 @@ function TakeExamsStudents() {
 		const getExam = async () => {
 			try {
 				const response = await API_Service.get(`/students/exam/:${id}`);
-				console.log(response.data[0]);
+				// console.log(response.data[0]);
+				console.log(response);
 				setExam(response.data[0]);
 			} catch (error) {
 				console.log(error);
@@ -22,8 +25,9 @@ function TakeExamsStudents() {
 		};
 
 		getExam();
-	}, [id]);
+	}, []);
 	// console.log(typeof exam.id);
+
 	return (
 		<Container className='my-3'>
 			<div className=''>

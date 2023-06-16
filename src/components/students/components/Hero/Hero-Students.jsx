@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Hero.css";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -11,14 +12,18 @@ function HeroStudents() {
 	const [studentData, setStudentData] = useState({});
 	const location = useLocation();
 
-	const student = {
-		dataStudent: JSON.parse(localStorage.getItem("studentData")),
-	};
-	// console.log("student", student);
-	// console.log("dataStudent", student.dataStudent);
-	const dataStudent = student.dataStudent;
-	console.log(dataStudent);
-	console.log("studentData", studentData);
+	const { userInfo } = useSelector((state) => state.auth);
+	// console.log();
+	const dataStudent = userInfo.data.registeredData;
+
+	// const student = {
+	// 	dataStudent: JSON.parse(localStorage.getItem("studentData")),
+	// };
+	// console.log(student);
+
+	// const dataStudent = student.dataStudent;
+	// console.log(dataStudent);
+	// console.log("studentData", studentData);
 
 	useEffect(() => {
 		if (location.state && location.state.email) {
@@ -49,12 +54,12 @@ function HeroStudents() {
 								<Col lg={6} md={6} sm={6}>
 									<div className='profile__picture'>
 										<img
-											src={dataStudent.img}
+											src={dataStudent?.img}
 											alt='Profile'
 											className='profile__picture--img'
 										/>
 										<h5>
-											{dataStudent.fname} <br /> {dataStudent.lname}
+											{dataStudent?.fname} <br /> {dataStudent?.lname}
 										</h5>
 										{/* <div>{location.state.id}</div> */}
 									</div>
@@ -62,16 +67,16 @@ function HeroStudents() {
 								<Col lg={6} md={6} sm={6}>
 									<div className='profile__details'>
 										<p>
-											<strong>Username:</strong> {dataStudent.username}
+											<strong>Username:</strong> {dataStudent?.username}
 										</p>
 										<p>
-											<strong>Contact:</strong> {dataStudent.contact}
+											<strong>Contact:</strong> {dataStudent?.contact}
 										</p>
 										<p>
-											<strong>Email:</strong> {dataStudent.email}
+											<strong>Email:</strong> {dataStudent?.email}
 										</p>
 										<p>
-											<strong>Address:</strong> {dataStudent.address}
+											<strong>Address:</strong> {dataStudent?.address}
 										</p>
 									</div>
 								</Col>
@@ -82,7 +87,7 @@ function HeroStudents() {
 						{/* Welcome Message */}
 						<div className='title__holder'>
 							<h2>
-								Welcome, {dataStudent.fname} {dataStudent.lname}
+								Welcome, {dataStudent?.fname} {dataStudent?.lname}
 							</h2>
 						</div>
 						<div className='welcome__message'>
