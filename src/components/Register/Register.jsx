@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import API_Service from "../../api-service/API_Service";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
@@ -30,7 +30,6 @@ function Register() {
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
-		// console.log(name, value);
 
 		if (event.target.type === "radio") {
 			setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -47,11 +46,9 @@ function Register() {
 
 	const onSubmitForm = (event) => {
 		event.preventDefault();
-		console.log(formData);
 
 		API_Service.post("users/register", formData)
 			.then((response) => {
-				console.log(response);
 				if (response.data.status) {
 					if (response.data.type === "student") {
 						navigate("/student", {
@@ -69,7 +66,6 @@ function Register() {
 		if (formData.password !== formData.password2) {
 			alert("Passwords do not match");
 		} else {
-			console.log(formData);
 			setFormData({
 				fname: "",
 				lname: "",

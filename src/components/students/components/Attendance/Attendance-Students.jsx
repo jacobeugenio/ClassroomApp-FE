@@ -20,7 +20,6 @@ function AttendanceStudents() {
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
-		console.log(value);
 
 		if (event.target.type === "radio") {
 			// If it's a radio button, update the attendance value

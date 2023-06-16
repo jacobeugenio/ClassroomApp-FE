@@ -11,11 +11,14 @@ function HeroStudents() {
 	const [studentData, setStudentData] = useState({});
 	const location = useLocation();
 
-	// const dataTest = localStorage.getItem("studentData");
-	// console.log(JSON.parse(dataTest));
-
-	const dataTest = JSON.parse(localStorage.getItem("studentData"));
-	console.log(dataTest);
+	const student = {
+		dataStudent: JSON.parse(localStorage.getItem("studentData")),
+	};
+	// console.log("student", student);
+	// console.log("dataStudent", student.dataStudent);
+	const dataStudent = student.dataStudent;
+	console.log(dataStudent);
+	console.log("studentData", studentData);
 
 	useEffect(() => {
 		if (location.state && location.state.email) {
@@ -35,26 +38,6 @@ function HeroStudents() {
 		}
 	}, [location.state]);
 
-	// const email = location.state && location.state.email;
-
-	// useEffect(() => {
-	// 	const getStudentData = async () => {
-	// 		try {
-	// 			const response = await API_Service.get(`students/student/${email}`);
-	// 			setStudentData(response.data[0]);
-	// 			localStorage.setItem("studentData", JSON.stringify(response.data[0]));
-	// 		} catch (error) {
-	// 			console.log(error);
-	// 		}
-
-	// 		const storedStudentData = localStorage.getItem("studentData");
-	// 		setStudentData(JSON.parse(storedStudentData));
-	// 	};
-	// 	getStudentData();
-	// }, []);
-
-	console.log(studentData);
-
 	return (
 		<div>
 			<Container className='container__hero'>
@@ -66,12 +49,12 @@ function HeroStudents() {
 								<Col lg={6} md={6} sm={6}>
 									<div className='profile__picture'>
 										<img
-											src={dataTest.img}
+											src={dataStudent.img}
 											alt='Profile'
 											className='profile__picture--img'
 										/>
 										<h5>
-											{dataTest.fname} <br /> {dataTest.lname}
+											{dataStudent.fname} <br /> {dataStudent.lname}
 										</h5>
 										{/* <div>{location.state.id}</div> */}
 									</div>
@@ -79,16 +62,16 @@ function HeroStudents() {
 								<Col lg={6} md={6} sm={6}>
 									<div className='profile__details'>
 										<p>
-											<strong>Username:</strong> {dataTest.username}
+											<strong>Username:</strong> {dataStudent.username}
 										</p>
 										<p>
-											<strong>Contact:</strong> {dataTest.contact}
+											<strong>Contact:</strong> {dataStudent.contact}
 										</p>
 										<p>
-											<strong>Email:</strong> {dataTest.email}
+											<strong>Email:</strong> {dataStudent.email}
 										</p>
 										<p>
-											<strong>Address:</strong> {dataTest.address}
+											<strong>Address:</strong> {dataStudent.address}
 										</p>
 									</div>
 								</Col>
@@ -99,7 +82,7 @@ function HeroStudents() {
 						{/* Welcome Message */}
 						<div className='title__holder'>
 							<h2>
-								Welcome, {dataTest.fname} {dataTest.lname}
+								Welcome, {dataStudent.fname} {dataStudent.lname}
 							</h2>
 						</div>
 						<div className='welcome__message'>
