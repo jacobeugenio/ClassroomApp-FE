@@ -38,7 +38,7 @@ function ExamsCards() {
 							return (
 								<Col lg={3} className='student__card--col' key={exam._id}>
 									<Card>
-										<Link to={`/student/take-exams/`}>
+										<Link to={`/student/take-exams/` + exam._id}>
 											<Card.Header>
 												{exam.subject}{" "}
 												<h6 className='float-end'>{exam.examLength}</h6>

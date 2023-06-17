@@ -39,7 +39,6 @@ function Register() {
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
-		// console.log(name, value);
 
 		if (event.target.type === "radio") {
 			setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -61,17 +60,17 @@ function Register() {
 			const res = await register(formData);
 			dispatch(setCredentials({ ...res }));
 			console.log(res);
-			// if (res.data.status) {
-			// 	if (res.data.type === "student") {
-			// 		dispatch(setCredentials({ ...res }));
-			// 		navigate("/student");
-			// 	} else {
-			// 		dispatch(setCredentials({ ...res }));
-			// 		navigate("/teacher");
-			// 	}
-			// } else {
-			// 	console.log("Invalid Credentials");
-			// }
+			if (res.data.status) {
+				if (res.data.type === "student") {
+					dispatch(setCredentials({ ...res }));
+					navigate("/student");
+				} else {
+					dispatch(setCredentials({ ...res }));
+					navigate("/teacher");
+				}
+			} else {
+				console.log("Invalid Credentials");
+			}
 		} catch (err) {
 			console.log(err?.data?.message || err.error);
 		}
