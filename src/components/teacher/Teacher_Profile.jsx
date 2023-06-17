@@ -28,7 +28,16 @@ const Teacher_Profile = () => {
                     }}
                   />
                   <Card.Text className="h5 mt-3 ms-3">
-                    Ms. {userInfo.data.registeredData.fname}{" "}
+                    {userInfo.data.registeredData.gender === "Male" ? (
+                      <>
+                        <span>Mr. </span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Ms. </span>
+                      </>
+                    )}{" "}
+                    {userInfo.data.registeredData.fname}{" "}
                     {userInfo.data.registeredData.lname}
                   </Card.Text>
                 </Col>

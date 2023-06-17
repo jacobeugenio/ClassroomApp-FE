@@ -21,35 +21,28 @@ const Student_Profile = () => {
     getProfiles();
   }, []);
   return (
-    <Container className="s_profile_container my-4">
-      {/* {Array.from({ length: 20 }).map((_, idx) => (
-        <Card>
-          <Card.Img
-            variant="top"
-            src={S_Image}
-            style={{ height: 50, width: 50 }}
-          />
-        </Card>
-      ))} */}
+    <>
       {profiles &&
         profiles.map((profile, index) => {
           return (
-            <Card key={index}>
+            <Card key={index} className="me-4 my-3">
               <Card.Img
                 variant="top"
                 src={profile.img}
                 style={{
+                  margin: "auto",
                   height: 40,
                   width: 40,
                   borderRadius: 50,
                   border: "1px solid green",
                 }}
               />
+
               <Card.Text style={{ fontSize: 11 }}>{profile.username}</Card.Text>
             </Card>
           );
         })}
-    </Container>
+    </>
   );
 };
 

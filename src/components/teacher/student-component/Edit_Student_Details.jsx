@@ -53,6 +53,7 @@ const Edit_Student_Details = (student) => {
     })
       .then((response) => {
         console.log(response);
+        student.func();
       })
       .catch((error) => {
         console.log(error);

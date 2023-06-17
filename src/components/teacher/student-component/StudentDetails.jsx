@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 import EditStudentDetails from "./Edit_Student_Details";
 import API_Service from "../../../api-service/API_Service";
+import DeleteStudent from "./Delete_Student";
 
 const StudentDetails = () => {
   const [students, setStudents] = useState([]);
@@ -17,12 +18,6 @@ const StudentDetails = () => {
     } catch (error) {
       console.error(error);
     }
-  };
-
-  const handleDelete = async (id) => {
-    const response = await API_Service.delete("/teachers/delete-student/" + id);
-    console.log(response);
-    getUser();
   };
 
   useEffect(() => {
@@ -67,24 +62,15 @@ const StudentDetails = () => {
             <span>View</span>
           </Button>
 
-          <EditStudentDetails props={student} />
-
-          <Button
-            variant="outline-primary"
-            size="sm"
-            className="mx-1 d-flex flex-row align-items-center p-1"
-            onClick={() => handleDelete(student._id)}
-          >
-            <FontAwesomeIcon icon={faTrashCan} />
-            <span className="ms-1">Delete</span>
-          </Button>
+          <EditStudentDetails props={student} func={getUser} />
+          <DeleteStudent props={student} func={getUser} />
         </td>
       </tr>
     );
   });
 
   return (
-    <Table responsive className="mt-2 p-0" size="sm">
+    <Table responsive className="p-0" size="sm">
       <thead
         className="p-3"
         style={{

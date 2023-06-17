@@ -49,18 +49,23 @@ body {
 }
 .activities-container > .card {
   margin: 10px 5px;
-
   height: 150px;
   flex-shrink: 0;
 }
-.s_profile_container {
+.card_activity {
+  width: 185px;
+  height: 150px;
+}
+.card_activity .card-body {
+  height: 70px;
+}
+.profile-container {
   display: flex;
   flex-flow: row nowrap;
   overflow-x: auto;
-  flex-shrink: 0;
 }
-.s_profile_container > .card {
-  margin: 10px 5px;
+.profile-container .card {
+  flex-shrink: 0;
   border: none;
 }
 .questionaire {
@@ -73,12 +78,4 @@ body {
 }
 .view-questionaire > div > span {
   font-size: 11px;
-}
-.card_activity {
-  width: 185px;
-  height: 150px;
-}
-
-.card-body {
-  height: 70px;
 }

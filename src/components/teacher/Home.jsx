@@ -75,7 +75,7 @@ const Home = () => {
               style={{
                 height: 120,
                 width: 120,
-                borderRadius: 50,
+                borderRadius: 80,
                 border: "1px solid green",
               }}
             />
@@ -154,8 +154,9 @@ const Home = () => {
       <Container className="activities-container">
         <ActivitiesCard />
       </Container>
-
-      <StudentProfile />
+      <Container className="profile-container">
+        <StudentProfile />
+      </Container>
     </>
   );
 };
