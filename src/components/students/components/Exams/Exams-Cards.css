@@ -3,15 +3,78 @@
 	padding: 0;
 }
 
-.student__card--container {
-	border: 2px solid black;
+/* Exam_Cards_Students_Section */
+
+.exam__card--container {
 	margin-top: 20px;
 }
 
-.student__card--col {
-	border: 2px solid green;
+.card__exam {
+	box-shadow: 2px 2px 2px 2px;
 }
 
-.btn__card {
+/* background-color: #198754; */
+
+.exam__subject {
+	text-decoration: none;
+	font-weight: 700;
+	font-size: 2rem;
+	width: fit-content;
+}
+
+.exam__length {
+	font-size: 1.5rem;
+	font-weight: 700;
+	font-size: 2rem;
+}
+
+.exam__title {
+	font-size: 1.5rem;
+	font-weight: 700;
+	text-align: center;
+}
+
+.btn__exam {
 	width: 100%;
 }
+
+/* Exam_Cards_Students_Section_End */
+
+/* Take_Exams_Students_Section */
+
+.title__holder {
+	font-size: 45px;
+	text-transform: uppercase;
+}
+
+.subject__exam {
+	font-size: 42px;
+	text-align: center;
+}
+
+.title__exam {
+	font-size: 37px;
+	text-align: center;
+}
+
+.desc__exam {
+	font-size: 28px;
+}
+
+.num__exam {
+	font-size: 28px;
+}
+
+.ques__exam {
+	font-size: 25px;
+}
+
+.ques__details--exam {
+	font-size: 20px;
+}
+
+.btn__take--exam {
+	margin-top: 20px;
+}
+
+/* Take_Exams_Students_Section_End */
