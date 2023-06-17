@@ -15,9 +15,8 @@ function TakeExamsStudents() {
 	const { id } = useParams();
 
 	const { userInfo } = useSelector((state) => state.auth);
-	// console.log();
+
 	const dataStudent = userInfo.data.registeredData._id;
-	// console.log(dataStudent);
 
 	const [answeredExam, setAnsweredExam] = useState({
 		subject: "",
@@ -26,12 +25,12 @@ function TakeExamsStudents() {
 		examId: "",
 	});
 
+	const [studentAnswers, setStudentAnswers] = useState([]);
+
 	useEffect(() => {
 		const getExam = async () => {
 			try {
 				const response = await API_Service.get(`/students/exam/${id}`);
-				// console.log(response.data[0]);
-				console.log(response.data[0]);
 				setExam(response.data[0]);
 				setAnsweredExam({
 					examId: response.data[0]._id,
@@ -46,30 +45,29 @@ function TakeExamsStudents() {
 		getExam();
 	}, []);
 
-	console.log(answeredExam);
-
 	const handleChange = (event) => {
 		const { name, value } = event.target;
-		console.log(name);
+
+		setStudentAnswers((prevAnswers) => [...prevAnswers, value]);
 		console.log(value);
 	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		// const { questionA, questionB, questionC, questionD } =
-		// 	event.target.elements;
-		// console.log(questionA.value);
-		console.log(event.target.elements);
-	};
 
-	// useEffect(() => {
-	// 	API_Service.post("/students/answers", answeredExam).then((res) => {
-	// 		console.log(res);
-	// 	}).catch = (err) => {
-	// 		console.log(err);
-	// 	};
-	// }, []);
-	// console.log(typeof exam.id);
+		const updatedAnsweredExam = {
+			...answeredExam,
+			answer: studentAnswers,
+		};
+
+		// API_Service.post("/students/answers", updatedAnsweredExam).then((res) => {
+		// 	console.log(res);
+		// }).catch = (err) => {
+		// 	console.log(err);
+		// };
+
+		console.log(updatedAnsweredExam);
+	};
 
 	return (
 		<Container className='my-3'>
@@ -80,95 +78,74 @@ function TakeExamsStudents() {
 						Back
 					</Button>
 				</Link>
-				<h3 className='text-center ms-5'>Activity Details</h3>
-				<div className='d-flex'>
-					<h6>Subject: </h6> <span className='ms-4'>{exam.subject}</span>
+				<div className='title__holder'>Classroom Management App</div>
+				<div className='subject__exam'>Subject: {exam.subject}</div>
+				<div className='title__exam'>Title: {exam.title}</div>
+				<div className='d-flex justify-content-between'>
+					<div className='desc__exam'>Description: {exam.desc}</div>
+					{/* <div>{exam._id}</div> */}
+					<div className='num__exam'>Number of items: {exam.examLength}</div>
 				</div>
-				<div className='d-flex'>
-					<h6>Title: </h6>
-					<span className='ms-4'>{exam.title}</span>
-				</div>
-				<div className='d-flex'>
-					<h6>Description: </h6>
-					<span className='ms-4'>{exam.desc}</span>
-				</div>
-				<div className='d-flex'>
-					<h6>Activity No: </h6> <span className='ms-4'>{exam._id}</span>
-				</div>
-				<div className='d-flex'>
-					<h6>Activity Length: </h6>
-					<span className='ms-4'>{exam.examLength}</span>
-				</div>
-
-				<h6>Questions</h6>
+				<hr />
+				<div className='ques__exam'>Questions</div>
 				<Form onSubmit={handleSubmit}>
 					{exam.questions &&
 						exam.questions.map((question, index) => {
+							const questionName = `question-${index}`; // Add this line
 							return (
 								<Container key={index}>
 									<div className='mt-3 view-questionaire'>
-										<h6>
+										<div className='ques__details--exam'>
 											Q{index + 1}: {question.question}
-										</h6>
-
-										<Form.Check
-											inline
-											type='radio'
-											label='A'
-											name={`questionA-${index}`}
-											id='optionA'
-											value='a'
-										/>
-										<Form.Check
-											inline
-											type='radio'
-											label='B'
-											name={`questionB-${index}`}
-											id='optionB'
-											value='b'
-										/>
-										<Form.Check
-											inline
-											type='radio'
-											label='C'
-											name={`questionC-${index}`}
-											id='optionC'
-											value='c'
-										/>
-										<Form.Check
-											inline
-											type='radio'
-											label='D'
-											name={`questionD-${index}`}
-											id='optionD'
-											value='d'
-										/>
-
-										<div className=''>
-											<span className='mx-3'>A. {question.choice_a}</span>
-											<span className='mx-3'>B. {question.choice_b}</span>
-											<span className='mx-3'>C. {question.choice_c}</span>
-											<span className='mx-3'>D. {question.choice_d}</span>
-
-											<span>
-												{/* <Form.Control
-													onChange={handleChange}
-													value={answeredExam.answer}
-													as='select'
-												>
-													<option value=''>Select</option>
-													<option value='A'>A</option>
-													<option value='B'>B</option>
-													<option value='C'>C</option>
-													<option value='D'>D</option>
-												</Form.Control> */}
-											</span>
 										</div>
+
+										<Form.Check
+											inline
+											type='radio'
+											label={`A. ${question.choice_a}`}
+											name={questionName} // Modify this line
+											id='optionA'
+											onChange={handleChange}
+											value='a'
+											required
+										/>
+										<Form.Check
+											inline
+											type='radio'
+											label={`A. ${question.choice_b}`}
+											name={questionName} // Modify this line
+											id='optionB'
+											onChange={handleChange}
+											value='b'
+											required
+										/>
+										<Form.Check
+											inline
+											type='radio'
+											label={`A. ${question.choice_c}`}
+											name={questionName} // Modify this line
+											id='optionC'
+											onChange={handleChange}
+											value='c'
+											required
+										/>
+										<Form.Check
+											inline
+											type='radio'
+											label={`A. ${question.choice_d}`}
+											name={questionName} // Modify this line
+											id='optionD'
+											onChange={handleChange}
+											value='d'
+											required
+										/>
 									</div>
 								</Container>
 							);
 						})}
-					<Button type='submit'>Submit</Button>
+					<Button type='submit' className='btn__take--exam'>
+						Submit
+					</Button>
 				</Form>
 			</div>
 		</Container>

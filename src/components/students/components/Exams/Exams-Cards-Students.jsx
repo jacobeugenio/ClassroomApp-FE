@@ -10,7 +10,7 @@ import { Row, Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShareFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { faHandPointer } from "@fortawesome/free-solid-svg-icons";
 
 function ExamsCards() {
 	const [exams, setExams] = useState([]);
@@ -31,37 +31,42 @@ function ExamsCards() {
 	return (
 		<>
 			<HeaderStudents />
-			<Container className='student__card--container'>
+			<Container className='exam__card--container'>
 				<Row>
 					{exams &&
 						exams.map((exam) => {
 							return (
-								<Col lg={3} className='student__card--col' key={exam._id}>
-									<Card>
-										<Link to={`/student/take-exams/` + exam._id}>
-											<Card.Header>
-												{exam.subject}{" "}
-												<h6 className='float-end'>{exam.examLength}</h6>
-											</Card.Header>
-											<Card.Body className='card-body'>
-												<Card.Title>{exam.title}</Card.Title>
-											</Card.Body>
-										</Link>
+								<Col lg={3} className='my-3' key={exam._id}>
+									<Card className='card__exam'>
+										<Card.Header className='d-flex justify-content-between'>
+											<div className='exam__subject'>{exam.subject}</div>
+											<div className='exam__length'>{exam.examLength}</div>
+										</Card.Header>
+										<Card.Body>
+											<Card.Title>
+												<div className='exam__title'>{exam.title}</div>
+											</Card.Title>
+										</Card.Body>
 										<Card.Footer
 											className='text-muted d-flex'
 											style={{ fontSize: 10 }}
 										>
-											<Button
-												variant='outline-success'
-												size='sm'
-												className='btn__card'
+											<Link
+												className='text-decoration-none  btn__exam'
+												to={`/student/take-exams/` + exam._id}
 											>
-												<FontAwesomeIcon
-													icon={faShareFromSquare}
-													className='me-1'
-												/>
-												Publish
-											</Button>
+												<Button
+													variant='outline-success'
+													size='sm'
+													className='btn__exam fw-bold'
+												>
+													<FontAwesomeIcon
+														icon={faHandPointer}
+														className='me-1'
+													/>
+													Open
+												</Button>
+											</Link>
 										</Card.Footer>
 									</Card>
 								</Col>
