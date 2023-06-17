@@ -20,7 +20,7 @@ const Teacher_Profile = () => {
                 <Col sm={5}>
                   <Card.Img
                     variant=""
-                    src={userInfo.data.teachersData.img}
+                    src={userInfo.data.registeredData.img}
                     style={{
                       border: "1px solid green",
                       width: 150,
@@ -28,38 +28,38 @@ const Teacher_Profile = () => {
                     }}
                   />
                   <Card.Text className="h5 mt-3 ms-3">
-                    Ms. {userInfo.data.teachersData.fname}{" "}
-                    {userInfo.data.teachersData.lname}
+                    Ms. {userInfo.data.registeredData.fname}{" "}
+                    {userInfo.data.registeredData.lname}
                   </Card.Text>
                 </Col>
                 <Col sm={7}>
                   <Card.Text>
                     <span>ID: </span>
-                    <span>{userInfo.data.teachersData._id}</span>
+                    <span>{userInfo.data.registeredData._id}</span>
                   </Card.Text>
                   <Card.Text>
                     <span>Address: </span>
-                    <span>{userInfo.data.teachersData.address}</span>
+                    <span>{userInfo.data.registeredData.address}</span>
                   </Card.Text>
                   <Card.Text>
                     <span>Email: </span>
-                    <span>{userInfo.data.teachersData.email}</span>
+                    <span>{userInfo.data.registeredData.email}</span>
                   </Card.Text>
                   <Card.Text>
                     <span>Contact: </span>
-                    <span>{userInfo.data.teachersData.contact}</span>
+                    <span>{userInfo.data.registeredData.contact}</span>
                   </Card.Text>
                   <Card.Text>
                     <span>Gender: </span>
-                    <span>{userInfo.data.teachersData.gender}</span>
+                    <span>{userInfo.data.registeredData.gender}</span>
                   </Card.Text>
                   <Card.Text>
                     <span>Age: </span>
-                    <span>{userInfo.data.teachersData.age}</span>
+                    <span>{userInfo.data.registeredData.age}</span>
                   </Card.Text>
                   <Card.Text>
                     <span>Date Joined: </span>
-                    <span>{userInfo.data.teachersData.createdAt}</span>
+                    <span>{userInfo.data.registeredData.createdAt}</span>
                   </Card.Text>
                 </Col>
               </Row>

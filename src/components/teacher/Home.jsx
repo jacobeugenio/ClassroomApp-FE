@@ -14,158 +14,150 @@ import GenDetail from "./Gen_Detail";
 import { useSelector } from "react-redux";
 
 const Home = () => {
-	const [teachers, setTeachers] = useState([]);
-	const [students, setStudents] = useState([]);
-	const [exams, setExams] = useState([]);
+  const [teachers, setTeachers] = useState([]);
+  const [students, setStudents] = useState([]);
+  const [exams, setExams] = useState([]);
 
-	const { userInfo } = useSelector((state) => state.auth);
-	console.log(userInfo);
+  const { userInfo } = useSelector((state) => state.auth);
+  // console.log(userInfo);
+  useEffect(() => {
+    const getTeachers = async () => {
+      try {
+        const response = await API_Service.get("/teachers/get-teachers");
+        setTeachers(response.data);
+        // console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-	useEffect(() => {
-		const getTeachers = async () => {
-			try {
-				const response = await API_Service.get("/teachers/get-teachers");
-				setTeachers(response.data);
-				// console.log(response.data);
-			} catch (error) {
-				console.error(error);
-			}
-		};
+    getTeachers();
+  }, []);
 
-		getTeachers();
-	}, []);
+  useEffect(() => {
+    const getStudents = async () => {
+      try {
+        const response = await API_Service.get("/teachers/get-students");
+        setStudents(response.data);
+        // console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-	useEffect(() => {
-		const getStudents = async () => {
-			try {
-				const response = await API_Service.get("/teachers/get-students");
-				setStudents(response.data);
-				// console.log(response.data);
-			} catch (error) {
-				console.error(error);
-			}
-		};
+    getStudents();
+  }, []);
 
-		getStudents();
-	}, []);
+  useEffect(() => {
+    const getExams = async () => {
+      try {
+        const response = await API_Service.get("/teachers/activities");
+        // console.log(response.data);
+        setExams(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-	// useEffect(() => {
-	//   const getLoggedInTeacher = async () => {
-	//     try {
-	//       const response = await API_Service.get(
-	//         "/teachers/get-teacher/" + user.userID
-	//       );
-	//       setLoggedInTeacher(response.data[0]);
-	//       console.log(response.data);
-	//     } catch (error) {
-	//       console.error(error);
-	//     }
-	//   };
+    getExams();
+  }, []);
 
-	//   getLoggedInTeacher();
-	// }, []);
+  return (
+    <>
+      <Header />
+      <Container className="mt-4">
+        <Row>
+          <Col sm={4} className="text-center">
+            {" "}
+            <Card.Img
+              variant="top"
+              src={userInfo.data.registeredData.img}
+              style={{
+                height: 120,
+                width: 120,
+                borderRadius: 50,
+                border: "1px solid green",
+              }}
+            />
+            <br />
+            <h5>
+              {userInfo.data.registeredData.gender === "Male" ? (
+                <>
+                  <span>Mr. </span>
+                </>
+              ) : (
+                <>
+                  <span>Ms. </span>
+                </>
+              )}
+              {userInfo.data.registeredData.lname}
+              {userInfo.data.registeredData.fname}
+            </h5>
+            <Link to="/teacher/profile">
+              <Button variant="outline-info" size="sm" className="mb-4">
+                View Profile
+              </Button>{" "}
+            </Link>
+          </Col>
+          <Col sm={8}>
+            {" "}
+            <Container>
+              <GenDetail
+                teacher={teachers.length}
+                student={students.length}
+                exam={exams.length}
+              />
 
-	useEffect(() => {
-		const getExams = async () => {
-			try {
-				const response = await API_Service.get("/teachers/activities");
-				// console.log(response.data);
-				setExams(response.data);
-			} catch (error) {
-				console.error(error);
-			}
-		};
+              <hr />
+              <Row style={{ marginTop: -20 }}>
+                <div className="mt-0">
+                  <Button variant="success" size="sm" className="mt-4">
+                    <Link
+                      to="/teacher/students"
+                      style={{ textDecoration: "none", color: "#fbffdc" }}
+                    >
+                      See all students
+                    </Link>
+                  </Button>
+                </div>
 
-		getExams();
-	}, []);
+                <Table striped>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Username</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {students.map((student, index) => {
+                      if (index < 3) {
+                        return (
+                          <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{student.fname}</td>
+                            <td>{student.lname}</td>
+                            <td>{student.username}</td>
+                          </tr>
+                        );
+                      }
+                    })}
+                  </tbody>
+                </Table>
+              </Row>
+            </Container>
+          </Col>
+        </Row>
+      </Container>
+      <hr />
+      <Container className="activities-container">
+        <ActivitiesCard />
+      </Container>
 
-	return (
-		<>
-			<Header />
-			<Container className='mt-4'>
-				<Row>
-					{/* <Col sm={4} className='text-center'>
-						{" "}
-						<Card.Img
-							variant='top'
-							src={userInfo.data.teachersData.img}
-							style={{
-								height: 120,
-								width: 120,
-								borderRadius: 50,
-								border: "1px solid green",
-							}}
-						/>
-						<br />
-						<h5>
-							Ms. {userInfo.data.teachersData.lname},{" "}
-							{userInfo.data.teachersData.fname}
-						</h5>
-						<Link to='/teacher/profile'>
-							<Button variant='outline-info' size='sm' className='mb-4'>
-								View Profile
-							</Button>{" "}
-						</Link>
-					</Col> */}
-					<Col sm={8}>
-						{" "}
-						<Container>
-							<GenDetail
-								teacher={teachers.length}
-								student={students.length}
-								exam={exams.length}
-							/>
-
-							<hr />
-							<Row style={{ marginTop: -20 }}>
-								<div className='mt-0'>
-									<Button variant='success' size='sm' className='mt-4'>
-										<Link
-											to='/teacher/students'
-											style={{ textDecoration: "none", color: "#fbffdc" }}
-										>
-											See all students
-										</Link>
-									</Button>
-								</div>
-
-								<Table striped>
-									<thead>
-										<tr>
-											<th>#</th>
-											<th>First Name</th>
-											<th>Last Name</th>
-											<th>Username</th>
-										</tr>
-									</thead>
-									<tbody>
-										{students.map((student, index) => {
-											if (index < 3) {
-												return (
-													<tr key={index}>
-														<td>{index + 1}</td>
-														<td>{student.fname}</td>
-														<td>{student.lname}</td>
-														<td>{student.username}</td>
-													</tr>
-												);
-											}
-										})}
-									</tbody>
-								</Table>
-							</Row>
-						</Container>
-					</Col>
-				</Row>
-			</Container>
-			<hr />
-			<Container className='activities-container'>
-				<ActivitiesCard />
-			</Container>
-
-			<StudentProfile />
-		</>
-	);
+      <StudentProfile />
+    </>
+  );
 };
 
 export default Home;
