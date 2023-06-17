@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import HeaderStudents from "../../layout/Header/Header-Students";
-import "./Exams-Cards.css";
-import Card from "react-bootstrap/Card";
 import API_Service from "../../../../api-service/API_Service";
 import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
+import "./Exams-Cards.css";
+
+import { Container } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
 import { Row, Col } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShareFromSquare } from "@fortawesome/free-solid-svg-icons";
-import { Container } from "react-bootstrap";
 
 function ExamsCards() {
 	const [exams, setExams] = useState([]);
@@ -36,7 +38,7 @@ function ExamsCards() {
 							return (
 								<Col lg={3} className='student__card--col' key={exam._id}>
 									<Card>
-										<Link to='/student/take-exams'>
+										<Link to={`/student/take-exams/` + exam._id}>
 											<Card.Header>
 												{exam.subject}{" "}
 												<h6 className='float-end'>{exam.examLength}</h6>
