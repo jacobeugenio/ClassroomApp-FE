@@ -19,7 +19,7 @@ const Home = () => {
   const [exams, setExams] = useState([]);
 
   const { userInfo } = useSelector((state) => state.auth);
-
+  // console.log(userInfo);
   useEffect(() => {
     const getTeachers = async () => {
       try {
@@ -48,22 +48,6 @@ const Home = () => {
     getStudents();
   }, []);
 
-  // useEffect(() => {
-  //   const getLoggedInTeacher = async () => {
-  //     try {
-  //       const response = await API_Service.get(
-  //         "/teachers/get-teacher/" + user.userID
-  //       );
-  //       setLoggedInTeacher(response.data[0]);
-  //       console.log(response.data);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-
-  //   getLoggedInTeacher();
-  // }, []);
-
   useEffect(() => {
     const getExams = async () => {
       try {
@@ -87,7 +71,7 @@ const Home = () => {
             {" "}
             <Card.Img
               variant="top"
-              src={userInfo.data.teachersData.img}
+              src={userInfo.data.registeredData.img}
               style={{
                 height: 120,
                 width: 120,
@@ -97,8 +81,17 @@ const Home = () => {
             />
             <br />
             <h5>
-              Ms. {userInfo.data.teachersData.lname},{" "}
-              {userInfo.data.teachersData.fname}
+              {userInfo.data.registeredData.gender === "Male" ? (
+                <>
+                  <span>Mr. </span>
+                </>
+              ) : (
+                <>
+                  <span>Ms. </span>
+                </>
+              )}
+              {userInfo.data.registeredData.lname}
+              {userInfo.data.registeredData.fname}
             </h5>
             <Link to="/teacher/profile">
               <Button variant="outline-info" size="sm" className="mb-4">
