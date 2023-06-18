@@ -8,21 +8,21 @@ import EditStudentDetails from "./Edit_Student_Details";
 import API_Service from "../../../api-service/API_Service";
 import DeleteStudent from "./Delete_Student";
 
-const StudentDetails = () => {
-  const [students, setStudents] = useState([]);
+const StudentDetails = ({ students, getUsers }) => {
+  // const [students, setStudents] = useState([]);
 
-  const getUser = async () => {
-    try {
-      const response = await API_Service.get("/teachers/get-students");
-      setStudents(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const getUser = async () => {
+  //   try {
+  //     const response = await API_Service.get("/teachers/get-students");
+  //     setStudents(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    getUser();
-  }, []);
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
 
   // console.log(data);
   const studentData = students.map((student, index) => {
@@ -62,8 +62,8 @@ const StudentDetails = () => {
             <span>View</span>
           </Button>
 
-          <EditStudentDetails props={student} func={getUser} />
-          <DeleteStudent props={student} func={getUser} />
+          <EditStudentDetails student={student} getUsers={getUsers} />
+          <DeleteStudent student={student} getUsers={getUsers} />
         </td>
       </tr>
     );

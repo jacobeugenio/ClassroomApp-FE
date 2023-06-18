@@ -60,6 +60,7 @@ const Login = () => {
             type="text"
             name="username"
             placeholder="Enter username"
+            autoComplete="off"
             required
           />
           <Form.Text className="text-muted">

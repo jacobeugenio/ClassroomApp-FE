@@ -10,7 +10,7 @@ import API_Service from "../../../api-service/API_Service";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
-const StudentRegModal = () => {
+const StudentRegModal = (getStudents) => {
   //For registration Modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -52,6 +52,7 @@ const StudentRegModal = () => {
       );
       console.log(response);
       handleClose();
+      getStudents.func();
     } catch (error) {}
   };
 

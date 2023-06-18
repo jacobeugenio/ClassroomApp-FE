@@ -5,19 +5,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
-const Delete_Student = (student) => {
+const Delete_Student = ({ student, getUsers }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleDelete = async () => {
     const response = await API_Service.delete(
-      "/teachers/delete-student/" + student.props._id
+      "/teachers/delete-student/" + student._id
     );
-    console.log(response.data.status);
-    student.func();
+
+    getUsers();
     handleClose();
   };
+
   return (
     <>
       <Button
@@ -37,13 +38,8 @@ const Delete_Student = (student) => {
         <Modal.Body>
           Are you sure to delete this student?...{" "}
           <span className="h4">
-            "
-            {student.props.lname.charAt(0).toUpperCase() +
-              student.props.lname.slice(1)}
-            ,{" "}
-            {student.props.fname.charAt(0).toUpperCase() +
-              student.props.fname.slice(1)}
-            "
+            "{student.lname.charAt(0).toUpperCase() + student.lname.slice(1)},{" "}
+            {student.fname.charAt(0).toUpperCase() + student.fname.slice(1)}"
           </span>
         </Modal.Body>
 

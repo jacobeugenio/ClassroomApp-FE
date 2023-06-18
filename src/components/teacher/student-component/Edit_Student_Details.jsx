@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import API_Service from "../../../api-service/API_Service";
 
-const Edit_Student_Details = (student) => {
+const Edit_Student_Details = ({ student, getUsers }) => {
   //For registration Modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -17,17 +17,17 @@ const Edit_Student_Details = (student) => {
   // console.log(student);
 
   const [formData, setFormData] = useState({
-    fname: student.props.fname,
-    lname: student.props.lname,
-    username: student.props.username,
-    email: student.props.email,
-    contact: student.props.contact,
-    age: student.props.age,
-    // img: student.props.img,
-    gender: student.props.gender,
-    address: student.props.address,
-    password: student.props.password,
-    password2: student.props.password2,
+    fname: student.fname,
+    lname: student.lname,
+    username: student.username,
+    email: student.email,
+    contact: student.contact,
+    age: student.age,
+    // img: student.img,
+    gender: student.gender,
+    address: student.address,
+    password: student.password,
+    password2: student.password2,
   });
 
   const handleChange = (event) => {
@@ -39,21 +39,10 @@ const Edit_Student_Details = (student) => {
   const onSubmitForm = (event) => {
     event.preventDefault();
 
-    API_Service.put("/teachers/update-student/" + student.props._id, {
-      fname: formData.fname,
-      lname: formData.lname,
-      username: formData.username,
-      email: formData.email,
-      contact: formData.contact,
-      // img: formData.img,
-      age: formData.age,
-      gender: formData.gender,
-      address: formData.address,
-      password: formData.password,
-    })
+    API_Service.put("/teachers/update-student/" + student._id, formData)
       .then((response) => {
         console.log(response);
-        student.func();
+        getUsers();
       })
       .catch((error) => {
         console.log(error);
