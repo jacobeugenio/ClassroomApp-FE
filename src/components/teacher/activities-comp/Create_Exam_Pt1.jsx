@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import API_Service from "../../../api-service/API_Service";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShareFromSquare, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Create_Exam_Pt1 = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     subject: "",
     title: "",
@@ -27,11 +30,10 @@ const Create_Exam_Pt1 = () => {
     // console.log(value);
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
-  const navigate = useNavigate();
-
+  const { subject, title, desc, examLength } = formData;
   const onSubmitForm = async (event) => {
     event.preventDefault();
-    // console.log(formData);
+
     const response = await API_Service.post(
       "/teachers/create-exam-first-part",
       formData
@@ -41,15 +43,19 @@ const Create_Exam_Pt1 = () => {
       navigate("/teacher/activities/part2/" + response.data._id);
     }
   };
+
+  // const errorHandler = (name) => {
+  //   return name === errors.name && <div className="error">{errors.message}</div>;
+  // };    return setErrors({ name: response.data.errorName, message: response.data.message });
   return (
     <>
       <Container className="mt-3">
-        <Button variant="danger" size="sm" onClick={handleShow}>
+        <Button variant="success" size="sm" onClick={handleShow}>
           <FontAwesomeIcon icon={faPlus} /> <span>Create Exam</span>
         </Button>
       </Container>
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header className="card_style" closeButton>
           <Modal.Title>Exam Details</Modal.Title>
         </Modal.Header>
         <Form className="mx-2" onSubmit={onSubmitForm}>
@@ -96,13 +102,13 @@ const Create_Exam_Pt1 = () => {
                   value={formData.examLength}
                   name="examLength"
                   type="text"
-                  placeholder="0"
                 />
               </Form.Group>
             </Row>
 
             <hr className="mt-4" />
-            <Button variant="primary" type="submit">
+            <Button variant="success" type="submit">
+              <FontAwesomeIcon icon={faShareFromSquare} className="me-1" />
               Continue
             </Button>
           </Modal.Body>

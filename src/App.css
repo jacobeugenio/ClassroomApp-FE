@@ -59,6 +59,9 @@ body {
 .card_activity .card-body {
   height: 70px;
 }
+.card_style {
+  background-color: var(--textColor);
+}
 .profile-container {
   display: flex;
   flex-flow: row nowrap;

@@ -22,34 +22,46 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import TakeExamsStudents from "./components/students/components/Exams/Take-Exams-Students";
 
-function App() {
-	return (
-		<>
-			<Routes>
-				<Route path='/' element={<LandingPage />} />
-				<Route path='/login' element={<Login />} />
-				<Route path='/register' element={<Register />} />
-				<Route path='/teacher' element={<Home />} />
-				<Route path='/teacher/students' element={<Students />} />
-				<Route path='/teacher/grades' element={<Grades />} />
-				<Route path='/teacher/profile' element={<TeacherProfile />} />
-				<Route path='/teacher/activities' element={<Activities />} />
-				<Route path='/teacher/activities/:id' element={<ActivityDetails />} />
-				<Route
-					path='/teacher/activities/part2/:id'
-					element={<CreateExamPt2 />}
-				/>
-				<Route path='*' element={<NotFound />} />
+import PrivateRoute from "./components/teacher/Private_Route";
+import StudentPrivateRoute from "./components/students/Student_Private_Route";
 
-				{/* Students Page */}
-				<Route path='/student' element={<StudentsPage />} />
-				<Route path='/student/attendance' element={<AttendanceStudents />} />
-				<Route path='/student/grades' element={<GradesStudents />} />
-				<Route path='/student/exams' element={<ExamsCardsStudents />} />
-				<Route path='/student/take-exams/:id' element={<TakeExamsStudents />} />
-			</Routes>
-		</>
-	);
+function App() {
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* Teacher Private Routes */}
+        <Route path="" element={<PrivateRoute />}>
+          <Route path="/teacher" element={<Home />} />
+          <Route path="/teacher/students" element={<Students />} />
+          <Route path="/teacher/grades" element={<Grades />} />
+          <Route path="/teacher/profile" element={<TeacherProfile />} />
+          <Route path="/teacher/activities" element={<Activities />} />
+          <Route path="/teacher/activities/:id" element={<ActivityDetails />} />
+          <Route
+            path="/teacher/activities/part2/:id"
+            element={<CreateExamPt2 />}
+          />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+
+        {/* Students Private Routes */}
+        <Route path="" element={<StudentPrivateRoute />}>
+          <Route path="/student" element={<StudentsPage />} />
+          <Route path="/student/attendance" element={<AttendanceStudents />} />
+          <Route path="/student/grades" element={<GradesStudents />} />
+          <Route path="/student/exams" element={<ExamsCardsStudents />} />
+          <Route
+            path="/student/take-exams/:id"
+            element={<TakeExamsStudents />}
+          />
+        </Route>
+      </Routes>
+    </>
+  );
 }
 
 export default App;

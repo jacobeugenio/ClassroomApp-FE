@@ -9,6 +9,7 @@ import API_Service from "../../../api-service/API_Service";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
 
 const StudentRegModal = (getStudents) => {
   //For registration Modal
@@ -50,7 +51,9 @@ const StudentRegModal = (getStudents) => {
         "/teachers/add-student",
         formData
       );
-      console.log(response);
+      toast.success(response.data.msg, {
+        position: toast.POSITION.TOP_CENTER,
+      });
       handleClose();
       getStudents.func();
     } catch (error) {}
@@ -58,11 +61,11 @@ const StudentRegModal = (getStudents) => {
 
   return (
     <>
-      <Button variant="danger" size="sm" onClick={handleShow}>
+      <Button variant="success" size="sm" onClick={handleShow}>
         <FontAwesomeIcon icon={faUserPlus} /> New Student
       </Button>
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header style={{ backgroundColor: "#98eecc" }} closeButton>
           <Modal.Title>Register Student</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -196,7 +199,7 @@ const StudentRegModal = (getStudents) => {
             </Row>
 
             <hr className="mt-4" />
-            <Button variant="primary" type="submit">
+            <Button variant="success" type="submit">
               <FontAwesomeIcon icon={faUserPlus} /> Add Sudent
             </Button>
           </Form>

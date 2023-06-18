@@ -33,7 +33,7 @@ const Activities_Card = () => {
                 to={`/teacher/activities/` + exam._id}
                 style={{ textDecoration: "none", color: "black" }}
               >
-                <Card.Header>
+                <Card.Header className="card_style">
                   {exam.subject}{" "}
                   <h4 className="float-end">{exam.examLength}</h4>
                 </Card.Header>
@@ -42,7 +42,7 @@ const Activities_Card = () => {
                 </Card.Body>
               </Link>
               <Card.Footer
-                className="text-muted d-flex"
+                className="text-muted d-flex card_style"
                 style={{ fontSize: 10 }}
               >
                 <DeleteActivity exam={exam} func={getExams} />

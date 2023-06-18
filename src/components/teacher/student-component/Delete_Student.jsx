@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const Delete_Student = ({ student, getUsers }) => {
   const [show, setShow] = useState(false);
@@ -14,7 +15,9 @@ const Delete_Student = ({ student, getUsers }) => {
     const response = await API_Service.delete(
       "/teachers/delete-student/" + student._id
     );
-
+    toast.success(response.data.msg, {
+      position: toast.POSITION.TOP_CENTER,
+    });
     getUsers();
     handleClose();
   };

@@ -8,9 +8,7 @@ import API_Service from "../../api-service/API_Service";
 
 const Students = () => {
   const [students, setStudents] = useState([]);
-  const [showA, setShowA] = useState(true);
 
-  const toggleShowA = () => setShowA(!showA);
   const getUsers = async () => {
     try {
       const response = await API_Service.get("/teachers/get-students");

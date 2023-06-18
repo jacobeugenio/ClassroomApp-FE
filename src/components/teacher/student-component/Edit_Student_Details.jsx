@@ -8,6 +8,8 @@ import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import API_Service from "../../../api-service/API_Service";
+import { async } from "q";
+import { toast } from "react-toastify";
 
 const Edit_Student_Details = ({ student, getUsers }) => {
   //For registration Modal
@@ -36,18 +38,23 @@ const Edit_Student_Details = ({ student, getUsers }) => {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-  const onSubmitForm = (event) => {
+  const onSubmitForm = async (event) => {
     event.preventDefault();
 
-    API_Service.put("/teachers/update-student/" + student._id, formData)
-      .then((response) => {
-        console.log(response);
-        getUsers();
-      })
-      .catch((error) => {
-        console.log(error);
+    try {
+      const response = await API_Service.put(
+        "/teachers/update-student/" + student._id,
+        formData
+      );
+      console.log(response);
+      toast.success(response.data.msg, {
+        position: toast.POSITION.TOP_CENTER,
       });
-    handleClose();
+      getUsers();
+      handleClose();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

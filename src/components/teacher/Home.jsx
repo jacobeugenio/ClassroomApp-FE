@@ -19,6 +19,7 @@ const Home = () => {
   const [exams, setExams] = useState([]);
 
   const { userInfo } = useSelector((state) => state.auth);
+
   // console.log(userInfo);
   useEffect(() => {
     const getTeachers = async () => {

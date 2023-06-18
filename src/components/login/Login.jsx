@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useLoginMutation } from "../../redux/usersApiSlice";
 import { setCredentials } from "../../redux/authSlice";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [userLogin, setUserLogin] = useState({
@@ -40,7 +41,9 @@ const Login = () => {
           navigate("/student");
         }
       } else {
-        console.log(res.data.msg);
+        toast.error(res.data.msg, {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     } catch (err) {
       console.log(err?.data?.message || err.error);
