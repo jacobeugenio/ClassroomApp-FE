@@ -60,21 +60,6 @@ const Create_Exam_Pt2 = () => {
       answer: "",
     };
     setQuestions([...questions, obj]);
-    // questions.map((question, index) => {
-    //   if (
-    //     !question.question ||
-    //     !question.choice_a ||
-    //     !question.choice_b ||
-    //     !question.choice_c ||
-    //     !question.choice_d ||
-    //     !question.answer
-    //   ) {
-    //     return setDisAbled(true);
-    //   } else {
-    //     return setDisAbled(false);
-    //   }
-
-    // });
   };
 
   useEffect(() => {
@@ -178,7 +163,7 @@ const Create_Exam_Pt2 = () => {
                   </Form.Group>
                 </Row>
                 <Form.Group as={Col} controlId="answer">
-                  <Form.Label>Gender</Form.Label>
+                  <Form.Label>Set Answer</Form.Label>
                   <Form.Control
                     type="text"
                     as="select"

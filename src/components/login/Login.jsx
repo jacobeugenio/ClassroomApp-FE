@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import "./login.css";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useLoginMutation } from "../../redux/usersApiSlice";
 import { setCredentials } from "../../redux/authSlice";
@@ -40,7 +40,7 @@ const Login = () => {
           navigate("/student");
         }
       } else {
-        console.log("Invalid Credentials");
+        console.log(res.data.msg);
       }
     } catch (err) {
       console.log(err?.data?.message || err.error);
@@ -51,7 +51,8 @@ const Login = () => {
     <Container className="container__login">
       <Form onSubmit={handleLoginSubmit} className="form__login">
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <h1>Login</h1>
+          <h3 className="text-center">KodeVamp's Classroom</h3>
+          <hr />
           <Form.Label>Username</Form.Label>
           <Form.Control
             className="input-container"
@@ -63,9 +64,9 @@ const Login = () => {
             autoComplete="off"
             required
           />
-          <Form.Text className="text-muted">
+          {/* <Form.Text className="text-muted">
             We'll never share your email with anyone else.
-          </Form.Text>
+          </Form.Text> */}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -80,7 +81,11 @@ const Login = () => {
             required
           />
         </Form.Group>
-        <Button type="submit" className="btn__login">
+        <small>
+          Doesnt have an account? Register
+          <Link to="/register"> Here</Link>
+        </small>
+        <Button variant="success" type="submit" className="btn__login mt-3">
           Login
         </Button>
       </Form>

@@ -74,7 +74,7 @@ const LandingPage = () => {
               <span>IchadB</span>
               <br />
               <span>password: </span>
-              <span>ichad1234</span>
+              <span>ichad123</span>
             </Col>
           </Row>
         </Container>
