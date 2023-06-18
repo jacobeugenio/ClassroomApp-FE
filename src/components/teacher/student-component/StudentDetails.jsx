@@ -1,30 +1,12 @@
-import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 import EditStudentDetails from "./Edit_Student_Details";
-import API_Service from "../../../api-service/API_Service";
 import DeleteStudent from "./Delete_Student";
 
 const StudentDetails = ({ students, getUsers }) => {
-  // const [students, setStudents] = useState([]);
-
-  // const getUser = async () => {
-  //   try {
-  //     const response = await API_Service.get("/teachers/get-students");
-  //     setStudents(response.data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getUser();
-  // }, []);
-
-  // console.log(data);
   const studentData = students.map((student, index) => {
     return (
       <tr key={index}>
