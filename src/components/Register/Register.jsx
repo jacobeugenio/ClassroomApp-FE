@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useRegisterMutation } from "../../redux/usersApiSlice";
 import { setCredentials } from "../../redux/authSlice";
+import API_Service from "../../api-service/API_Service";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -31,22 +32,14 @@ function Register() {
     type: "",
   });
 
-<<<<<<< HEAD
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [register, { isLoading }] = useRegisterMutation();
+  const { userInfo } = useSelector((state) => state.auth);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name, value);
-=======
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
-
-	const [register, { isLoading }] = useRegisterMutation();
-	const { userInfo } = useSelector((state) => state.auth);
-
-	const handleChange = (event) => {
-		const { name, value } = event.target;
->>>>>>> main
 
     if (event.target.type === "radio") {
       setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -61,7 +54,6 @@ function Register() {
     formData.img = base64;
   };
 
-<<<<<<< HEAD
   const onSubmitForm = async (event) => {
     event.preventDefault();
     try {
@@ -109,65 +101,6 @@ function Register() {
       };
     });
   }
-=======
-	const onSubmitForm = async (event) => {
-		event.preventDefault();
-
-		try {
-			const res = await register(formData);
-			dispatch(setCredentials({ ...res }));
-			console.log(res);
-			if (res.data.status) {
-				if (res.data.type === "student") {
-					dispatch(setCredentials({ ...res }));
-					navigate("/student");
-				} else {
-					dispatch(setCredentials({ ...res }));
-					navigate("/teacher");
-				}
-			} else {
-				console.log("Invalid Credentials");
-			}
-		} catch (err) {
-			console.log(err?.data?.message || err.error);
-		}
-
-		// API_Service.post("users/register", formData)
-		// 	.then((response) => {
-		// 		if (response.data.status) {
-		// 			if (response.data.type === "student") {
-		// 				navigate("/student", {
-		// 					state: { email: response.data.registeredData.email },
-		// 				});
-		// 			} else {
-		// 				navigate("/teacher");
-		// 			}
-		// 		}
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log("error:", error);
-		// 	});
-
-		if (formData.password !== formData.password2) {
-			alert("Passwords do not match");
-		} else {
-			// setFormData({
-			// 	fname: "",
-			// 	lname: "",
-			// 	username: "",
-			// 	contact: "",
-			// 	email: "",
-			// 	age: "",
-			// 	img: "",
-			// 	gender: "",
-			// 	address: "",
-			// 	password: "",
-			// 	password2: "",
-			// 	type: "",
-			// });
-		}
-	};
->>>>>>> main
 
   return (
     <Container className="container__registration">
@@ -271,7 +204,26 @@ function Register() {
           </Form.Control>
         </Form.Group>
 
-<<<<<<< HEAD
+        <Form.Group className="mb-3" controlId="formBasicGender">
+          <Form.Control
+            as="select"
+            aria-label="Default select example"
+            onChange={handleChange}
+            value={formData.gender}
+            name="gender"
+            className="input__container--registration"
+            required
+          >
+            <option>Choose gender</option>
+            <option value="Male" required>
+              Male
+            </option>
+            <option value="Female" required>
+              Female
+            </option>
+          </Form.Control>
+        </Form.Group>
+
         <Form.Group controlId="formFile">
           <Form.Label>Upload profile picture</Form.Label>
           <Form.Control
@@ -279,53 +231,9 @@ function Register() {
             className="input__container--registration"
             onChange={(e) => handleFile(e)}
             name="img"
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicContact">
-          <Form.Label>Contact:</Form.Label>
-          <Form.Control
-            onChange={handleChange}
-            value={formData.contact}
-            name="contact"
-            className="input__container--registration"
-            type="tel"
-            placeholder="Enter contact number"
             required
           />
         </Form.Group>
-=======
-				<Form.Group className='mb-3' controlId='formBasicGender'>
-					<Form.Control
-						as='select'
-						aria-label='Default select example'
-						onChange={handleChange}
-						value={formData.gender}
-						name='gender'
-						className='input__container--registration'
-						required
-					>
-						<option>Choose gender</option>
-						<option value='Male' required>
-							Male
-						</option>
-						<option value='Female' required>
-							Female
-						</option>
-					</Form.Control>
-				</Form.Group>
-
-				<Form.Group controlId='formFile'>
-					<Form.Label>Upload profile picture</Form.Label>
-					<Form.Control
-						type='file'
-						className='input__container--registration'
-						onChange={(e) => handleFile(e)}
-						name='img'
-						required
-					/>
-				</Form.Group>
->>>>>>> main
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password:</Form.Label>
@@ -378,40 +286,33 @@ function Register() {
           </Form.Group>
         </div>
 
-<<<<<<< HEAD
-        <Button type="submit" className="mt-1 btn__registration">
-          Register
-        </Button>
+        <div className="mb-3">
+          <Form.Group>
+            <Row>
+              <Col>
+                <Form.Check
+                  type="radio"
+                  label="Student"
+                  name="type"
+                  value="student"
+                  onChange={handleChange}
+                  required
+                />
+              </Col>
+              <Col>
+                <Form.Check
+                  type="radio"
+                  label="Teacher"
+                  name="type"
+                  value="teacher"
+                  onChange={handleChange}
+                  required
+                />
+              </Col>
+            </Row>
+          </Form.Group>
+        </div>
       </Form>
-=======
-				<div className='mb-3'>
-					<Form.Group>
-						<Row>
-							<Col>
-								<Form.Check
-									type='radio'
-									label='Student'
-									name='type'
-									value='student'
-									onChange={handleChange}
-									required
-								/>
-							</Col>
-							<Col>
-								<Form.Check
-									type='radio'
-									label='Teacher'
-									name='type'
-									value='teacher'
-									onChange={handleChange}
-									required
-								/>
-							</Col>
-						</Row>
-					</Form.Group>
-				</div>
->>>>>>> main
-
       <div className="intro__message--registration">
         <h1>Welcome to our Classroom Management App!</h1>
         <p>
