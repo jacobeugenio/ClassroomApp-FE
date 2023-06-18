@@ -14,13 +14,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useLogoutMutation } from "../redux/usersApiSlice";
 import { logout } from "../redux/authSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const Header = () => {
-  const { userInfo } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [logoutApiCall] = useLogoutMutation();
+
   const logoutHandler = async () => {
     try {
       await logoutApiCall().unwrap();
@@ -30,6 +30,7 @@ const Header = () => {
       console.error(error);
     }
   };
+
   return (
     <>
       <Navbar className="teacher-nav" expand="md">

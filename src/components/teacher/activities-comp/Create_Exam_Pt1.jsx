@@ -30,7 +30,7 @@ const Create_Exam_Pt1 = () => {
     // console.log(value);
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
-  const { subject, title, desc, examLength } = formData;
+
   const onSubmitForm = async (event) => {
     event.preventDefault();
 

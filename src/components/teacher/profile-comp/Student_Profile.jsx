@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-import S_Image from "../../../img/ava2.png";
+import Avatar from "../../../img/ava2.png";
 import API_Service from "../../../api-service/API_Service";
 
 const Student_Profile = () => {
@@ -28,7 +27,7 @@ const Student_Profile = () => {
             <Card key={index} className="me-4 my-3">
               <Card.Img
                 variant="top"
-                src={profile.img}
+                src={profile.img || Avatar}
                 style={{
                   margin: "auto",
                   height: 40,

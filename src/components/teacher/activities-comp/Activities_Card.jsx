@@ -9,11 +9,10 @@ import DeleteActivity from "./Delete_Activity";
 
 const Activities_Card = () => {
   const [exams, setExams] = useState([]);
-
   const getExams = async () => {
     try {
       const response = await API_Service.get("/teachers/activities");
-      // console.log(response.data);
+      console.log(response.data);
       setExams(response.data);
     } catch (error) {
       console.error(error);
@@ -34,7 +33,7 @@ const Activities_Card = () => {
                 style={{ textDecoration: "none", color: "black" }}
               >
                 <Card.Header className="card_style">
-                  {exam.subject}{" "}
+                  {exam.subject}
                   <h4 className="float-end">{exam.examLength}</h4>
                 </Card.Header>
                 <Card.Body className="card-body">

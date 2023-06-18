@@ -8,7 +8,6 @@ import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import API_Service from "../../../api-service/API_Service";
-import { async } from "q";
 import { toast } from "react-toastify";
 
 const Edit_Student_Details = ({ student, getUsers }) => {
@@ -46,11 +45,10 @@ const Edit_Student_Details = ({ student, getUsers }) => {
         "/teachers/update-student/" + student._id,
         formData
       );
-      console.log(response);
       toast.success(response.data.msg, {
         position: toast.POSITION.TOP_CENTER,
       });
-      getUsers();
+      await getUsers();
       handleClose();
     } catch (error) {
       console.log(error);

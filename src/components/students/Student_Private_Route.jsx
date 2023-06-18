@@ -4,7 +4,7 @@ import { Navigate, Outlet } from "react-router-dom";
 const Student_Private_Route = () => {
   const { userInfo } = useSelector((state) => state.auth);
   console.log(userInfo);
-  return userInfo.data.type === "student" ? (
+  return userInfo && userInfo.data.type === "student" ? (
     <Outlet />
   ) : (
     <Navigate to="/login" replace />

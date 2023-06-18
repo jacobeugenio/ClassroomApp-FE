@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import "./login.css";
 
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useLoginMutation } from "../../redux/usersApiSlice";
 import { setCredentials } from "../../redux/authSlice";
 import { toast } from "react-toastify";
@@ -18,12 +18,10 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [login, { isLoading }] = useLoginMutation();
-  const { userInfo } = useSelector((state) => state.auth);
+  const [login] = useLoginMutation();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name, value);
     setUserLogin((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
@@ -31,13 +29,12 @@ const Login = () => {
     event.preventDefault();
     try {
       const res = await login(userLogin);
-      console.log(res);
+      dispatch(setCredentials({ ...res }));
+
       if (res.data.status) {
         if (res.data.type === "teacher") {
-          dispatch(setCredentials({ ...res }));
           navigate("/teacher");
         } else {
-          dispatch(setCredentials({ ...res }));
           navigate("/student");
         }
       } else {
@@ -46,7 +43,9 @@ const Login = () => {
         });
       }
     } catch (err) {
-      console.log(err?.data?.message || err.error);
+      toast.error(err?.data?.message || err.error, {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   };
 
