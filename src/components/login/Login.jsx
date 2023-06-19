@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 
 const Login = () => {
   const [userLogin, setUserLogin] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const dispatch = useDispatch();
@@ -29,9 +29,9 @@ const Login = () => {
     event.preventDefault();
     try {
       const res = await login(userLogin);
-      dispatch(setCredentials({ ...res }));
 
       if (res.data.status) {
+        dispatch(setCredentials({ ...res }));
         if (res.data.type === "teacher") {
           navigate("/teacher");
         } else {
@@ -58,11 +58,11 @@ const Login = () => {
           <Form.Label>Username</Form.Label>
           <Form.Control
             className="input-container"
-            value={userLogin.username}
+            value={userLogin.email}
             onChange={(e) => handleChange(e)}
-            type="text"
-            name="username"
-            placeholder="Enter username"
+            type="email"
+            name="email"
+            placeholder="Enter email"
             autoComplete="off"
             required
           />
