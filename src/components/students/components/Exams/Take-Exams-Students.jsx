@@ -59,14 +59,16 @@ function TakeExamsStudents() {
 		console.log(name);
 	};
 
-	console.log(studentAnswers);
-
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
+		console.log(studentAnswers.length);
+
 		const updatedAnsweredExam = {
 			...answeredExam,
-			answer: studentAnswers,
+			answer: studentAnswers.map((answer, index) =>
+				answer.split(`question-${index}-`)[1].toUpperCase()
+			),
 		};
 
 		API_Service.post("/students/exam-answers", updatedAnsweredExam).then(
@@ -122,7 +124,7 @@ function TakeExamsStudents() {
 												name={`${questionName}`} // Modify this line
 												id='optionA'
 												onChange={handleChange}
-												value='a'
+												value='A'
 												required
 											/>
 											<Form.Check
@@ -132,7 +134,7 @@ function TakeExamsStudents() {
 												name={`${questionName}`} // Modify this line
 												id='optionB'
 												onChange={handleChange}
-												value='b'
+												value='B'
 												required
 											/>
 											<Form.Check
@@ -142,7 +144,7 @@ function TakeExamsStudents() {
 												name={`${questionName}`} // Modify this line
 												id='optionC'
 												onChange={handleChange}
-												value='c'
+												value='C'
 												required
 											/>
 											<Form.Check
@@ -152,7 +154,7 @@ function TakeExamsStudents() {
 												name={`${questionName}`} // Modify this line
 												id='optionD'
 												onChange={handleChange}
-												value='d'
+												value='D'
 												required
 											/>
 										</div>

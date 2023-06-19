@@ -34,7 +34,7 @@ function HeroStudents() {
 		const getStudents = async () => {
 			try {
 				const response = await API_Service.get("/teachers/get-students");
-				// console.log(response.data);
+				// console.log(response.data.length);
 				setNumberOfStudents(response.data.length);
 			} catch (error) {
 				console.error(error);
