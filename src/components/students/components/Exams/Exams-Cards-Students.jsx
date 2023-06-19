@@ -36,7 +36,7 @@ function ExamsCards() {
 					{exams &&
 						exams.map((exam) => {
 							return (
-								<Col lg={3} className='my-3' key={exam._id}>
+								<Col lg={3} md={4} sm={4} className='my-3' key={exam._id}>
 									<Card className='card__exam'>
 										<Card.Header className='d-flex justify-content-between'>
 											<div className='exam__subject'>{exam.subject}</div>

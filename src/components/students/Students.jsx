@@ -2,7 +2,6 @@ import React from "react";
 
 import HeaderStudents from "./layout/Header/Header-Students";
 import HeroStudents from "./components/Hero/Hero-Students";
-import FooterStudents from "./layout/Footer/Footer-Students";
 
 function Students() {
 	return (
@@ -15,9 +14,6 @@ function Students() {
 					<HeroStudents />
 				</section>
 			</main>
-			<footer>
-				<FooterStudents />
-			</footer>
 		</>
 	);
 }

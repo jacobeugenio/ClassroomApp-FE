@@ -13,8 +13,6 @@
 	box-shadow: 2px 2px 2px 2px;
 }
 
-/* background-color: #198754; */
-
 .exam__subject {
 	text-decoration: none;
 	font-weight: 700;
@@ -42,30 +40,39 @@
 
 /* Take_Exams_Students_Section */
 
+.take__exam--container {
+	border-radius: 20px;
+	border: 1px solid black;
+	box-shadow: 1px 1px 1px 1px;
+}
+
 .title__holder {
-	font-size: 45px;
+	border-bottom: 1px solid black;
+	margin: 0;
+	width: 100%;
+	font-size: 40px;
 	text-transform: uppercase;
 }
 
 .subject__exam {
-	font-size: 42px;
+	border-bottom: 1px solid black;
+	font-size: 35px;
 	text-align: center;
 }
 
 .title__exam {
-	font-size: 37px;
+	border-bottom: 1px solid black;
+	font-size: 35px;
 	text-align: center;
 }
 
 .desc__exam {
-	font-size: 28px;
+	border-right: 1px solid black;
+	width: 50%;
+	font-size: 25px;
 }
 
 .num__exam {
-	font-size: 28px;
-}
-
-.ques__exam {
 	font-size: 25px;
 }
 
@@ -73,8 +80,46 @@
 	font-size: 20px;
 }
 
+.form__exam--container {
+	border-top: 1px solid black;
+	padding-left: 20px;
+	padding-bottom: 10px;
+}
+
 .btn__take--exam {
 	margin-top: 20px;
 }
 
 /* Take_Exams_Students_Section_End */
+
+@media (min-width: 320px) and (max-width: 425px) {
+	.title__holder {
+		border-bottom: 1px solid black;
+		margin: 0;
+		width: 100%;
+		font-size: 25px;
+		text-transform: uppercase;
+	}
+
+	.subject__exam {
+		border-bottom: 1px solid black;
+		font-size: 20px;
+		text-align: center;
+	}
+
+	.title__exam {
+		border-bottom: 1px solid black;
+		font-size: 20px;
+		text-align: center;
+	}
+
+	.num__exam {
+		font-size: 20px;
+	}
+
+	.desc__exam {
+		border-right: 1px solid black;
+		width: 50%;
+		font-size: 20px;
+	}
+}

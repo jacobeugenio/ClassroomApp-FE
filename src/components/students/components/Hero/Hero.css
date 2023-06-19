@@ -27,27 +27,28 @@ p {
 
 /* Student-Profile Section */
 .student__profile--container {
-	border: 1px solid red;
-}
-
-.student__profile {
-	padding: 10px;
-	border: 1px solid black;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 
 .profile__picture {
-	border: 1px solid black;
 	text-align: center;
+	width: 40%;
+	padding: 10px;
+}
+
+.profile__details {
+	padding: 10px 10px;
+	width: 60%;
 }
 
 .profile__picture--img {
+	width: 100px;
 	height: 100px;
 	border-radius: 50%;
 }
 
-.profile__details {
-	border: 1px solid black;
-}
 /* Student-Profile Section End */
 
 /* Welcome-Message Section */
