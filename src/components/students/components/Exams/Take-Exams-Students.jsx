@@ -47,9 +47,19 @@ function TakeExamsStudents() {
 	const handleChange = (event) => {
 		const { name, value } = event.target;
 
-		setStudentAnswers((prevAnswers) => [...prevAnswers, value]);
+		//Remove any previously selected answers for the current questionName
+		setStudentAnswers((prevAnswers) =>
+			prevAnswers.filter((answer) => !answer.startsWith(`${name}-`))
+		);
+
+		//Add the new answer
+		setStudentAnswers((prevAnswers) => [...prevAnswers, `${name}-${value}`]);
+
 		console.log(value);
+		console.log(name);
 	};
+
+	console.log(studentAnswers);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -109,7 +119,7 @@ function TakeExamsStudents() {
 												inline
 												type='radio'
 												label={`A. ${question.choice_a}`}
-												name={questionName} // Modify this line
+												name={`${questionName}`} // Modify this line
 												id='optionA'
 												onChange={handleChange}
 												value='a'
@@ -118,8 +128,8 @@ function TakeExamsStudents() {
 											<Form.Check
 												inline
 												type='radio'
-												label={`A. ${question.choice_b}`}
-												name={questionName} // Modify this line
+												label={`B. ${question.choice_b}`}
+												name={`${questionName}`} // Modify this line
 												id='optionB'
 												onChange={handleChange}
 												value='b'
@@ -128,8 +138,8 @@ function TakeExamsStudents() {
 											<Form.Check
 												inline
 												type='radio'
-												label={`A. ${question.choice_c}`}
-												name={questionName} // Modify this line
+												label={`C. ${question.choice_c}`}
+												name={`${questionName}`} // Modify this line
 												id='optionC'
 												onChange={handleChange}
 												value='c'
@@ -138,8 +148,8 @@ function TakeExamsStudents() {
 											<Form.Check
 												inline
 												type='radio'
-												label={`A. ${question.choice_d}`}
-												name={questionName} // Modify this line
+												label={`D. ${question.choice_d}`}
+												name={`${questionName}`} // Modify this line
 												id='optionD'
 												onChange={handleChange}
 												value='d'
