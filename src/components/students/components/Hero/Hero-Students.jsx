@@ -6,12 +6,43 @@ import { useSelector } from "react-redux";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-// import API_Service from "../../../../api-service/API_Service";
+import { Card } from "react-bootstrap";
+import API_Service from "../../../../api-service/API_Service";
 
 function HeroStudents() {
-	const { userInfo } = useSelector((state) => state.auth);
+	const [numberOfExams, setNumberOfExams] = useState();
+	const [numberOfStudents, setNumberOfStudents] = useState();
 
+	const { userInfo } = useSelector((state) => state.auth);
 	const dataStudent = userInfo.data.registeredData;
+
+	useEffect(() => {
+		const getExams = async () => {
+			try {
+				const response = await API_Service.get("/teachers/activities");
+				// console.log(response.data.length);
+				setNumberOfExams(response.data.length);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+
+		getExams();
+	}, []);
+
+	useEffect(() => {
+		const getStudents = async () => {
+			try {
+				const response = await API_Service.get("/teachers/get-students");
+				// console.log(response.data);
+				setNumberOfStudents(response.data.length);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+
+		getStudents();
+	}, []);
 
 	return (
 		<div>
@@ -27,6 +58,15 @@ function HeroStudents() {
 								className='profile__picture--img'
 							/>
 							<h5>
+								{dataStudent.gender === "Male" ? (
+									<>
+										<span>Mr. </span>
+									</>
+								) : (
+									<>
+										<span>Ms. </span>
+									</>
+								)}
 								{dataStudent.fname} {dataStudent.lname}
 							</h5>
 						</div>
@@ -61,26 +101,33 @@ function HeroStudents() {
 							</p>
 						</div>
 					</Col>
-
-					{/* <Col lg={12} className='important__announcements--container'> */}
-					{/* Important Announcements */}
-					{/* <div className='title__holder'>
-							<h2>Important Announcements</h2>
-						</div>
-						<div className='important__announcements'>
-							<ul>
-								<li>
-									Upcoming event: Field Trip on June 10th - Please submit your
-									permission slip to the school office by June 5th.
-								</li>
-								<li>
-									Reminder: Science project due on June 15th - Ensure you have
-									completed all the required experiments and submitted your
-									project on time.
-								</li>
-							</ul>
-						</div> */}
-					{/* </Col> */}
+				</Row>
+				<Row className='student__details--container'>
+					<Col md={4}>
+						<Card>
+							<Card.Body>
+								<Card.Title>1</Card.Title>
+								<Card.Text>Grades</Card.Text>
+							</Card.Body>
+						</Card>
+					</Col>
+					<Col md={4}>
+						{" "}
+						<Card>
+							<Card.Body>
+								<Card.Title>{numberOfStudents}</Card.Title>
+								<Card.Text>Students enrolled</Card.Text>
+							</Card.Body>
+						</Card>
+					</Col>
+					<Col md={4}>
+						<Card>
+							<Card.Body>
+								<Card.Title>{numberOfExams}</Card.Title>
+								<Card.Text>Number of Exams</Card.Text>
+							</Card.Body>
+						</Card>
+					</Col>
 				</Row>
 				<Row>
 					<Col lg={12} className='motivational__quotes--container'>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useRef } from "react";
 import API_Service from "../../../../api-service/API_Service";
 
 import Container from "react-bootstrap/Container";
@@ -12,20 +13,18 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 function TakeExamsStudents() {
 	const [exam, setExam] = useState({});
-	const { id } = useParams();
-
-	const { userInfo } = useSelector((state) => state.auth);
-
-	const dataStudent = userInfo.data.registeredData._id;
-
 	const [answeredExam, setAnsweredExam] = useState({
 		subject: "",
 		answer: "",
 		studentId: "",
 		examId: "",
 	});
-
 	const [studentAnswers, setStudentAnswers] = useState([]);
+
+	const { userInfo } = useSelector((state) => state.auth);
+	const dataStudent = userInfo.data.registeredData._id;
+	const formRef = useRef(null);
+	const { id } = useParams();
 
 	useEffect(() => {
 		const getExam = async () => {
@@ -60,13 +59,19 @@ function TakeExamsStudents() {
 			answer: studentAnswers,
 		};
 
-		// API_Service.post("/students/answers", updatedAnsweredExam).then((res) => {
-		// 	console.log(res);
-		// }).catch = (err) => {
-		// 	console.log(err);
-		// };
+		API_Service.post("/students/exam-answers", updatedAnsweredExam).then(
+			(res) => {
+				console.log(res);
+			}
+		).catch = (err) => {
+			console.log(err);
+		};
 
 		console.log(updatedAnsweredExam);
+
+		// Reset the form
+		formRef.current.reset();
+		setStudentAnswers([]);
 	};
 
 	return (
@@ -89,7 +94,7 @@ function TakeExamsStudents() {
 					<div className='num__exam'>Number of items: {exam.examLength}</div>
 				</div>
 				<div className='form__exam--container'>
-					<Form onSubmit={handleSubmit}>
+					<Form ref={formRef} onSubmit={handleSubmit}>
 						{exam.questions &&
 							exam.questions.map((question, index) => {
 								const questionName = `question-${index}`; // Add this line
