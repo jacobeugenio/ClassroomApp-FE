@@ -51,9 +51,11 @@ const Create_Exam_Pt1 = () => {
           position: toast.POSITION.TOP_CENTER,
         });
         navigate("/teacher/activities/part2/" + response.data.exam._id);
+      } else {
+        toast.error(response.data.msg);
       }
     } catch (error) {
-      console.log(error);
+      toast.error(error.response.data.msg);
     }
   };
 
@@ -117,7 +119,7 @@ const Create_Exam_Pt1 = () => {
             </Row>
 
             <hr className="mt-4" />
-            <Button variant="success" type="submit">
+            <Button variant="success" type="submit" style={{ width: "48%" }}>
               <FontAwesomeIcon icon={faShareFromSquare} className="me-1" />
               Continue
             </Button>

@@ -9,6 +9,7 @@ import Row from "react-bootstrap/Row";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const Create_Exam_Pt2 = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -35,27 +36,37 @@ const Create_Exam_Pt2 = () => {
     const data = [...questions];
     data[index][e.target.name] = e.target.value;
     setQuestions(data);
-    // setDisAbled(false);
   };
+
   const navigate = useNavigate();
+
   const onSubmitForm = async (event) => {
     event.preventDefault();
-    console.log(questions);
-    const response = await API_Service.patch(
-      "/teachers/create-exam-second-part/" + id,
-      questions,
-      {
-        headers: {
-          Authorization: `Bearer ${userInfo.data.token}`,
-        },
+
+    console.log();
+
+    try {
+      const response = await API_Service.patch(
+        "/teachers/create-exam-second-part/" + id,
+        questions,
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.data.token}`,
+          },
+        }
+      );
+      if (response.data.status) {
+        toast.success(response.data.msg);
+        navigate("/teacher/activities");
+      } else {
+        toast.error(response.data.msg);
       }
-    );
-    console.log(response);
-    navigate("/teacher/activities");
+    } catch (error) {
+      toast.error(error.response.data.msg);
+    }
   };
 
   const addFields = (e) => {
-    console.log(questions);
     setCount((prevCount) => prevCount + 1);
     const obj = {
       question: "",
@@ -81,7 +92,7 @@ const Create_Exam_Pt2 = () => {
         );
         setExamData(response.data);
       } catch (error) {
-        console.error(error);
+        toast.error(error.response.data.msg);
       }
     };
 
@@ -135,6 +146,7 @@ const Create_Exam_Pt2 = () => {
                       placeholder="choice_a"
                       value={questions.choice_a}
                       onChange={(e) => handleChange(e, index)}
+                      required
                     />
                   </Form.Group>
 
@@ -146,6 +158,7 @@ const Create_Exam_Pt2 = () => {
                       placeholder="choice_b"
                       value={questions.choice_b}
                       onChange={(e) => handleChange(e, index)}
+                      required
                     />
                   </Form.Group>
                 </Row>
@@ -158,6 +171,7 @@ const Create_Exam_Pt2 = () => {
                       placeholder="choice_c"
                       value={questions.choice_c}
                       onChange={(e) => handleChange(e, index)}
+                      required
                     />
                   </Form.Group>
 
@@ -169,6 +183,7 @@ const Create_Exam_Pt2 = () => {
                       placeholder="choice_d"
                       value={questions.choice_d}
                       onChange={(e) => handleChange(e, index)}
+                      required
                     />
                   </Form.Group>
                 </Row>
@@ -180,8 +195,9 @@ const Create_Exam_Pt2 = () => {
                     value={questions.answer}
                     onChange={(e) => handleChange(e, index)}
                     name="answer"
+                    required
                   >
-                    <option disabled>Select answer key...</option>
+                    <option value="">Select answer key...</option>
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="C">C</option>

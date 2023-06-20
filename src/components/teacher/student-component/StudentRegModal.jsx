@@ -62,12 +62,12 @@ const StudentRegModal = (getStudents) => {
         getStudents.func();
         setFormData("");
       } else {
-        toast.error(response.data.msg, {
+        toast.error(response.data.message, {
           position: toast.POSITION.TOP_CENTER,
         });
       }
     } catch (error) {
-      toast.error(error.response.data.msg, {
+      toast.error(error.response.data.message, {
         position: toast.POSITION.TOP_CENTER,
       });
     }

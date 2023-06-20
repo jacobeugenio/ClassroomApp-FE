@@ -55,7 +55,7 @@ const Login = () => {
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <h3 className="text-center">KodeVamp's Classroom</h3>
           <hr />
-          <Form.Label>Username</Form.Label>
+          <Form.Label>Email</Form.Label>
           <Form.Control
             className="input-container"
             value={userLogin.email}
