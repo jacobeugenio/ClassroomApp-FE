@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Hero.css";
-// import { useLocation } from "react-router-dom";
+import HeaderStudents from "../../layout/Header/Header-Students";
 import { useSelector } from "react-redux";
 
 import Col from "react-bootstrap/Col";
@@ -45,7 +45,8 @@ function HeroStudents() {
 	}, []);
 
 	return (
-		<div>
+		<div className='body__hero'>
+			<HeaderStudents />
 			<Container className='container__hero'>
 				<Row>
 					<Col lg={6} md={6} className='student__profile--container'>

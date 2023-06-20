@@ -5,6 +5,11 @@
 
 /* Exam_Cards_Students_Section */
 
+.body__card {
+	height: 100vh;
+	background: url(../../../../assets/images/html_table.jpg) center / cover;
+}
+
 .exam__card--container {
 	margin-top: 20px;
 }
@@ -40,10 +45,16 @@
 
 /* Take_Exams_Students_Section */
 
+.body__take--exam {
+	height: 100%;
+	background: url(../../../../assets/images/html_table.jpg) center / cover;
+}
+
 .take__exam--container {
 	border-radius: 20px;
-	border: 1px solid black;
-	box-shadow: 1px 1px 1px 1px;
+	background-color: #fff9;
+	backdrop-filter: blur(10px);
+	box-shadow: 0 0.4rem 0.8rem #0005;
 }
 
 .title__holder {
