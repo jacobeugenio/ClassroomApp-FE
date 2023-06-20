@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, NavLink } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -15,35 +15,27 @@ const LandingPage = () => {
     <>
       <Navbar bg="light" expand="md" className="py-0">
         <Container>
-          <Navbar.Brand href="#home">KodeVamp's Classroom</Navbar.Brand>
+          <NavLink to="/" end>
+            KodeVamp's Classroom
+          </NavLink>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link href="/login">
+              <NavLink to="/home" end>
+                Home
+              </NavLink>
+              <NavLink to="/link">Link</NavLink>
+
+              <NavLink to="/login">
                 <Button variant="warning" size="sm">
                   Login
                 </Button>
-              </Nav.Link>
-              <Nav.Link href="/register">
+              </NavLink>
+              <NavLink to="/register">
                 <Button variant="outline-warning" size="sm">
                   Register
                 </Button>
-              </Nav.Link>
+              </NavLink>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -56,8 +48,8 @@ const LandingPage = () => {
             <Col lg={6}>
               {/* <Link to='/teacher'>Go to teacher</Link> */}
               <p>Teacher</p>
-              <span>Username: </span>
-              <span>jane_D</span>
+              <span>Email: </span>
+              <span>jane@gmail.com</span>
               <br />
               <span>password: </span>
               <span>jane123</span> <br />
@@ -73,8 +65,7 @@ const LandingPage = () => {
               <span>Username: </span>
               <span>IchadB</span>
               <br />
-              <span>password: </span>
-              <span>ichad123</span>
+              "email": "jane4_doe@email.com", "password": "12345jane"
             </Col>
           </Row>
         </Container>
