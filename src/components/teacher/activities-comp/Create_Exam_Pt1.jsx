@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShareFromSquare, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const Create_Exam_Pt1 = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -24,36 +25,38 @@ const Create_Exam_Pt1 = () => {
     title: "",
     desc: "",
     examLength: "",
-    questions: [{}],
   });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    // console.log(value);
+    console.log(name, value);
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
   const onSubmitForm = async (event) => {
     event.preventDefault();
 
-    const response = await API_Service.post(
-      "/teachers/create-exam-first-part",
-      formData,
-      {
-        headers: {
-          Authorization: `Bearer ${userInfo.data.token}`,
-        },
+    try {
+      const response = await API_Service.post(
+        "/teachers/create-exam-first-part",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.data.token}`,
+          },
+        }
+      );
+      if (response.data.status) {
+        toast.success(response.data.msg, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        navigate("/teacher/activities/part2/" + response.data.exam._id);
       }
-    );
-
-    if (response.data._id) {
-      navigate("/teacher/activities/part2/" + response.data._id);
+    } catch (error) {
+      console.log(error);
     }
   };
 
-  // const errorHandler = (name) => {
-  //   return name === errors.name && <div className="error">{errors.message}</div>;
-  // };    return setErrors({ name: response.data.errorName, message: response.data.message });
   return (
     <>
       <Container className="mt-3">

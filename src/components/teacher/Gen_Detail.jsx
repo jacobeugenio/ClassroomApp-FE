@@ -8,7 +8,7 @@ const Gen_Detail = (num) => {
   return (
     <Row>
       <Col md={4}>
-        <Card>
+        <Card className="mb-3 mb-md-0">
           <Card.Body>
             <Card.Title>{num.teacher}</Card.Title>
             <Card.Text>Teachers</Card.Text>
@@ -17,7 +17,7 @@ const Gen_Detail = (num) => {
       </Col>
       <Col md={4}>
         {" "}
-        <Card>
+        <Card className="mb-3 mb-md-0">
           <Card.Body>
             <Card.Title>{num.student}</Card.Title>
             <Card.Text>Students</Card.Text>
@@ -33,26 +33,6 @@ const Gen_Detail = (num) => {
         </Card>
       </Col>
     </Row>
-    // <CardGroup className="gap-3">
-    //   <Card>
-    //     <Card.Body style={{ width: 300 }}>
-    //       <Card.Title>Card title</Card.Title>
-    //       <Card.Text>Present</Card.Text>
-    //     </Card.Body>
-    //   </Card>
-    //   <Card>
-    //     <Card.Body>
-    //       <Card.Title>Card title</Card.Title>
-    //       <Card.Text>Present</Card.Text>
-    //     </Card.Body>
-    //   </Card>
-    //   <Card>
-    //     <Card.Body>
-    //       <Card.Title>Card title</Card.Title>
-    //       <Card.Text>Present</Card.Text>
-    //     </Card.Body>
-    //   </Card>
-    // </CardGroup>
   );
 };
 

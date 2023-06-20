@@ -44,7 +44,6 @@ const Create_Exam_Pt2 = () => {
     const response = await API_Service.patch(
       "/teachers/create-exam-second-part/" + id,
       questions,
-      examData,
       {
         headers: {
           Authorization: `Bearer ${userInfo.data.token}`,
@@ -80,8 +79,7 @@ const Create_Exam_Pt2 = () => {
             },
           }
         );
-        setExamData(response.data[0]);
-        // console.log(response.data);
+        setExamData(response.data);
       } catch (error) {
         console.error(error);
       }

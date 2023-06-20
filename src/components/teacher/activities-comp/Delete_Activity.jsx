@@ -5,6 +5,7 @@ import { faTrashCan, faXmark } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-bootstrap/Modal";
 import API_Service from "../../../api-service/API_Service";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const Delete_Activity = (props) => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -21,7 +22,11 @@ const Delete_Activity = (props) => {
         },
       }
     );
-    console.log(response.data.msg);
+    if (response.data.status) {
+      toast.success(response.data.msg, {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
     props.func();
     handleClose();
   };

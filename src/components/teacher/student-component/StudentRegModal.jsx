@@ -31,11 +31,11 @@ const StudentRegModal = (getStudents) => {
     address: "",
     password: "",
     password2: "",
+    type: "student",
   });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    // console.log(value);
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
@@ -49,21 +49,28 @@ const StudentRegModal = (getStudents) => {
     event.preventDefault();
 
     try {
-      const response = await API_Service.post(
-        "/teachers/add-student",
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${userInfo.data.token}`,
-          },
-        }
-      );
-      toast.success(response.data.msg, {
+      const response = await API_Service.post("/users/register", formData, {
+        headers: {
+          Authorization: `Bearer ${userInfo.data.token}`,
+        },
+      });
+      if (response.data.status) {
+        toast.success(response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        handleClose();
+        getStudents.func();
+        setFormData("");
+      } else {
+        toast.error(response.data.msg, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
+    } catch (error) {
+      toast.error(error.response.data.msg, {
         position: toast.POSITION.TOP_CENTER,
       });
-      handleClose();
-      getStudents.func();
-    } catch (error) {}
+    }
   };
 
   return (
@@ -200,7 +207,7 @@ const StudentRegModal = (getStudents) => {
                   value={formData.password2}
                   name="password2"
                   type="password"
-                  placeholder="Password"
+                  placeholder="Confirm Password"
                 />
               </Form.Group>
             </Row>

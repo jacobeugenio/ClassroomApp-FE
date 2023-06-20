@@ -20,9 +20,7 @@ const Activity_Details = () => {
             Authorization: `Bearer ${userInfo.data.token}`,
           },
         });
-        console.log(response);
-        // console.log(response.data[0]);
-        setExam(response.data[0]);
+        setExam(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -30,7 +28,7 @@ const Activity_Details = () => {
 
     getExam();
   }, [id]);
-  // console.log(typeof exam.id);
+
   return (
     <Container className="my-3">
       <div className="questionaire">
@@ -64,7 +62,7 @@ const Activity_Details = () => {
         {exam.questions &&
           exam.questions.map((question, index) => {
             return (
-              <Container key={index}>
+              <Container key={index} className="mb-3">
                 <div className="mt-3 view-questionaire">
                   <h6>
                     Q{index + 1}: {question.question}

@@ -24,7 +24,7 @@ const Student_Profile = () => {
     };
 
     getProfiles();
-  }, []);
+  }, [userInfo.data.token]);
   return (
     <>
       {profiles &&

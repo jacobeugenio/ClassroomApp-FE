@@ -3,7 +3,6 @@ import { useLocation, Link, NavLink } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -28,12 +27,12 @@ const LandingPage = () => {
 
               <NavLink to="/login">
                 <Button variant="warning" size="sm">
-                  Login
+                  LOGIN
                 </Button>
               </NavLink>
               <NavLink to="/register">
                 <Button variant="outline-warning" size="sm">
-                  Register
+                  REGISTER
                 </Button>
               </NavLink>
             </Nav>
@@ -53,19 +52,12 @@ const LandingPage = () => {
               <br />
               <span>password: </span>
               <span>jane123</span> <br />
-              <span>Username: </span>
-              <span>kimbo_sanz</span>
-              <br />
-              <span>password: </span>
-              <span>123kim</span>
             </Col>
             <Col lg={6}>
               <Link to="/student">Go to Students</Link>
               <br />
-              <span>Username: </span>
-              <span>IchadB</span>
               <br />
-              "email": "jane4_doe@email.com", "password": "12345jane"
+              "email": "eugenioj@gmail.com", "password": "123jac"
             </Col>
           </Row>
         </Container>
