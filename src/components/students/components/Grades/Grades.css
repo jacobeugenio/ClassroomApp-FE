@@ -1,0 +1,80 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+.body__grades {
+	height: 100vh;
+	background: url(../../../../assets/images/html_table.jpg) center / cover;
+}
+
+.grades__container {
+	margin-top: 30px;
+	background-color: #fff5;
+	backdrop-filter: blur(7px);
+	box-shadow: 0 0.4rem 0.8rem #0005;
+	border-radius: 20px;
+	padding-bottom: 0.7rem;
+}
+
+.table__header {
+	text-align: center;
+	width: 100%;
+	font-size: 2.2rem;
+	font-weight: 700;
+	background-color: #fff4;
+	padding: 0.8rem 1rem;
+	border-radius: 20px;
+}
+
+.table__body {
+	width: 95%;
+	max-height: calc(89% - 0.8rem);
+	margin: 0.8rem auto;
+	background-color: #fffb;
+	border-radius: 20px;
+}
+
+.table__grades {
+	width: 100%;
+}
+
+.table__head--grades {
+	padding: 20px;
+	background-color: #d5d1defe;
+	border-radius: 20px 20px 0px 0px;
+	text-align: center;
+	font-size: large;
+}
+.table__body--grades {
+	text-align: center;
+	padding: 20px;
+	font-size: x-large;
+}
+
+@media (min-width: 320px) and (max-width: 425px) {
+	.table__header > div {
+		text-align: center;
+		font-size: 1rem;
+		font-weight: 700;
+		background-color: #fff4;
+		padding: 0.8rem 1rem;
+		border-radius: 20px;
+	}
+
+	.table__head--grades {
+		padding: 20px;
+		background-color: #d5d1defe;
+		border-radius: 20px;
+		text-align: center;
+		font-size: 0.5rem;
+	}
+
+	.table__body--grades {
+		text-align: center;
+		padding: 20px;
+		font-size: 0.5rem;
+	}
+}

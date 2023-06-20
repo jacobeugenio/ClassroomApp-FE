@@ -29,7 +29,7 @@ function ExamsCards() {
 	}, []);
 
 	return (
-		<>
+		<div className='body__card'>
 			<HeaderStudents />
 			<Container className='exam__card--container'>
 				<Row>
@@ -74,7 +74,7 @@ function ExamsCards() {
 						})}
 				</Row>
 			</Container>
-		</>
+		</div>
 	);
 }
 

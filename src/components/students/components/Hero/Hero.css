@@ -8,12 +8,17 @@ p {
 	font-size: 1.2rem;
 }
 
+.body__hero {
+	height: 100vh;
+	background: url(../../../../assets/images/html_table.jpg) center / cover;
+}
+
 .container__hero {
-	border: 1px solid black;
 	border-radius: 20px;
-	box-shadow: 5px 5px 5px 2px;
-	margin-top: 20px;
-	background-color: #ffe5ca;
+	box-shadow: 0 0.4rem 0.8rem #0005;
+	margin-top: 30px;
+	background-color: #fff5;
+	backdrop-filter: blur(5px);
 }
 
 .title__holder {
@@ -31,6 +36,8 @@ p {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
+	background-color: #fff9;
+	border-radius: 20px 0px 0px;
 }
 
 .profile__picture {
@@ -54,9 +61,12 @@ p {
 
 /* Welcome-Message Section */
 .welcome__message--container {
+	background-color: #fff9;
+	border-radius: 0px 20px 0px 0px;
 	padding-top: 20px;
-	border-left: 1px solid black;
+	border-left: 1px solid grey;
 }
+
 .welcome__message {
 	text-align: center;
 }
@@ -64,14 +74,15 @@ p {
 
 /* Student Details Section */
 .student__details--container {
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
 	padding: 20px;
 }
+
 /* Student Details Section End */
 
 /* Motivational-Quotes Section */
 .motivational__quotes--container {
+	background-color: #fff9;
+	border-radius: 0px 0px 20px 20px;
 	padding: 20px;
 }
 
@@ -83,5 +94,13 @@ p {
 @media (min-width: 320px) and (max-width: 768px) {
 	p {
 		font-size: 0.9rem;
+	}
+}
+
+@media (min-width: 320px) and (max-width: 425px) {
+	.welcome__message--container {
+		padding-top: 20px;
+		border-top: 1px solid black;
+		border-left: none;
 	}
 }

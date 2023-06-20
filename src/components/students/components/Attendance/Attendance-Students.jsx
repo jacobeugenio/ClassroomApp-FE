@@ -62,7 +62,7 @@ function AttendanceStudents() {
 	};
 
 	return (
-		<>
+		<div className='body__attendance'>
 			<header>
 				<HeaderStudents />
 			</header>
@@ -72,7 +72,7 @@ function AttendanceStudents() {
 						onSubmit={handleSubmitForm}
 						className='student__attendance--form'
 					>
-						<h1>Attendance Form</h1>
+						<div className='title__holder--attendance'>Attendance Form</div>
 						<h3>Can you Attend?</h3>
 
 						<div className='mb-3'>
@@ -85,6 +85,7 @@ function AttendanceStudents() {
 										value='present'
 										checked={attendanceForm.attendance === "present"}
 										onChange={handleChange}
+										required
 									/>
 									<Form.Check
 										type='radio'
@@ -93,6 +94,7 @@ function AttendanceStudents() {
 										value='absent'
 										checked={attendanceForm.attendance === "absent"}
 										onChange={handleChange}
+										required
 									/>
 								</strong>
 							</Form.Group>
@@ -113,7 +115,7 @@ function AttendanceStudents() {
 					</Form>
 				</Container>
 			</main>
-		</>
+		</div>
 	);
 }
 

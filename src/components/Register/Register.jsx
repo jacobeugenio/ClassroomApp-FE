@@ -57,58 +57,43 @@ function Register() {
 	const onSubmitForm = async (event) => {
 		event.preventDefault();
 		console.log(formData);
-		try {
-			const res = await register(formData);
-			console.log(res.data);
-			if (res.data.status) {
-				dispatch(setCredentials({ ...res }));
-				if (res.data.type === "student") {
-					navigate("/student");
-				} else {
-					// dispatch(setCredentials({ ...res }));
-					navigate("/teacher");
-				}
-			} else {
-				console.log("Invalid Credentials");
-			}
-		} catch (err) {
-			console.log(err?.data?.message || err.error);
-		}
-
-		// API_Service.post("users/register", formData)
-		// 	.then((response) => {
-		// 		if (response.data.status) {
-		// 			if (response.data.type === "student") {
-		// 				navigate("/student", {
-		// 					state: { email: response.data.registeredData.email },
-		// 				});
-		// 			} else {
-		// 				navigate("/teacher");
-		// 			}
-		// 		}
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log("error:", error);
-		// 	});
 
 		if (formData.password !== formData.password2) {
 			alert("Passwords do not match");
 		} else {
-			// setFormData({
-			//   fname: "",
-			//   lname: "",
-			//   username: "",
-			//   contact: "",
-			//   email: "",
-			//   age: "",
-			//   img: "",
-			//   gender: "",
-			//   address: "",
-			//   password: "",
-			//   password2: "",
-			//   type: "",
-			// });
+			try {
+				const res = await register(formData);
+				console.log(res.data);
+				if (res.data.status) {
+					dispatch(setCredentials({ ...res }));
+					if (res.data.type === "student") {
+						navigate("/student");
+					} else {
+						dispatch(setCredentials({ ...res }));
+						navigate("/teacher");
+					}
+				} else {
+					console.log("Invalid Credentials");
+				}
+			} catch (err) {
+				console.log(err.data.message || err.error);
+			}
 		}
+
+		setFormData({
+			fname: "",
+			lname: "",
+			username: "",
+			contact: "",
+			email: "",
+			age: "",
+			img: "",
+			gender: "",
+			address: "",
+			password: "",
+			password2: "",
+			type: "",
+		});
 	};
 
 	function convertToBase64(file) {
