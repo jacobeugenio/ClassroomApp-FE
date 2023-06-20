@@ -36,8 +36,8 @@ function Register() {
   const navigate = useNavigate();
 
   const [register, { isLoading }] = useRegisterMutation();
-  const { userInfo } = useSelector((state) => state.auth);
-  console.log(userInfo);
+  // const { userInfo } = useSelector((state) => state.auth);
+  // console.log(userInfo);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -60,18 +60,17 @@ function Register() {
     console.log(formData);
     try {
       const res = await register(formData);
-
-      console.log(res);
+      console.log(res.data);
       if (res.data.status) {
+        dispatch(setCredentials({ ...res }));
         if (res.data.type === "student") {
-          dispatch(setCredentials({ ...res }));
           navigate("/student");
         } else {
-          dispatch(setCredentials({ ...res }));
+          // dispatch(setCredentials({ ...res }));
           navigate("/teacher");
         }
       } else {
-        toast.error(res.error.data.msg);
+        console.log("Invalid Credentials");
       }
     } catch (err) {
       console.log(err?.data?.message || err.error);

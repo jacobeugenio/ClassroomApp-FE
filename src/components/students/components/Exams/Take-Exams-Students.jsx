@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useRef } from "react";
 import API_Service from "../../../../api-service/API_Service";
 
 import Container from "react-bootstrap/Container";
@@ -12,20 +13,18 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 function TakeExamsStudents() {
 	const [exam, setExam] = useState({});
-	const { id } = useParams();
-
-	const { userInfo } = useSelector((state) => state.auth);
-
-	const dataStudent = userInfo.data.registeredData._id;
-
 	const [answeredExam, setAnsweredExam] = useState({
 		subject: "",
 		answer: "",
 		studentId: "",
 		examId: "",
 	});
-
 	const [studentAnswers, setStudentAnswers] = useState([]);
+
+	const { userInfo } = useSelector((state) => state.auth);
+	const dataStudent = userInfo.data.registeredData._id;
+	const formRef = useRef(null);
+	const { id } = useParams();
 
 	useEffect(() => {
 		const getExam = async () => {
@@ -48,25 +47,43 @@ function TakeExamsStudents() {
 	const handleChange = (event) => {
 		const { name, value } = event.target;
 
-		setStudentAnswers((prevAnswers) => [...prevAnswers, value]);
+		//Remove any previously selected answers for the current questionName
+		setStudentAnswers((prevAnswers) =>
+			prevAnswers.filter((answer) => !answer.startsWith(`${name}-`))
+		);
+
+		//Add the new answer
+		setStudentAnswers((prevAnswers) => [...prevAnswers, `${name}-${value}`]);
+
 		console.log(value);
+		console.log(name);
 	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
+		console.log(studentAnswers.length);
+
 		const updatedAnsweredExam = {
 			...answeredExam,
-			answer: studentAnswers,
+			answer: studentAnswers.map((answer, index) =>
+				answer.split(`question-${index}-`)[1].toUpperCase()
+			),
 		};
 
-		// API_Service.post("/students/answers", updatedAnsweredExam).then((res) => {
-		// 	console.log(res);
-		// }).catch = (err) => {
-		// 	console.log(err);
-		// };
+		API_Service.post("/students/exam-answers", updatedAnsweredExam).then(
+			(res) => {
+				console.log(res);
+			}
+		).catch = (err) => {
+			console.log(err);
+		};
 
 		console.log(updatedAnsweredExam);
+
+		// Reset the form
+		formRef.current.reset();
+		setStudentAnswers([]);
 	};
 
 	return (
@@ -89,7 +106,7 @@ function TakeExamsStudents() {
 					<div className='num__exam'>Number of items: {exam.examLength}</div>
 				</div>
 				<div className='form__exam--container'>
-					<Form onSubmit={handleSubmit}>
+					<Form ref={formRef} onSubmit={handleSubmit}>
 						{exam.questions &&
 							exam.questions.map((question, index) => {
 								const questionName = `question-${index}`; // Add this line
@@ -104,40 +121,40 @@ function TakeExamsStudents() {
 												inline
 												type='radio'
 												label={`A. ${question.choice_a}`}
-												name={questionName} // Modify this line
+												name={`${questionName}`} // Modify this line
 												id='optionA'
 												onChange={handleChange}
-												value='a'
+												value='A'
 												required
 											/>
 											<Form.Check
 												inline
 												type='radio'
-												label={`A. ${question.choice_b}`}
-												name={questionName} // Modify this line
+												label={`B. ${question.choice_b}`}
+												name={`${questionName}`} // Modify this line
 												id='optionB'
 												onChange={handleChange}
-												value='b'
+												value='B'
 												required
 											/>
 											<Form.Check
 												inline
 												type='radio'
-												label={`A. ${question.choice_c}`}
-												name={questionName} // Modify this line
+												label={`C. ${question.choice_c}`}
+												name={`${questionName}`} // Modify this line
 												id='optionC'
 												onChange={handleChange}
-												value='c'
+												value='C'
 												required
 											/>
 											<Form.Check
 												inline
 												type='radio'
-												label={`A. ${question.choice_d}`}
-												name={questionName} // Modify this line
+												label={`D. ${question.choice_d}`}
+												name={`${questionName}`} // Modify this line
 												id='optionD'
 												onChange={handleChange}
-												value='d'
+												value='D'
 												required
 											/>
 										</div>

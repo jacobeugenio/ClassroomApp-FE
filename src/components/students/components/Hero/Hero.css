@@ -5,6 +5,7 @@
 
 p {
 	font: 1em sans-serif;
+	font-size: 1.2rem;
 }
 
 .container__hero {
@@ -53,25 +54,34 @@ p {
 
 /* Welcome-Message Section */
 .welcome__message--container {
-	border: 1px solid green;
+	padding-top: 20px;
+	border-left: 1px solid black;
 }
 .welcome__message {
 	text-align: center;
 }
 /* Welcome-Message Section End */
 
-/* Important-Announcements Section */
-.important__announcements--container {
-	border: 1px solid yellow;
+/* Student Details Section */
+.student__details--container {
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	padding: 20px;
 }
-/* Important-Announcements Section End */
+/* Student Details Section End */
 
 /* Motivational-Quotes Section */
 .motivational__quotes--container {
-	border: 1px solid blue;
+	padding: 20px;
 }
 
 .motivational__quotes {
 	text-align: center;
 }
 /* Motivational-Quotes Section End   */
+
+@media (min-width: 320px) and (max-width: 768px) {
+	p {
+		font-size: 0.9rem;
+	}
+}
