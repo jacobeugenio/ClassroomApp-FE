@@ -9,8 +9,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import API_Service from "../../../api-service/API_Service";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const Edit_Student_Details = ({ student, getUsers }) => {
+  const { userInfo } = useSelector((state) => state.auth);
   //For registration Modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -43,7 +45,12 @@ const Edit_Student_Details = ({ student, getUsers }) => {
     try {
       const response = await API_Service.put(
         "/teachers/update-student/" + student._id,
-        formData
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.data.token}`,
+          },
+        }
       );
       toast.success(response.data.msg, {
         position: toast.POSITION.TOP_CENTER,

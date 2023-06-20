@@ -9,8 +9,10 @@ import API_Service from "../../../api-service/API_Service";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShareFromSquare, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
 
 const Create_Exam_Pt1 = () => {
+  const { userInfo } = useSelector((state) => state.auth);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -36,7 +38,12 @@ const Create_Exam_Pt1 = () => {
 
     const response = await API_Service.post(
       "/teachers/create-exam-first-part",
-      formData
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo.data.token}`,
+        },
+      }
     );
 
     if (response.data._id) {

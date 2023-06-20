@@ -5,15 +5,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const Delete_Student = ({ student, getUsers }) => {
+  const { userInfo } = useSelector((state) => state.auth);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleDelete = async () => {
     const response = await API_Service.delete(
-      "/teachers/delete-student/" + student._id
+      "/teachers/delete-student/" + student._id,
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo.data.token}`,
+        },
+      }
     );
     toast.success(response.data.msg, {
       position: toast.POSITION.TOP_CENTER,

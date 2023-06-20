@@ -8,8 +8,10 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
 
 const Create_Exam_Pt2 = () => {
+  const { userInfo } = useSelector((state) => state.auth);
   const { id } = useParams();
   const [count, setCount] = useState(1);
   const [disAbled, setDisAbled] = useState(false);
@@ -42,7 +44,12 @@ const Create_Exam_Pt2 = () => {
     const response = await API_Service.patch(
       "/teachers/create-exam-second-part/" + id,
       questions,
-      examData
+      examData,
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo.data.token}`,
+        },
+      }
     );
     console.log(response);
     navigate("/teacher/activities");
@@ -66,7 +73,12 @@ const Create_Exam_Pt2 = () => {
     const getExam = async () => {
       try {
         const response = await API_Service.get(
-          `/teachers/activities/part2/${id}`
+          `/teachers/activities/part2/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${userInfo.data.token}`,
+            },
+          }
         );
         setExamData(response.data[0]);
         // console.log(response.data);

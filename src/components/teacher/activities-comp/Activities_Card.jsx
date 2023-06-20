@@ -6,13 +6,20 @@ import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShareFromSquare } from "@fortawesome/free-solid-svg-icons";
 import DeleteActivity from "./Delete_Activity";
+import { useSelector } from "react-redux";
 
 const Activities_Card = () => {
+  const { userInfo } = useSelector((state) => state.auth);
   const [exams, setExams] = useState([]);
+
   const getExams = async () => {
     try {
-      const response = await API_Service.get("/teachers/activities");
-      console.log(response.data);
+      const response = await API_Service.get("/teachers/activities", {
+        headers: {
+          Authorization: `Bearer ${userInfo.data.token}`,
+        },
+      });
+      // console.log(response.data);
       setExams(response.data);
     } catch (error) {
       console.error(error);

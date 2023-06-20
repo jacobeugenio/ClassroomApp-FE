@@ -5,15 +5,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import API_Service from "../../../api-service/API_Service";
 import Button from "react-bootstrap/Button";
+import { useSelector } from "react-redux";
 
 const Activity_Details = () => {
+  const { userInfo } = useSelector((state) => state.auth);
   const [exam, setExam] = useState({});
   const { id } = useParams();
 
   useEffect(() => {
     const getExam = async () => {
       try {
-        const response = await API_Service.get(`/teachers/activities/${id}`);
+        const response = await API_Service.get(`/teachers/activities/${id}`, {
+          headers: {
+            Authorization: `Bearer ${userInfo.data.token}`,
+          },
+        });
         console.log(response);
         // console.log(response.data[0]);
         setExam(response.data[0]);

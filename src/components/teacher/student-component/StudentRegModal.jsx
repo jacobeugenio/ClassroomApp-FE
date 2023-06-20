@@ -10,8 +10,10 @@ import API_Service from "../../../api-service/API_Service";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const StudentRegModal = (getStudents) => {
+  const { userInfo } = useSelector((state) => state.auth);
   //For registration Modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -49,7 +51,12 @@ const StudentRegModal = (getStudents) => {
     try {
       const response = await API_Service.post(
         "/teachers/add-student",
-        formData
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.data.token}`,
+          },
+        }
       );
       toast.success(response.data.msg, {
         position: toast.POSITION.TOP_CENTER,

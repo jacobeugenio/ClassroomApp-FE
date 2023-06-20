@@ -5,13 +5,19 @@ import StudentRegmodal from "./student-component/StudentRegModal";
 
 import Container from "react-bootstrap/Container";
 import API_Service from "../../api-service/API_Service";
+import { useSelector } from "react-redux";
 
 const Students = () => {
+  const { userInfo } = useSelector((state) => state.auth);
   const [students, setStudents] = useState([]);
 
   const getUsers = async () => {
     try {
-      const response = await API_Service.get("/teachers/get-students");
+      const response = await API_Service.get("/teachers/get-students", {
+        headers: {
+          Authorization: `Bearer ${userInfo.data.token}`,
+        },
+      });
       setStudents(response.data);
     } catch (error) {
       console.error(error);
@@ -21,6 +27,7 @@ const Students = () => {
   useEffect(() => {
     getUsers();
   }, []);
+
   return (
     <>
       <Header />

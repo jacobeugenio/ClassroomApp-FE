@@ -4,15 +4,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faXmark } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-bootstrap/Modal";
 import API_Service from "../../../api-service/API_Service";
+import { useSelector } from "react-redux";
 
 const Delete_Activity = (props) => {
+  const { userInfo } = useSelector((state) => state.auth);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleDelete = async () => {
     const response = await API_Service.delete(
-      "teachers/activities/" + props.exam._id
+      "teachers/activities/" + props.exam._id,
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo.data.token}`,
+        },
+      }
     );
     console.log(response.data.msg);
     props.func();
