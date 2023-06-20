@@ -19,7 +19,11 @@ function HeroStudents() {
 	useEffect(() => {
 		const getExams = async () => {
 			try {
-				const response = await API_Service.get("/teachers/activities");
+				const response = await API_Service.get("/teachers/activities", {
+					headers: {
+						Authorization: `Bearer ${userInfo.data.token}`,
+					},
+				});
 				// console.log(response.data.length);
 				setNumberOfExams(response.data.length);
 			} catch (error) {
@@ -33,7 +37,11 @@ function HeroStudents() {
 	useEffect(() => {
 		const getStudents = async () => {
 			try {
-				const response = await API_Service.get("/teachers/get-students");
+				const response = await API_Service.get("/teachers/get-students", {
+					headers: {
+						Authorization: `Bearer ${userInfo.data.token}`,
+					},
+				});
 				// console.log(response.data.length);
 				setNumberOfStudents(response.data.length);
 			} catch (error) {

@@ -7,15 +7,12 @@ import "./Attendance.css";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { toast } from "react-toastify";
 
 function AttendanceStudents() {
 	const { userInfo } = useSelector((state) => state.auth);
-	// console.log(userInfo.data.registeredData.fname);
 
 	const { fname, lname, email } = userInfo.data.registeredData;
-	console.log(fname);
-	console.log(lname);
-	console.log(email);
 
 	const [attendanceForm, setAttendanceForm] = useState({
 		attendance: "",
@@ -29,13 +26,11 @@ function AttendanceStudents() {
 		const { name, value } = event.target;
 
 		if (event.target.type === "radio") {
-			// If it's a radio button, update the attendance value
 			setAttendanceForm((prevAttendanceForm) => ({
 				...prevAttendanceForm,
 				attendance: value,
 			}));
 		} else {
-			// For other input fields, update the respective form field
 			setAttendanceForm((prevAttendanceForm) => ({
 				...prevAttendanceForm,
 				[name]: value,
@@ -43,18 +38,28 @@ function AttendanceStudents() {
 		}
 	};
 
-	const handleSubmitForm = (event) => {
+	const handleSubmitForm = async (event) => {
 		event.preventDefault();
 
-		API_Service.post("students/attendance-students", attendanceForm)
-			.then((response) => {
-				console.log(response);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		try {
+			const response = await API_Service.post(
+				"students/attendance-students",
+				attendanceForm,
+				{
+					headers: {
+						Authorization: `Bearer ${userInfo.data.token}`,
+					},
+				}
+			);
+			if (response.data.status) {
+				toast.success(response.data.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
+			}
+		} catch (error) {
+			console.log(error);
+		}
 
-		console.log(attendanceForm);
 		setAttendanceForm({
 			attendance: "",
 			comment: "",

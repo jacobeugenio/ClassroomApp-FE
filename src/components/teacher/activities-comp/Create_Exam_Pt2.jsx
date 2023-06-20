@@ -134,6 +134,7 @@ const Create_Exam_Pt2 = () => {
                     placeholder="question"
                     value={questions.question}
                     onChange={(e) => handleChange(e, index)}
+                    required
                   />
                   {error.question}
                 </Form.Group>
@@ -197,7 +198,7 @@ const Create_Exam_Pt2 = () => {
                     name="answer"
                     required
                   >
-                    <option value="">Select answer key...</option>
+                    <option disabled>Select answer key...</option>
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="C">C</option>
