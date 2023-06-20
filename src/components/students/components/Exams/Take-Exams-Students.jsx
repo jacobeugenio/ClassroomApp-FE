@@ -29,7 +29,11 @@ function TakeExamsStudents() {
 	useEffect(() => {
 		const getExam = async () => {
 			try {
-				const response = await API_Service.get(`/students/exam/${id}`);
+				const response = await API_Service.get(`/students/exam/${id}`, {
+					headers: {
+						Authorization: `Bearer ${userInfo.data.token}`,
+					},
+				});
 				setExam(response.data[0]);
 				setAnsweredExam({
 					examId: response.data[0]._id,
@@ -62,8 +66,6 @@ function TakeExamsStudents() {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		console.log(studentAnswers.length);
-
 		const updatedAnsweredExam = {
 			...answeredExam,
 			answer: studentAnswers.map((answer, index) =>
@@ -71,11 +73,13 @@ function TakeExamsStudents() {
 			),
 		};
 
-		API_Service.post("/students/exam-answers", updatedAnsweredExam).then(
-			(res) => {
-				console.log(res);
-			}
-		).catch = (err) => {
+		API_Service.post("/students/exam-answers", updatedAnsweredExam, {
+			headers: {
+				Authorization: `Bearer ${userInfo.data.token}`,
+			},
+		}).then((res) => {
+			console.log(res);
+		}).catch = (err) => {
 			console.log(err);
 		};
 
@@ -98,7 +102,7 @@ function TakeExamsStudents() {
 					</Link>
 				</div>
 				<div className='take__exam--container'>
-					<div className='title__holder py-3'>Classroom Management App</div>
+					<div className='title__holder py-4'>Classroom Management App</div>
 					<div className='subject__exam'>Subject: {exam.subject}</div>
 					<div className='title__exam'>Title: {exam.title}</div>
 					<div className='d-flex justify-content-between px-4'>

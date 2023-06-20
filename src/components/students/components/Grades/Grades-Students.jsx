@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import HeaderStudents from "../../layout/Header/Header-Students";
+import { useSelector } from "react-redux";
 import "./Grades.css";
 
 import { Container } from "react-bootstrap";
@@ -8,10 +9,16 @@ import API_Service from "../../../../api-service/API_Service";
 function GradesStudents() {
 	const [examsData, setExamsData] = useState([]);
 
+	const { userInfo } = useSelector((state) => state.auth);
+
 	useEffect(() => {
 		const getExams = async () => {
 			try {
-				const response = await API_Service.get("/teachers/activities");
+				const response = await API_Service.get("/teachers/activities", {
+					headers: {
+						Authorization: `Bearer ${userInfo.data.token}`,
+					},
+				});
 				// console.log(response.data.length);
 				setExamsData(response.data);
 			} catch (error) {
