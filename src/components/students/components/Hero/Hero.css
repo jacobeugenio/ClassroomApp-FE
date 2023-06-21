@@ -97,6 +97,13 @@ p {
 	p {
 		font-size: 0.9rem;
 	}
+
+	.welcome__message--container {
+		background-color: #fff9;
+		border-radius: 0px 0px 0px 0px;
+		padding-top: 20px;
+		border-left: 1px solid grey;
+	}
 }
 
 @media (min-width: 320px) and (max-width: 425px) {

@@ -44,7 +44,7 @@
 .table__head--grades {
 	padding: 20px;
 	background-color: #d5d1defe;
-	border-radius: 20px 20px 0px 0px;
+	border-radius: 20px;
 	text-align: center;
 	font-size: large;
 }
@@ -65,16 +65,16 @@
 	}
 
 	.table__head--grades {
-		padding: 20px;
+		padding: 20px 0px;
 		background-color: #d5d1defe;
 		border-radius: 20px;
 		text-align: center;
-		font-size: 0.5rem;
+		font-size: 0.6rem;
 	}
 
 	.table__body--grades {
 		text-align: center;
-		padding: 20px;
-		font-size: 0.5rem;
+		padding: 10px;
+		font-size: 0.6rem;
 	}
 }

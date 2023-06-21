@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import HeaderStudents from "../../layout/Header/Header-Students";
 import { useSelector } from "react-redux";
+import HeaderStudents from "../../layout/Header/Header-Students";
+import API_Service from "../../../../api-service/API_Service";
 import "./Grades.css";
 
 import { Container } from "react-bootstrap";
-import API_Service from "../../../../api-service/API_Service";
 
 function GradesStudents() {
 	const [examsData, setExamsData] = useState([]);
@@ -27,9 +27,7 @@ function GradesStudents() {
 		};
 
 		getExams();
-	}, []);
-
-	console.log(examsData);
+	}, [userInfo.data.token]);
 
 	return (
 		<div className='body__grades'>
@@ -53,7 +51,7 @@ function GradesStudents() {
 								{examsData.map((data, index) => {
 									return (
 										<tr key={index + 1}>
-											<td className='table__body--grades'>1</td>
+											<td className='table__body--grades'>{index + 1}</td>
 											<td className='table__body--grades'>{data.subject}</td>
 											<td className='table__body--grades'>{data.title}</td>
 											<td className='table__body--grades'>90%</td>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import HeaderStudents from "../../layout/Header/Header-Students";
 import API_Service from "../../../../api-service/API_Service";
-import { Link } from "react-router-dom";
 import "./Exams-Cards.css";
 
 import { Container } from "react-bootstrap";
@@ -18,22 +18,22 @@ function ExamsCards() {
 
 	const { userInfo } = useSelector((state) => state.auth);
 
-	const getExams = async () => {
-		try {
-			const response = await API_Service.get("/teachers/activities", {
-				headers: {
-					Authorization: `Bearer ${userInfo.data.token}`,
-				},
-			});
-			console.log(response.data);
-			setExams(response.data);
-		} catch (error) {
-			console.error(error);
-		}
-	};
 	useEffect(() => {
+		const getExams = async () => {
+			try {
+				const response = await API_Service.get("/teachers/activities", {
+					headers: {
+						Authorization: `Bearer ${userInfo.data.token}`,
+					},
+				});
+				setExams(response.data);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+
 		getExams();
-	}, []);
+	}, [userInfo.data.token]);
 
 	return (
 		<div className='body__card'>

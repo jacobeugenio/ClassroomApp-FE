@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import "./Hero.css";
-import HeaderStudents from "../../layout/Header/Header-Students";
 import { useSelector } from "react-redux";
+import HeaderStudents from "../../layout/Header/Header-Students";
+import API_Service from "../../../../api-service/API_Service";
+import "./Hero.css";
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import { Card } from "react-bootstrap";
-import API_Service from "../../../../api-service/API_Service";
 
 function HeroStudents() {
 	const [numberOfExams, setNumberOfExams] = useState();
@@ -24,7 +24,7 @@ function HeroStudents() {
 						Authorization: `Bearer ${userInfo.data.token}`,
 					},
 				});
-				// console.log(response.data.length);
+
 				setNumberOfExams(response.data.length);
 			} catch (error) {
 				console.error(error);
@@ -32,7 +32,7 @@ function HeroStudents() {
 		};
 
 		getExams();
-	}, []);
+	}, [userInfo.data.token]);
 
 	useEffect(() => {
 		const getStudents = async () => {
@@ -42,7 +42,7 @@ function HeroStudents() {
 						Authorization: `Bearer ${userInfo.data.token}`,
 					},
 				});
-				// console.log(response.data.length);
+
 				setNumberOfStudents(response.data.length);
 			} catch (error) {
 				console.error(error);
@@ -50,7 +50,7 @@ function HeroStudents() {
 		};
 
 		getStudents();
-	}, []);
+	}, [userInfo.data.token]);
 
 	return (
 		<div className='body__hero'>
@@ -58,8 +58,6 @@ function HeroStudents() {
 			<Container className='container__hero'>
 				<Row>
 					<Col lg={6} md={6} className='student__profile--container'>
-						{/* Student Name and Profile */}
-
 						<div className='profile__picture'>
 							<img
 								src={dataStudent.img}
@@ -95,7 +93,6 @@ function HeroStudents() {
 						</div>
 					</Col>
 					<Col lg={6} md={6} className='welcome__message--container'>
-						{/* Welcome Message */}
 						<div className='title__holder'>
 							<u>
 								<h2>
@@ -123,7 +120,6 @@ function HeroStudents() {
 						</Card>
 					</Col>
 					<Col md={4}>
-						{" "}
 						<Card>
 							<Card.Body>
 								<Card.Title>{numberOfStudents}</Card.Title>
@@ -142,7 +138,6 @@ function HeroStudents() {
 				</Row>
 				<Row>
 					<Col lg={12} className='motivational__quotes--container'>
-						{/* Motivational Quotes */}
 						<div className='title__holder'>
 							<u>
 								<h2>Motivational Quotes</h2>

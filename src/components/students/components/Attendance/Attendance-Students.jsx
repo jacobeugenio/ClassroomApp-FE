@@ -55,6 +55,10 @@ function AttendanceStudents() {
 				toast.success(response.data.message, {
 					position: toast.POSITION.TOP_CENTER,
 				});
+			} else {
+				toast.error(response.data.message, {
+					position: toast.POSITION.TOP_CENTER,
+				});
 			}
 		} catch (error) {
 			console.log(error);
@@ -79,7 +83,6 @@ function AttendanceStudents() {
 					>
 						<div className='title__holder--attendance'>Attendance Form</div>
 						<h3>Can you Attend?</h3>
-
 						<div className='mb-3'>
 							<Form.Group>
 								<strong>
@@ -104,7 +107,6 @@ function AttendanceStudents() {
 								</strong>
 							</Form.Group>
 						</div>
-
 						<Form.Control
 							as='textarea'
 							name='comment'
