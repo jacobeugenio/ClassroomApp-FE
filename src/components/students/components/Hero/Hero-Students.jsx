@@ -97,9 +97,11 @@ function HeroStudents() {
 					<Col lg={6} md={6} className='welcome__message--container'>
 						{/* Welcome Message */}
 						<div className='title__holder'>
-							<h2>
-								Welcome, {dataStudent.fname} {dataStudent.lname}
-							</h2>
+							<u>
+								<h2>
+									Welcome, {dataStudent.fname} {dataStudent.lname}
+								</h2>
+							</u>
 						</div>
 						<div className='welcome__message'>
 							<p>
@@ -142,15 +144,19 @@ function HeroStudents() {
 					<Col lg={12} className='motivational__quotes--container'>
 						{/* Motivational Quotes */}
 						<div className='title__holder'>
-							<h2>Motivational Quotes</h2>
+							<u>
+								<h2>Motivational Quotes</h2>
+							</u>
 						</div>
 						<div className='motivational__quotes'>
-							<p>
+							<p style={{ fontSize: "20px" }}>
 								"Success is not final, failure is not fatal: It is the courage
 								to continue that counts."
 							</p>
 							<p>
-								<strong>- Winston Churchill</strong>
+								<strong style={{ fontSize: "20px" }}>
+									- Winston Churchill
+								</strong>
 							</p>
 						</div>
 					</Col>

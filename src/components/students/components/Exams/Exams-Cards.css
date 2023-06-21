@@ -6,7 +6,7 @@
 /* Exam_Cards_Students_Section */
 
 .body__card {
-	height: 100vh;
+	height: 100%;
 	background: url(../../../../assets/images/html_table.jpg) center / cover;
 }
 
@@ -23,6 +23,7 @@
 	font-weight: 700;
 	font-size: 2rem;
 	width: fit-content;
+	height: 75px;
 }
 
 .exam__length {
@@ -46,7 +47,7 @@
 /* Take_Exams_Students_Section */
 
 .body__take--exam {
-	height: 130vw;
+	height: 200vh !important;
 	/* background-size: contain !important;
 	background-repeat: no-repeat; */
 	background: url(../../../../assets/images/html_table.jpg) center / cover;
