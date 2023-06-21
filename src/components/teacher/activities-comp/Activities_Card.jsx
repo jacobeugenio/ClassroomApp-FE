@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 import API_Service from "../../../api-service/API_Service";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShareFromSquare } from "@fortawesome/free-solid-svg-icons";
 import DeleteActivity from "./Delete_Activity";

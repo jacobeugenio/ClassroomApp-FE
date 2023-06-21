@@ -15,10 +15,7 @@ const Create_Exam_Pt2 = () => {
   const { userInfo } = useSelector((state) => state.auth);
   const { id } = useParams();
   const [count, setCount] = useState(1);
-  const [disAbled, setDisAbled] = useState(false);
-  const [error, setError] = useState({
-    question: "",
-  });
+
   const [examData, setExamData] = useState({});
   const [questions, setQuestions] = useState([
     {
@@ -40,29 +37,52 @@ const Create_Exam_Pt2 = () => {
 
   const navigate = useNavigate();
 
+  const validateQuestions = (questions) => {
+    let valid = false;
+    questions.map((question, index) => {
+      if (
+        !question.question ||
+        !question.choice_a ||
+        !question.choice_b ||
+        !question.choice_c ||
+        !question.choice_d ||
+        !question.answer
+      ) {
+        valid = false;
+      } else {
+        valid = true;
+      }
+    });
+    return valid;
+  };
+
   const onSubmitForm = async (event) => {
     event.preventDefault();
 
-    console.log();
-
-    try {
-      const response = await API_Service.patch(
-        "/teachers/create-exam-second-part/" + id,
-        questions,
-        {
-          headers: {
-            Authorization: `Bearer ${userInfo.data.token}`,
-          },
+    const validator = validateQuestions(questions);
+    console.log(validator);
+    if (validator) {
+      try {
+        const response = await API_Service.patch(
+          "/teachers/create-exam-second-part/" + id,
+          questions,
+          {
+            headers: {
+              Authorization: `Bearer ${userInfo.data.token}`,
+            },
+          }
+        );
+        if (response.data.status) {
+          toast.success(response.data.msg);
+          navigate("/teacher/activities");
+        } else {
+          toast.error(response.data.msg);
         }
-      );
-      if (response.data.status) {
-        toast.success(response.data.msg);
-        navigate("/teacher/activities");
-      } else {
-        toast.error(response.data.msg);
+      } catch (error) {
+        toast.error(error.response.data.msg);
       }
-    } catch (error) {
-      toast.error(error.response.data.msg);
+    } else {
+      toast.warning("Please fill out all fields!..");
     }
   };
 
@@ -132,11 +152,10 @@ const Create_Exam_Pt2 = () => {
                     type="text"
                     name="question"
                     placeholder="question"
-                    value={questions.question}
+                    value={question.question}
                     onChange={(e) => handleChange(e, index)}
                     required
                   />
-                  {error.question}
                 </Form.Group>
                 <Row className="mb-3">
                   <Form.Group as={Col} controlId="choice_a">
@@ -145,7 +164,7 @@ const Create_Exam_Pt2 = () => {
                       type="text"
                       name="choice_a"
                       placeholder="choice_a"
-                      value={questions.choice_a}
+                      value={question.choice_a}
                       onChange={(e) => handleChange(e, index)}
                       required
                     />
@@ -157,7 +176,7 @@ const Create_Exam_Pt2 = () => {
                       type="text"
                       name="choice_b"
                       placeholder="choice_b"
-                      value={questions.choice_b}
+                      value={question.choice_b}
                       onChange={(e) => handleChange(e, index)}
                       required
                     />
@@ -170,7 +189,7 @@ const Create_Exam_Pt2 = () => {
                       type="text"
                       name="choice_c"
                       placeholder="choice_c"
-                      value={questions.choice_c}
+                      value={question.choice_c}
                       onChange={(e) => handleChange(e, index)}
                       required
                     />
@@ -182,23 +201,23 @@ const Create_Exam_Pt2 = () => {
                       type="text"
                       name="choice_d"
                       placeholder="choice_d"
-                      value={questions.choice_d}
+                      value={question.choice_d}
                       onChange={(e) => handleChange(e, index)}
                       required
                     />
                   </Form.Group>
                 </Row>
                 <Form.Group as={Col} controlId="answer">
-                  <Form.Label>Set Answer</Form.Label>
+                  <Form.Label>Set answer...</Form.Label>
                   <Form.Control
                     type="text"
                     as="select"
-                    value={questions.answer}
+                    value={question.answer}
                     onChange={(e) => handleChange(e, index)}
                     name="answer"
                     required
                   >
-                    <option disabled>Select answer key...</option>
+                    <option value="">Select answer key...</option>
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="C">C</option>
@@ -229,7 +248,6 @@ const Create_Exam_Pt2 = () => {
         ) : (
           <>
             <Button
-              disabled={disAbled}
               className="mt-3 mb-5"
               variant="success"
               size="sm"

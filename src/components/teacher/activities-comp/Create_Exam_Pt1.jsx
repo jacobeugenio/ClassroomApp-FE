@@ -61,7 +61,7 @@ const Create_Exam_Pt1 = () => {
 
   return (
     <>
-      <Container className="mt-3">
+      <Container className="mt-3 ps-5">
         <Button variant="success" size="sm" onClick={handleShow}>
           <FontAwesomeIcon icon={faPlus} /> <span>Create Exam</span>
         </Button>
