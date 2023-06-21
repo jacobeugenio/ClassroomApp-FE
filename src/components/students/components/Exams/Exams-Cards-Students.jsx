@@ -49,7 +49,7 @@ function ExamsCards() {
 											<div className='exam__subject'>{exam.subject}</div>
 											<div className='exam__length'>{exam.examLength}</div>
 										</Card.Header>
-										<Card.Body style={{ height: "75px" }}>
+										<Card.Body>
 											<Card.Title>
 												<div className='exam__title'>{exam.title}</div>
 											</Card.Title>
