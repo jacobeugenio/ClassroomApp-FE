@@ -18,20 +18,20 @@ function ExamsCards() {
 
 	const { userInfo } = useSelector((state) => state.auth);
 
+	const getExams = async () => {
+		try {
+			const response = await API_Service.get("/students/exams", {
+				headers: {
+					Authorization: `Bearer ${userInfo.data.token}`,
+				},
+			});
+			console.log(response.data);
+			setExams(response.data);
+		} catch (error) {
+			console.error(error);
+		}
+	};
 	useEffect(() => {
-		const getExams = async () => {
-			try {
-				const response = await API_Service.get("/teachers/activities", {
-					headers: {
-						Authorization: `Bearer ${userInfo.data.token}`,
-					},
-				});
-				setExams(response.data);
-			} catch (error) {
-				console.error(error);
-			}
-		};
-
 		getExams();
 	}, [userInfo.data.token]);
 
