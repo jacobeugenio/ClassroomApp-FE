@@ -30,55 +30,61 @@ const Activity_Details = () => {
   }, [id]);
 
   return (
-    <Container className="my-3">
-      <div className="questionaire">
-        <Link to="/teacher/activities">
-          <Button variant="outline-success" size="sm">
-            <FontAwesomeIcon icon={faArrowLeft} />
-            Back
-          </Button>
-        </Link>
-        <h3 className="text-center ms-5">Activity Details</h3>
-        <div className="d-flex">
-          <h6>Subject: </h6> <span className="ms-4">{exam.subject}</span>
-        </div>
-        <div className="d-flex">
-          <h6>Title: </h6>
-          <span className="ms-4">{exam.title}</span>
-        </div>
-        <div className="d-flex">
-          <h6>Description: </h6>
-          <span className="ms-4">{exam.desc}</span>
-        </div>
-        <div className="d-flex">
-          <h6>Activity No: </h6> <span className="ms-4">{exam._id}</span>
-        </div>
-        <div className="d-flex">
-          <h6>Activity Length: </h6>
-          <span className="ms-4">{exam.examLength}</span>
-        </div>
+    <>
+      <Container className="my-3">
+        <div className="questionaire">
+          <Link to="/teacher/activities">
+            <Button
+              variant="success"
+              size="sm"
+              style={{ marginBottom: -40, width: 90 }}
+            >
+              <FontAwesomeIcon icon={faArrowLeft} className="me-1" />
+              Back
+            </Button>
+          </Link>
+          <h3 className="text-center ms-5">Activity Details</h3>
+          <div className="d-flex">
+            <h6>Subject: </h6> <span className="ms-4">{exam.subject}</span>
+          </div>
+          <div className="d-flex">
+            <h6>Title: </h6>
+            <span className="ms-4">{exam.title}</span>
+          </div>
+          <div className="d-flex">
+            <h6>Description: </h6>
+            <span className="ms-4">{exam.desc}</span>
+          </div>
+          <div className="d-flex">
+            <h6>Activity No: </h6> <span className="ms-4">{exam._id}</span>
+          </div>
+          <div className="d-flex">
+            <h6>Activity Length: </h6>
+            <span className="ms-4">{exam.examLength}</span>
+          </div>
 
-        <h6>Questions</h6>
-        {exam.questions &&
-          exam.questions.map((question, index) => {
-            return (
-              <Container key={index} className="mb-3">
-                <div className="mt-3 view-questionaire">
-                  <h6>
-                    Q{index + 1}: {question.question}
-                  </h6>
-                  <div className="">
-                    <span className="mx-3">A. {question.choice_a}</span>
-                    <span className="mx-3">B. {question.choice_b}</span>
-                    <span className="mx-3">C. {question.choice_c}</span>
-                    <span className="mx-3">D. {question.choice_d}</span>
+          <h6>Questions</h6>
+          {exam.questions &&
+            exam.questions.map((question, index) => {
+              return (
+                <Container key={index} className="mb-3">
+                  <div className="mt-3 view-questionaire">
+                    <h6>
+                      Q{index + 1}: {question.question}
+                    </h6>
+                    <div className="">
+                      <span className="mx-3">A. {question.choice_a}</span>
+                      <span className="mx-3">B. {question.choice_b}</span>
+                      <span className="mx-3">C. {question.choice_c}</span>
+                      <span className="mx-3">D. {question.choice_d}</span>
+                    </div>
                   </div>
-                </div>
-              </Container>
-            );
-          })}
-      </div>
-    </Container>
+                </Container>
+              );
+            })}
+        </div>
+      </Container>
+    </>
   );
 };
 

@@ -28,7 +28,7 @@ const Create_Exam_Pt1 = () => {
   });
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    // const { name, value } = event.target;
     console.log(name, value);
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };

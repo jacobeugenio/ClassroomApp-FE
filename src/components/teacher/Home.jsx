@@ -93,7 +93,7 @@ const Home = () => {
               }}
             />
             <br />
-            <h5>
+            <h5 className="mt-3">
               {userInfo.data.registeredData.gender === "Male" ? (
                 <>
                   <span>Mr. </span>
@@ -103,11 +103,11 @@ const Home = () => {
                   <span>Ms. </span>
                 </>
               )}
+              {userInfo.data.registeredData.fname + " "}
               {userInfo.data.registeredData.lname}
-              {userInfo.data.registeredData.fname}
             </h5>
             <Link to="/teacher/profile">
-              <Button variant="outline-info" size="sm" className="mb-4">
+              <Button variant="outline-success" size="sm" className="mb-4">
                 View Profile
               </Button>{" "}
             </Link>

@@ -29,7 +29,7 @@ const Create_Exam_Pt2 = () => {
   ]);
 
   const handleChange = (e, index) => {
-    console.log(index, e.target.name, e.target.value);
+    // console.log(index, e.target.name, e.target.value);
     const data = [...questions];
     data[index][e.target.name] = e.target.value;
     setQuestions(data);

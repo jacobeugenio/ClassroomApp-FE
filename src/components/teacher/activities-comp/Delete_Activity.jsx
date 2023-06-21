@@ -34,7 +34,7 @@ const Delete_Activity = (props) => {
   return (
     <>
       <Button
-        variant="success"
+        variant="outline-success"
         size="sm"
         className="d-flex align-items-center me-1"
         onClick={handleShow}
