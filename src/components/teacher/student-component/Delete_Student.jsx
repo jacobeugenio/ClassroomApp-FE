@@ -41,7 +41,7 @@ const Delete_Student = ({ student, getUsers }) => {
         <span className="ms-1">Delete</span>
       </Button>
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header style={{ backgroundColor: "#98eecc" }} closeButton>
           <Modal.Title>Deleting Student!</Modal.Title>
         </Modal.Header>
 

@@ -6,6 +6,7 @@ import StudentRegmodal from "./student-component/StudentRegModal";
 import Container from "react-bootstrap/Container";
 import API_Service from "../../api-service/API_Service";
 import { useSelector } from "react-redux";
+import StudentsAttendance from "./student-component/Students_Attendance";
 
 const Students = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -36,8 +37,15 @@ const Students = () => {
         <hr />
         <StudentRegmodal func={getUsers} />
       </Container>
-      <Container>
+      <Container className="mb-5">
         <StudentDetails students={students} getUsers={getUsers} />
+      </Container>
+      <Container>
+        <h3>Students Attendance</h3>
+        <hr />
+      </Container>
+      <Container className="activities-container mb-5">
+        <StudentsAttendance />
       </Container>
     </>
   );

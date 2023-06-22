@@ -167,7 +167,7 @@ const Home = () => {
       <Container className="activities-container">
         <ActivitiesCard />
       </Container>
-      <Container className="profile-container">
+      <Container className="profile-container mb-3">
         <StudentProfile />
       </Container>
     </>

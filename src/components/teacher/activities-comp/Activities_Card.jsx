@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import DeleteActivity from "./Delete_Activity";
 import { useSelector } from "react-redux";
 import PublishActivity from "./Publish_Activity";
+import moment from "moment/moment";
 
 const Activities_Card = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -41,7 +42,12 @@ const Activities_Card = () => {
                   <h4 className="float-end">{exam.examLength}</h4>
                 </Card.Header>
                 <Card.Body className="card-body">
-                  <Card.Title>{exam.title}</Card.Title>
+                  <Card.Title style={{ fontSize: 14, fontWeight: "bold" }}>
+                    {exam.title}
+                  </Card.Title>
+                  <Card.Text style={{ fontSize: 12 }}>
+                    {moment(exam.createdAt).format("MMMM Do YYYY")}
+                  </Card.Text>
                 </Card.Body>
               </Link>
               <Card.Footer

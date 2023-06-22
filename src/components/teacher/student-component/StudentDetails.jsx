@@ -1,10 +1,7 @@
 import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
-
 import EditStudentDetails from "./Edit_Student_Details";
 import DeleteStudent from "./Delete_Student";
+import StudentFullDetails from "../profile-comp/Student_Full_Details";
 
 const StudentDetails = ({ students, getUsers }) => {
   const studentData = students.map((student, index) => {
@@ -26,24 +23,9 @@ const StudentDetails = ({ students, getUsers }) => {
         <td>
           {student.lname.charAt(0).toUpperCase() + student.lname.slice(1)}
         </td>
-        <td>{student.username}</td>
-        <td>{student.contact}</td>
         <td>{student.email}</td>
-
-        <td>
-          {student.gender.charAt(0).toUpperCase() + student.gender.slice(1)}
-        </td>
-        <td>{student.age}</td>
         <td className="d-flex flex-row">
-          <Button
-            variant="outline-success"
-            size="sm"
-            className="mx-1 d-flex flex-row align-items-center p-1"
-          >
-            <FontAwesomeIcon icon={faEye} />
-            <span>View</span>
-          </Button>
-
+          <StudentFullDetails student={student} />
           <EditStudentDetails student={student} getUsers={getUsers} />
           <DeleteStudent student={student} getUsers={getUsers} />
         </td>
@@ -65,11 +47,7 @@ const StudentDetails = ({ students, getUsers }) => {
           <th>Profile</th>
           <th>First Name</th>
           <th>Last Name</th>
-          <th>Username</th>
-          <th>Contact</th>
           <th>Email</th>
-          <th>Gender</th>
-          <th>Age</th>
           <th>Action</th>
         </tr>
       </thead>

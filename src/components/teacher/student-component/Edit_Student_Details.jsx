@@ -74,7 +74,7 @@ const Edit_Student_Details = ({ student, getUsers }) => {
         <span>Edit</span>
       </Button>
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header style={{ backgroundColor: "#98eecc" }} closeButton>
           <Modal.Title>Edit Student Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -173,17 +173,6 @@ const Edit_Student_Details = ({ student, getUsers }) => {
                 />
               </Form.Group>
             </Row>
-            {/* <Row className="mb-3">
-              <Form.Group controlId="img" className="mb-3">
-                <Form.Label>Upload profile picture</Form.Label>
-                <Form.Control
-                  type="file"
-                  onChange={handleChange}
-                  value={formData.img}
-                  name="img"
-                />
-              </Form.Group>
-            </Row> */}
             <Row className="mb-3">
               <Form.Group as={Col} controlId="password1">
                 <Form.Label>Password</Form.Label>
@@ -198,20 +187,12 @@ const Edit_Student_Details = ({ student, getUsers }) => {
             </Row>
 
             <hr className="mt-4" />
-            <Button variant="primary" type="submit">
+            <Button variant="success" type="submit">
               <FontAwesomeIcon icon={faPenToSquare} /> Update Student
               Information
             </Button>
           </Form>
         </Modal.Body>
-        {/* <Modal.Footer>
-                   <Button variant="secondary" onClick={handleClose}>
-                       Close
-                   </Button>
-                   <Button variant="primary" onClick={handleClose}>
-                       Save Changes
-                   </Button>
-               </Modal.Footer> */}
       </Modal>
     </>
   );

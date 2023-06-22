@@ -44,7 +44,7 @@ const Delete_Activity = (props) => {
       </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Deleting Student!</Modal.Title>
+          <Modal.Title>Deleting Activity!</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
