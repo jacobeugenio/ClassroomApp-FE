@@ -24,7 +24,7 @@ const Students_Attendance = () => {
       console.error(error);
     }
   };
-  console.log(attendance);
+
   useEffect(() => {
     getAttendance();
   }, []);
@@ -39,13 +39,14 @@ const Students_Attendance = () => {
         <td>
           {student.lname.charAt(0).toUpperCase() + student.lname.slice(1)}
         </td>
-        <td className="text-center">
+        {/* <td className="text-center">
           {student.attendance === "present" ? (
             <FontAwesomeIcon icon={faCheck} />
           ) : (
             <FontAwesomeIcon icon={faXmark} />
           )}
-        </td>
+        </td> */}
+        <td>{moment(student.createdAt).format("MMMM Do YYYY, h:mm:ss a")}</td>
       </tr>
     );
   });
@@ -60,11 +61,10 @@ const Students_Attendance = () => {
           }}
         >
           <tr>
-            <th colSpan={3}>June 2023</th>
-            <th>{moment().format("dddd")}</th>
-            <th>{moment().format("dddd")}</th>
-            <th>{moment().format("dddd")}</th>
-            <th>{moment().format("dddd")}</th>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date Submitted</th>
           </tr>
         </thead>
         <tbody>{attendanceData}</tbody>

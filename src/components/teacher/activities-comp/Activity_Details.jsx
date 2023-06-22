@@ -6,10 +6,14 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import API_Service from "../../../api-service/API_Service";
 import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
+import StudentScores from "../student-component/Student_Scores";
 
 const Activity_Details = () => {
   const { userInfo } = useSelector((state) => state.auth);
   const [exam, setExam] = useState({});
+  const [answers, setAnswers] = useState({});
+  const [student, setStudent] = useState({});
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -28,6 +32,48 @@ const Activity_Details = () => {
 
     getExam();
   }, [id]);
+
+  useEffect(() => {
+    const getAnswer = async () => {
+      try {
+        const response = await API_Service.get(
+          `/teachers/get-students-answered-exams/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${userInfo.data.token}`,
+            },
+          }
+        );
+        console.log(response.data);
+        setAnswers(response.data[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getAnswer();
+  }, [id]);
+  console.log(answers.studentId);
+  useEffect(() => {
+    const getStudent = async () => {
+      // try {
+      //   const response = await API_Service.get(
+      //     `/teachers/get-students/${answers.studentId}`,
+      //     {
+      //       headers: {
+      //         Authorization: `Bearer ${userInfo.data.token}`,
+      //       },
+      //     }
+      //   );
+      //   console.log(response.data);
+      //   setStudent(response.data);
+      // } catch (error) {
+      //   console.log(error);
+      // }
+    };
+
+    getStudent();
+  }, []);
 
   return (
     <>
@@ -77,12 +123,21 @@ const Activity_Details = () => {
                       <span className="mx-3">B. {question.choice_b}</span>
                       <span className="mx-3">C. {question.choice_c}</span>
                       <span className="mx-3">D. {question.choice_d}</span>
+                      <span className="mx-3">AK. {question.answer}</span>
                     </div>
                   </div>
                 </Container>
               );
             })}
         </div>
+      </Container>
+      <Container className="my-4">
+        <hr />
+        {!answers.length ? (
+          <h6 className="ms-5">No student take the exam yet!...... </h6>
+        ) : (
+          <StudentScores />
+        )}
       </Container>
     </>
   );

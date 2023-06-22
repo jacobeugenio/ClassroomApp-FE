@@ -34,7 +34,7 @@ const StudentDetails = ({ students, getUsers }) => {
   });
 
   return (
-    <Table responsive className="p-0" size="sm">
+    <Table responsive className="p-0 mt-4" size="sm">
       <thead
         className="p-3"
         style={{

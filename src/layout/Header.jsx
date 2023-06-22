@@ -33,9 +33,11 @@ const Header = () => {
 
   return (
     <>
-      <Navbar className="teacher-nav" expand="md">
+      <Navbar className="teacher-nav fixed-top" expand="md">
         <Container>
-          <Navbar.Brand href="/teacher">Classroom App</Navbar.Brand>
+          <NavLink to="/teacher" end>
+            Classroom App
+          </NavLink>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">

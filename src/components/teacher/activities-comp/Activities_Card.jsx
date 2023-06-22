@@ -38,7 +38,7 @@ const Activities_Card = () => {
                 style={{ textDecoration: "none", color: "black" }}
               >
                 <Card.Header className="card_style">
-                  {exam.subject}
+                  Exam no. {exams.length - index}
                   <h4 className="float-end">{exam.examLength}</h4>
                 </Card.Header>
                 <Card.Body className="card-body">

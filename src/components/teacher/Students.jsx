@@ -32,7 +32,7 @@ const Students = () => {
   return (
     <>
       <Header />
-      <Container className="my-4">
+      <Container className="mt-4 pt-5">
         <h3>Students List</h3>
         <hr />
         <StudentRegmodal func={getUsers} />
@@ -40,7 +40,7 @@ const Students = () => {
       <Container className="mb-5">
         <StudentDetails students={students} getUsers={getUsers} />
       </Container>
-      <Container>
+      <Container className="mt-4">
         <h3>Students Attendance</h3>
         <hr />
       </Container>

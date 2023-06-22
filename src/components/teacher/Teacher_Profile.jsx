@@ -30,7 +30,7 @@ const Teacher_Profile = () => {
   return (
     <>
       <Header />
-      <Container className="teach-profile-wrapper my-5">
+      <Container className="teach-profile-wrapper my-5 pt-5">
         <Card
           style={{ maxWidth: 600, margin: "0 auto", height: "fit-content" }}
         >
