@@ -58,6 +58,7 @@ const Students_Attendance = () => {
             <th>First Name</th>
             <th>Last Name</th>
             <th>Date Submitted</th>
+            <th>Message</th>
           </tr>
         </thead>
         <tbody>{attendanceData}</tbody>
