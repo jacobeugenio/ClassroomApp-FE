@@ -13,6 +13,7 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Card from 'react-bootstrap/Card';
 import Carousel from 'react-bootstrap/Carousel';
+import CardGroup from 'react-bootstrap/CardGroup';
 
 
 function App() {
@@ -30,20 +31,25 @@ function App() {
             navbarScroll
           >
             <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">About</Nav.Link>
-            <Nav.Link href="#action2">Users</Nav.Link>
-            <Nav.Link href="#action2">Contact</Nav.Link>
+            <Nav.Link href="#about">About</Nav.Link>
+            <Nav.Link href="#users">Users</Nav.Link>
+            <Nav.Link href="#contact">Contact</Nav.Link>
+            <NavDropdown title="Log In" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">I'm a Teacher</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">
+                I'm a Student
+              </NavDropdown.Item>
+            </NavDropdown>
           </Nav>
-          
           <Form className="d-flex">
-             <Button variant="outline-success">Log In</Button>
-            <Button variant="outline-success">Sign Up</Button>
+            <Button variant="outline-warning">Sign Up</Button>
           </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>
     </header>
     <main>
+      <div className="carousel">
     <Carousel>
       <Carousel.Item>
         <img
@@ -52,7 +58,7 @@ function App() {
           alt="First slide"
         />
         <Carousel.Caption>
-          <h3>First slide label</h3>
+          <h3>Educational Tool</h3>
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
         </Carousel.Caption>
       </Carousel.Item>
@@ -64,7 +70,7 @@ function App() {
         />
 
         <Carousel.Caption>
-          <h3>Second slide label</h3>
+          <h3>For Teachers and Student</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </Carousel.Caption>
       </Carousel.Item>
@@ -76,17 +82,18 @@ function App() {
         />
 
         <Carousel.Caption>
-          <h3>Third slide label</h3>
+          <h3>User Friendly</h3>
           <p>
             Praesent commodo cursus magna, vel scelerisque nisl consectetur.
           </p>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
-
+    </div>
     <Container>
+    <section id="about">
       <Row className="px-4 my-5">
-        <Col sm={7}>sm=8
+        <Col sm={7}>
         <Image src="./img/about.jpg" 
         fluid 
         rounded
@@ -102,9 +109,11 @@ function App() {
 
           <p>Institutions may provide users with a KodeVamp account, or individual users can try the free version by signing up for their own account.
           </p>
-          <Button variant="outline-warning">Learn More</Button>
+          <Button variant="outline-warning">Sign Up</Button>
           </Col>
       </Row>
+      </section>
+      <section id="users">
       <Row>
         <Card className="text-center bg-secondary text-white my-5 py-4">
           <Card.Body>
@@ -112,56 +121,87 @@ function App() {
             </Card.Body>
         </Card>
       </Row>
+      </section>
       <Row>
-        <Col>
-        <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="./img/school1.jpg" />
-      <Card.Body>
-        <Card.Title>Schools</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-        </Col>
-        <Col>
-        <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="./img/homeschool.jpg" />
-      <Card.Body>
-        <Card.Title>Homeschool</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-        </Col>
-        <Col>
-        <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="./img/technicalcourse.jpg" />
-      <Card.Body>
-        <Card.Title>Technical Course</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-        </Col>
+
+      <CardGroup>
+      <Card>
+        <Card.Img variant="top" src="./img/school1.jpg" />
+        <Card.Body>
+          <Card.Title>Schools</Card.Title>
+          <Card.Text>
+          Used by teachers with a large amount of students in one class.
+          </Card.Text>
+          <Button variant="warning">Sign In</Button>
+        </Card.Body>
+        <Card.Footer>
+          <small className="text-muted">Last updated 3 mins ago</small>
+        </Card.Footer>
+      </Card>
+      <Card>
+        <Card.Img variant="top" src="./img/homeschool.jpg" />
+        <Card.Body>
+          <Card.Title>Home School</Card.Title>
+          <Card.Text>
+            Used by concentrated learning with 1 on 1 tutoring.
+
+          </Card.Text>
+          <Button variant="warning">Sign In</Button>
+        </Card.Body>
+        <Card.Footer>
+          <small className="text-muted">Last updated 3 mins ago</small>
+        </Card.Footer>
+      </Card>
+      <Card>
+        <Card.Img variant="top" src="./img/technicalcourse.jpg" />
+        <Card.Body>
+          <Card.Title>Techinical Courses</Card.Title>
+          <Card.Text>
+          Used for focused learning of particular profession.
+          </Card.Text>
+          <Button variant="warning">Sign In</Button>
+        </Card.Body>
+        <Card.Footer>
+          <small className="text-muted">Last updated 3 mins ago</small>
+        </Card.Footer>
+      </Card>
+    </CardGroup>
+
       </Row>
+    <Row>
+        <Card className="text-center bg-secondary text-white my-5 py-4">
+          <Card.Body>
+            Contact Us
+            </Card.Body>
+        </Card>
+      </Row>
+    <Form>  
+    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Label>Name</Form.Label>
+        <Form.Control type="email" placeholder="Jane Doe" />
+      </Form.Group>  
+    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Label>Contact Number</Form.Label>
+        <Form.Control type="email" placeholder="+63" />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control type="email" placeholder="name@example.com" />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+        <Form.Label>Message</Form.Label>
+        <Form.Control as="textarea" rows={3} />
+      </Form.Group>
+      <Button variant="warning">Submit</Button>
+    </Form>
     </Container>
     </main>
     <footer class="py-5 my-5 bg-dark">
       <Container className= "px-4">
         <p class="text-center text-white">
-          Copyright & copy; Your website 2023
+          Copyright & copy: KodeVamp Classroom App 2023
           </p>
         </Container> 
-
     </footer>
   </div>
   );
