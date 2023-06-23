@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_Service = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://classroom-app-be.vercel.app/",
   withCredentials: true,
 });
 

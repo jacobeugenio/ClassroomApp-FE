@@ -12,7 +12,6 @@ const Activity_Details = () => {
   const { userInfo } = useSelector((state) => state.auth);
   const [exam, setExam] = useState({});
   const [answers, setAnswers] = useState({});
-  const [student, setStudent] = useState({});
 
   const { id } = useParams();
 
@@ -53,27 +52,6 @@ const Activity_Details = () => {
 
     getAnswer();
   }, [id]);
-  console.log(answers.studentId);
-  useEffect(() => {
-    const getStudent = async () => {
-      // try {
-      //   const response = await API_Service.get(
-      //     `/teachers/get-students/${answers.studentId}`,
-      //     {
-      //       headers: {
-      //         Authorization: `Bearer ${userInfo.data.token}`,
-      //       },
-      //     }
-      //   );
-      //   console.log(response.data);
-      //   setStudent(response.data);
-      // } catch (error) {
-      //   console.log(error);
-      // }
-    };
-
-    getStudent();
-  }, []);
 
   return (
     <>
@@ -131,14 +109,7 @@ const Activity_Details = () => {
             })}
         </div>
       </Container>
-      <Container className="my-4">
-        <hr />
-        {!answers.length ? (
-          <h6 className="ms-5">No student take the exam yet!...... </h6>
-        ) : (
-          <StudentScores />
-        )}
-      </Container>
+      <Container className="my-4"></Container>
     </>
   );
 };
