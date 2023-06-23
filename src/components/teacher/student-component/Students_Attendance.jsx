@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import API_Service from "../../../api-service/API_Service";
 import { useSelector } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
 
 const Students_Attendance = () => {
@@ -39,14 +37,9 @@ const Students_Attendance = () => {
         <td>
           {student.lname.charAt(0).toUpperCase() + student.lname.slice(1)}
         </td>
-        {/* <td className="text-center">
-          {student.attendance === "present" ? (
-            <FontAwesomeIcon icon={faCheck} />
-          ) : (
-            <FontAwesomeIcon icon={faXmark} />
-          )}
-        </td> */}
+
         <td>{moment(student.createdAt).format("MMMM Do YYYY, h:mm:ss a")}</td>
+        <td>{student.comment}</td>
       </tr>
     );
   });
