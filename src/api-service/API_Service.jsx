@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_Service = axios.create({
-  baseURL: "https://classroom-app-be.vercel.app/",
+  baseURL: "https://classroom-app-be.vercel.app",
   withCredentials: true,
 });
 
